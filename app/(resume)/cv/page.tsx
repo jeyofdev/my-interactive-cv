@@ -12,6 +12,35 @@ const ResumePage = () => {
 		return output;
 	};
 
+	const getSkillStyle = (skill: string) => {
+		switch (skill) {
+			case "React.js":
+				return "bg-react text-react-foreground border-react-border hover:border-react-foreground";
+			case "TypeScript":
+				return " bg-typescript text-typescript-foreground border-typescript-border hover:border-typescript-foreground";
+			case "Tailwind CSS":
+				return "bg-tailwindcss text-tailwindcss-foreground border-tailwindcss-border hover:border-tailwindcss-foreground";
+			case "Next.js":
+				return "bg-nextjs text-nextjs-foreground border-nextjs-border hover:border-nextjs-foreground";
+			case "Node.js":
+				return "bg-nodejs text-nodejs-foreground border-nodejs-border hover:border-nodejs-foreground";
+			case "PostgreSQL":
+				return "bg-postgresql text-postgresql-foreground border-postgresql-border hover:border-postgresql-foreground";
+			case "Redis":
+				return "bg-redis text-redis-foreground border-redis-border hover:border-redis-foreground";
+			case "GraphQL":
+				return "bg-graphql text-graphql-foreground border-graphql-border hover:border-graphql-foreground";
+			case "Docker":
+				return "bg-docker text-docker-foreground border-docker-border hover:border-docker-foreground";
+			case "AWS":
+				return "bg-aws text-aws-foreground border-aws-border hover:border-aws-foreground";
+			case "GitLab CI":
+				return "bg-gitlab text-gitlab-foreground border-gitlab-border hover:border-gitlab-foreground";
+			default:
+				return "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-600 hover:border-primary";
+		}
+	};
+
 	return (
 		<>
 			<aside className="flex flex-col w-full lg:w-80 xl:w-96 lg:h-screen bg-surface-muted border-r border-border overflow-y-auto">
@@ -65,6 +94,27 @@ const ResumePage = () => {
 							isSocial
 						/>
 						<ProfileItem icon="language" label={resumeData.website.label} hasLink href={resumeData.website.url} />
+					</div>
+
+					<div className="mt-12 w-full text-left space-y-8">
+						{resumeData.skills.map((skillGroup, idx) => (
+							<div key={idx}>
+								<h3 className="text-xs font-bold text-surface-muted-foreground-title uppercase tracking-[0.2em] mb-4">
+									{skillGroup.category}
+								</h3>
+
+								<div className="flex flex-wrap gap-2">
+									{skillGroup.items.map((skill, sIdx) => (
+										<span
+											key={sIdx}
+											className={`px-3 py-1 text-xs font-semibold rounded-md shadow-sm border transition-colors cursor-default ${getSkillStyle(skill)}`}
+										>
+											{skill}
+										</span>
+									))}
+								</div>
+							</div>
+						))}
 					</div>
 				</div>
 			</aside>
