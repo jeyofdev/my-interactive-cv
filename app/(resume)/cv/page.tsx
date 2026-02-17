@@ -132,6 +132,22 @@ const ResumePage = () => {
 								))}
 							</div>
 						</div>
+
+						<div className="pt-4">
+							<h3 className="text-[10px] font-bold text-surface-muted-foreground-title-secondary uppercase tracking-widest border-b border-border-separator pb-1.5 mb-4">
+								Loisirs
+							</h3>
+
+							<div className="grid grid-cols-2 gap-x-4 gap-y-6">
+								{resumeData.hobbies.map((h, i) => (
+									<div key={i}>
+										<p className="text-sm font-semibold text-surface-muted-foreground-info-title">{h.name}</p>
+										{h.detail && <p className="text-[11px] text-surface-muted-foreground-info">{h.detail}</p>}
+										{h.duration && <p className="text-[11px] text-surface-muted-foreground-info">{h.duration}</p>}
+									</div>
+								))}
+							</div>
+						</div>
 					</div>
 				</div>
 			</aside>

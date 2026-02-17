@@ -19,8 +19,14 @@
 	--color-surface-muted-foreground-title: var(
 		--surface-muted-foreground-title
 	);
+	--color-surface-muted-foreground-title-secondary: var(
+		--surface-muted-foreground-title-secondary
+	);
+	--color-surface-muted-foreground-info: var(--surface-muted-foreground-info);
+	--color-surface-muted-foreground-info: var(--surface-muted-foreground-info);
 
 	--color-border: var(--border);
+	--color-border-separator: var(--border-separator);
 	--color-border-secondary: var(--border-secondary);
 
 	/* chip skills */
@@ -87,9 +93,14 @@
 	--surface-muted-foreground: theme(--color-slate-600);
 	--surface-muted-foreground-secondary: theme(--color-slate-900);
 	--surface-muted-foreground-title: theme(--color-slate-400);
+	--surface-muted-foreground-title-secondary: theme(--color-slate-900);
+	--surface-muted-foreground-info: theme(--color-slate-500);
+		--surface-muted-foreground-info-title: theme(--color-slate-800);
+
 
 	--border: theme(--color-slate-200);
 	--border-secondary: theme(--color-white);
+	--border-separator: theme(--color-slate-200);
 
 	--chip: theme(--color-white);
 	--chip-border: theme(--color-slate-200);
@@ -151,9 +162,13 @@
 	--surface-muted-foreground: theme(--color-slate-400);
 	--surface-muted-foreground-secondary: theme(--color-white);
 	--surface-muted-foreground-title: theme(--color-slate-500);
+	--surface-muted-foreground-title-secondary: theme(--color-slate-100);
+	--surface-muted-foreground-info: theme(--color-slate-400);
+	--surface-muted-foreground-info-title: theme(--color-slate-200);
 
 	--border: theme(--color-slate-700);
 	--border-secondary: theme(--color-slate-800);
+	--border-separator: theme(--color-slate-700);
 
 	--chip: theme(--color-slate-700);
 	--chip-border: theme(--color-slate-600);
