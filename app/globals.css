@@ -13,8 +13,12 @@
 
 	--color-foreground: var(--foreground);
 	--color-surface-muted-foreground: var(--surface-muted-foreground);
+	--color-surface-muted-foreground-secondary: var(
+		--surface-muted-foreground-secondary
+	);
 
 	--color-border: var(--border);
+	--color-border-secondary: var(--border-secondary);
 
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
@@ -29,8 +33,10 @@
 
 	--foreground: theme(--color-slate-800);
 	--surface-muted-foreground: theme(--color-slate-600);
+	--surface-muted-foreground-secondary: theme(--color-slate-900);
 
 	--border: theme(--color-slate-200);
+	--border-secondary: theme(--color-white);
 }
 
 .dark {
@@ -42,8 +48,10 @@
 
 	--foreground: theme(--color-slate-100);
 	--surface-muted-foreground: theme(--color-slate-400);
+	--surface-muted-foreground-secondary: theme(--color-white);
 
 	--border: theme(--color-slate-700);
+	--border-secondary: theme(--color-slate-800);
 }
 
 @layer base {
