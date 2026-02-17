@@ -16,12 +16,18 @@
 	--color-surface-muted-foreground-secondary: var(
 		--surface-muted-foreground-secondary
 	);
-	--color-surface-muted-foreground-title: var(--surface-muted-foreground-title);
+	--color-surface-muted-foreground-title: var(
+		--surface-muted-foreground-title
+	);
 
 	--color-border: var(--border);
 	--color-border-secondary: var(--border-secondary);
 
 	/* chip skills */
+	--color-chip: var(--chip);
+	--color-chip-border: var(--chip-border);
+	--color-chip-foreground: var(--chi-foreground);
+
 	--color-react: var(--react);
 	--color-react-border: var(--react-border);
 	--color-react-foreground: var(--react-foreground);
@@ -85,6 +91,10 @@
 	--border: theme(--color-slate-200);
 	--border-secondary: theme(--color-white);
 
+	--chip: theme(--color-white);
+	--chip-border: theme(--color-slate-200);
+	--chip-foreground: theme(--color-slate-700);
+
 	--react: theme(--color-blue-500 / 10%);
 	--react-border: theme(--color-blue-500 / 20%);
 	--react-foreground: theme(--color-blue-400);
@@ -144,6 +154,10 @@
 
 	--border: theme(--color-slate-700);
 	--border-secondary: theme(--color-slate-800);
+
+	--chip: theme(--color-slate-700);
+	--chip-border: theme(--color-slate-600);
+	--chip-foreground: theme(--color-slate-200);
 
 	--react: theme(--color-slate-800 / 80%);
 	--typescript: theme(--color-slate-800 / 80%);

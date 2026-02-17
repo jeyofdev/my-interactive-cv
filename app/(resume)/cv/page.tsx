@@ -115,6 +115,23 @@ const ResumePage = () => {
 								</div>
 							</div>
 						))}
+
+						<div>
+							<h3 className="text-xs font-bold text-surface-muted-foreground-title uppercase tracking-[0.2em] mb-4">
+								Langues
+							</h3>
+
+							<div className="flex flex-wrap gap-2">
+								{resumeData.languages.map((l, i) => (
+									<span
+										key={i}
+										className="px-3 py-1 bg-chip text-chip-foreground text-xs font-medium rounded shadow-sm border border-chip-border hover:border-primary transition-colors cursor-default"
+									>
+										{l.name} ({l.level})
+									</span>
+								))}
+							</div>
+						</div>
 					</div>
 				</div>
 			</aside>
