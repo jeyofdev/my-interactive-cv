@@ -9,10 +9,74 @@
 	--color-surface: var(--surface);
 	--color-surface-muted: var(--surface-muted);
 	--color-destructive: var(--destructive);
+	--color-primary: var(--primary);
 
 	--color-foreground: var(--foreground);
+	--color-surface-muted-foreground: var(--surface-muted-foreground);
+	--color-surface-muted-foreground-secondary: var(
+		--surface-muted-foreground-secondary
+	);
+	--color-surface-muted-foreground-title: var(
+		--surface-muted-foreground-title
+	);
+	--color-surface-muted-foreground-title-secondary: var(
+		--surface-muted-foreground-title-secondary
+	);
+	--color-surface-muted-foreground-info: var(--surface-muted-foreground-info);
+	--color-surface-muted-foreground-info: var(--surface-muted-foreground-info);
 
 	--color-border: var(--border);
+	--color-border-separator: var(--border-separator);
+	--color-border-secondary: var(--border-secondary);
+
+	/* chip skills */
+	--color-chip: var(--chip);
+	--color-chip-border: var(--chip-border);
+	--color-chip-foreground: var(--chi-foreground);
+
+	--color-react: var(--react);
+	--color-react-border: var(--react-border);
+	--color-react-foreground: var(--react-foreground);
+
+	--color-typescript: var(--typescript);
+	--color-typescript-border: var(--typescript-border);
+	--color-typescript-foreground: var(--typescript-foreground);
+
+	--color-tailwindcss: var(--tailwindcss);
+	--color-tailwindcss-border: var(--tailwindcss-border);
+	--color-tailwindcss-foreground: var(--tailwindcss-foreground);
+
+	--color-nextjs: var(--nextjs);
+	--color-nextjs-border: var(--nextjs-border);
+	--color-nextjs-foreground: var(--nextjs-foreground);
+
+	--color-nodejs: var(--nodejs);
+	--color-nodejs-border: var(--nodejs-border);
+	--color-nodejs-foreground: var(--nodejs-foreground);
+
+	--color-postgresql: var(--postgresql);
+	--color-postgresql-border: var(--postgresql-border);
+	--color-postgresql-foreground: var(--postgresql-foreground);
+
+	--color-redis: var(--redis);
+	--color-redis-border: var(--redis-border);
+	--color-redis-foreground: var(--redis-foreground);
+
+	--color-graphql: var(--graphql);
+	--color-graphql-border: var(--graphql-border);
+	--color-graphql-foreground: var(--graphql-foreground);
+
+	--color-docker: var(--docker);
+	--color-docker-border: var(--docker-border);
+	--color-docker-foreground: var(--docker-foreground);
+
+	--color-aws: var(--aws);
+	--color-aws-border: var(--aws-border);
+	--color-aws-foreground: var(--aws-foreground);
+
+	--color-gitlab: var(--gitlab);
+	--color-gitlab-border: var(--gitlab-border);
+	--color-gitlab-foreground: var(--gitlab-foreground);
 
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
@@ -23,10 +87,68 @@
 	--surface: theme(--color-white);
 	--surface-muted: theme(--color-slate-50);
 	--destructive: theme(--color-white);
+	--primary: #10b981;
 
 	--foreground: theme(--color-slate-800);
+	--surface-muted-foreground: theme(--color-slate-600);
+	--surface-muted-foreground-secondary: theme(--color-slate-900);
+	--surface-muted-foreground-title: theme(--color-slate-400);
+	--surface-muted-foreground-title-secondary: theme(--color-slate-900);
+	--surface-muted-foreground-info: theme(--color-slate-500);
+		--surface-muted-foreground-info-title: theme(--color-slate-800);
+
 
 	--border: theme(--color-slate-200);
+	--border-secondary: theme(--color-white);
+	--border-separator: theme(--color-slate-200);
+
+	--chip: theme(--color-white);
+	--chip-border: theme(--color-slate-200);
+	--chip-foreground: theme(--color-slate-700);
+
+	--react: theme(--color-blue-500 / 10%);
+	--react-border: theme(--color-blue-500 / 20%);
+	--react-foreground: theme(--color-blue-400);
+
+	--typescript: theme(--color-sky-500 / 10%);
+	--typescript-border: theme(--color-sky-500 / 20%);
+	--typescript-foreground: theme(--color-sky-400);
+
+	--tailwindcss: theme(--color-cyan-500 / 10%);
+	--tailwindcss-border: theme(--color-cyan-500 / 20%);
+	--tailwindcss-foreground: theme(--color-cyan-400);
+
+	--nextjs: theme(--color-slate-500 / 10%);
+	--nextjs-border: theme(--color-slate-500 / 10%);
+	--nextjs-foreground: theme(--color-slate-400);
+
+	--nodejs: theme(--color-green-500 / 10%);
+	--nodejs-border: theme(--color-green-500 / 20%);
+	--nodejs-foreground: theme(--color-green-400);
+
+	--postgresql: theme(--color-indigo-500 / 10%);
+	--postgresql-border: theme(--color-indigo-500 / 20%);
+	--postgresql-foreground: theme(--color-indigo-400);
+
+	--redis: theme(--color-red-500 / 10%);
+	--redis-border: theme(--color-red-500 / 20%);
+	--redis-foreground: theme(--color-red-400);
+
+	--graphql: theme(--color-pink-500 / 10%);
+	--graphql-border: theme(--color-pink-500 / 20%);
+	--graphql-foreground: theme(--color-pink-400);
+
+	--docker: theme(--color-blue-500 / 10%);
+	--docker-border: theme(--color-blue-500 / 20%);
+	--docker-foreground: theme(--color-blue-400);
+
+	--aws: theme(--color-orange-500 / 10%);
+	--aws-border: theme(--color-orange-500 / 20%);
+	--aws-foreground: theme(--color-orange-400);
+
+	--gitlab: theme(--color-purple-500 / 10%);
+	--gitlab-border: theme(--color-purple-500 / 20%);
+	--gitlab-foreground: theme(--color-purple-400);
 }
 
 .dark {
@@ -34,10 +156,35 @@
 	--surface: theme(--color-slate-900);
 	--surface-muted: oklch(27.808% 0.02963 256.871);
 	--destructive: oklch(21.009% 0.03179 264.678);
+	--primary: #10b981;
 
 	--foreground: theme(--color-slate-100);
+	--surface-muted-foreground: theme(--color-slate-400);
+	--surface-muted-foreground-secondary: theme(--color-white);
+	--surface-muted-foreground-title: theme(--color-slate-500);
+	--surface-muted-foreground-title-secondary: theme(--color-slate-100);
+	--surface-muted-foreground-info: theme(--color-slate-400);
+	--surface-muted-foreground-info-title: theme(--color-slate-200);
 
 	--border: theme(--color-slate-700);
+	--border-secondary: theme(--color-slate-800);
+	--border-separator: theme(--color-slate-700);
+
+	--chip: theme(--color-slate-700);
+	--chip-border: theme(--color-slate-600);
+	--chip-foreground: theme(--color-slate-200);
+
+	--react: theme(--color-slate-800 / 80%);
+	--typescript: theme(--color-slate-800 / 80%);
+	--tailwindcss: theme(--color-slate-800 / 80%);
+	--nextjs: theme(--color-slate-800 / 80%);
+	--nodejs: theme(--color-slate-800 / 80%);
+	--postgresql: theme(--color-slate-800 / 80%);
+	--redis: theme(--color-slate-800 / 80%);
+	--graphql: theme(--color-slate-800 / 80%);
+	--docker: theme(--color-slate-800 / 80%);
+	--aws: theme(--color-slate-800 / 80%);
+	--gitlab: theme(--color-slate-800 / 80%);
 }
 
 @layer base {
