@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# DEPRECATED
+#. "$(dirname "$0")/_/husky.sh"
+
+echo "✨ Checking modified files with lint-staged..."
+bunx lint-staged

@@ -6,8 +6,10 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "biome check",
-		"format": "biome format --write"
+		"lint": "echo '🔍 Biomejs Execution...' && bunx biome lint --write ./app",
+		"format": "echo '✨ Code formatting with Biomejs...' && bunx biome format --write ./app",
+		"check": "bunx biome check --write ./app",
+		"prepare": "echo '🚀 Preparing the Husky hooks...' && husky"
 	},
 	"dependencies": {
 		"next": "16.1.6",
@@ -16,10 +18,14 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.0",
+		"@commitlint/cli": "^20.4.1",
+		"@commitlint/config-conventional": "^20.4.1",
 		"@tailwindcss/postcss": "^4",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
 		"tailwindcss": "^4",
 		"typescript": "^5"
 	},
@@ -30,5 +36,13 @@
 	"trustedDependencies": [
 		"sharp",
 		"unrs-resolver"
-	]
+	],
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": [
+			"echo '🔧 Linting des fichiers modifiés...'",
+			"bunx biome lint --write ./src",
+			"echo '✨ Formatage des fichiers modifiés...'",
+			"bunx biome format --write ./src"
+		]
+	}
 }

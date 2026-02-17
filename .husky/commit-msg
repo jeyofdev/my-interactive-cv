@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# DEPRECATED
+#. "$(dirname "$0")/_/husky.sh"
+
+echo "🔍 Validating the commit message..."
+bunx --no-install commitlint --edit "$1"
