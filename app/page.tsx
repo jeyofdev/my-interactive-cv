@@ -1,7 +1,13 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const Home = () => {
-	return <h1>hello</h1>;
+	return (
+		<div>
+			<h1>hello</h1>
+
+			<Button>Click me</Button>
+		</div>
+	);
 };
 
 export default Home;
