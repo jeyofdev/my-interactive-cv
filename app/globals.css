@@ -9,8 +9,10 @@
 	--color-surface: var(--surface);
 	--color-surface-muted: var(--surface-muted);
 	--color-destructive: var(--destructive);
+	--color-primary: var(--primary);
 
 	--color-foreground: var(--foreground);
+	--color-surface-muted-foreground: var(--surface-muted-foreground);
 
 	--color-border: var(--border);
 
@@ -23,8 +25,10 @@
 	--surface: theme(--color-white);
 	--surface-muted: theme(--color-slate-50);
 	--destructive: theme(--color-white);
+	--primary: #10b981;
 
 	--foreground: theme(--color-slate-800);
+	--surface-muted-foreground: theme(--color-slate-600);
 
 	--border: theme(--color-slate-200);
 }
@@ -34,8 +38,10 @@
 	--surface: theme(--color-slate-900);
 	--surface-muted: oklch(27.808% 0.02963 256.871);
 	--destructive: oklch(21.009% 0.03179 264.678);
+	--primary: #10b981;
 
 	--foreground: theme(--color-slate-100);
+	--surface-muted-foreground: theme(--color-slate-400);
 
 	--border: theme(--color-slate-700);
 }
