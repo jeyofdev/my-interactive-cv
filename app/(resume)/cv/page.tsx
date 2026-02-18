@@ -1,4 +1,5 @@
 import { ProfileItem } from "@/components/items/profile-item";
+import { ListRenderer } from "@/components/list/list-renderer";
 import { resumeData } from "@/data/resume-data";
 import Image from "next/image";
 
@@ -97,24 +98,31 @@ const ResumePage = () => {
 					</div>
 
 					<div className="mt-12 w-full text-left space-y-8">
-						{resumeData.skills.map((skillGroup, idx) => (
-							<div key={idx}>
-								<h3 className="text-xs font-bold text-surface-muted-foreground-title uppercase tracking-[0.2em] mb-4">
-									{skillGroup.category}
-								</h3>
+						<ListRenderer
+							items={resumeData.skills}
+							keyExtractor={(item) => item.id}
+							renderItem={(skillGroup) => (
+								<div>
+									<h3 className="text-xs font-bold text-surface-muted-foreground-title uppercase tracking-[0.2em] mb-4">
+										{skillGroup.category}
+									</h3>
 
-								<div className="flex flex-wrap gap-2">
-									{skillGroup.items.map((skill, sIdx) => (
-										<span
-											key={sIdx}
-											className={`px-3 py-1 text-xs font-semibold rounded-md shadow-sm border transition-colors cursor-default ${getSkillStyle(skill)}`}
-										>
-											{skill}
-										</span>
-									))}
+									<div className="flex flex-wrap gap-2">
+										<ListRenderer
+											items={skillGroup.items}
+											keyExtractor={(item) => item.id}
+											renderItem={(skill) => (
+												<span
+													className={`px-3 py-1 text-xs font-semibold rounded-md shadow-sm border transition-colors cursor-default ${getSkillStyle(skill.label)}`}
+												>
+													{skill.label}
+												</span>
+											)}
+										/>
+									</div>
 								</div>
-							</div>
-						))}
+							)}
+						/>
 
 						<div>
 							<h3 className="text-xs font-bold text-surface-muted-foreground-title uppercase tracking-[0.2em] mb-4">
@@ -122,14 +130,15 @@ const ResumePage = () => {
 							</h3>
 
 							<div className="flex flex-wrap gap-2">
-								{resumeData.languages.map((l, i) => (
-									<span
-										key={i}
-										className="px-3 py-1 bg-chip text-chip-foreground text-xs font-medium rounded shadow-sm border border-chip-border hover:border-primary transition-colors cursor-default"
-									>
-										{l.name} ({l.level})
-									</span>
-								))}
+								<ListRenderer
+									items={resumeData.languages}
+									keyExtractor={(item) => item.id}
+									renderItem={(language) => (
+										<span className="px-3 py-1 bg-chip text-chip-foreground text-xs font-medium rounded shadow-sm border border-chip-border hover:border-primary transition-colors cursor-default">
+											{language.label} ({language.level})
+										</span>
+									)}
+								/>
 							</div>
 						</div>
 
@@ -139,13 +148,19 @@ const ResumePage = () => {
 							</h3>
 
 							<div className="grid grid-cols-2 gap-x-4 gap-y-6">
-								{resumeData.hobbies.map((h, i) => (
-									<div key={i}>
-										<p className="text-sm font-semibold text-surface-muted-foreground-info-title">{h.name}</p>
-										{h.detail && <p className="text-[11px] text-surface-muted-foreground-info">{h.detail}</p>}
-										{h.duration && <p className="text-[11px] text-surface-muted-foreground-info">{h.duration}</p>}
-									</div>
-								))}
+								<ListRenderer
+									items={resumeData.hobbies}
+									keyExtractor={(item) => item.id}
+									renderItem={(hobby) => (
+										<div>
+											<p className="text-sm font-semibold text-surface-muted-foreground-info-title">{hobby.label}</p>
+											{hobby.detail && <p className="text-[11px] text-surface-muted-foreground-info">{hobby.detail}</p>}
+											{hobby.duration && (
+												<p className="text-[11px] text-surface-muted-foreground-info">{hobby.duration}</p>
+											)}
+										</div>
+									)}
+								/>
 							</div>
 						</div>
 					</div>

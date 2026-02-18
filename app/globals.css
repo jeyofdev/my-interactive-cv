@@ -23,7 +23,7 @@
 		--surface-muted-foreground-title-secondary
 	);
 	--color-surface-muted-foreground-info: var(--surface-muted-foreground-info);
-	--color-surface-muted-foreground-info: var(--surface-muted-foreground-info);
+	--color-surface-muted-foreground-info-title: var(--surface-muted-foreground-info-title);
 
 	--color-border: var(--border);
 	--color-border-separator: var(--border-separator);
