@@ -41,7 +41,7 @@ type Skill = {
 	items: SkillItem[];
 };
 
-type SkillItem = {
+export type SkillItem = {
 	id: number;
 	label: string;
 };

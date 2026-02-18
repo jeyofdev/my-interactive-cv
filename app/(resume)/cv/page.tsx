@@ -1,3 +1,4 @@
+import { ProfileBlock } from "@/components/block/profile-block";
 import { HobbyCard } from "@/components/cards/hobby-card";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
@@ -86,71 +87,58 @@ const ResumePage = () => {
 
 					<div className="mt-12 w-full text-left space-y-8">
 						<ListRenderer
-							items={resumeData.skills}
+							list={resumeData.skills}
 							keyExtractor={(item) => item.id}
 							renderItem={(skillGroup) => (
-								<div>
-									<h3 className="text-xs font-bold text-surface-muted-foreground-title uppercase tracking-[0.2em] mb-4">
-										{skillGroup.category}
-									</h3>
-
-									<div className="flex flex-wrap gap-2">
-										<ListRenderer
-											items={skillGroup.items}
-											keyExtractor={(item) => item.id}
-											renderItem={(skill) => (
-												<Chip
-													variant="rounded"
-													color={
-														skillColorMap[
-															skill.label
-																.split(/[\s.]+/)
-																.join("")
-																.toLowerCase()
-														] ?? "default"
-													}
-													rounded="sm"
-												>
-													{skill.label}
-												</Chip>
-											)}
-										/>
-									</div>
-								</div>
+								<>
+									<ProfileBlock
+										category={skillGroup.category}
+										list={skillGroup.items}
+										keyExtractor={(item) => item.id}
+										renderItem={(skill) => (
+											<Chip
+												variant="rounded"
+												color={
+													skillColorMap[
+														skill.label
+															.split(/[\s.]+/)
+															.join("")
+															.toLowerCase()
+													] ?? "default"
+												}
+												rounded="sm"
+											>
+												{skill.label}
+											</Chip>
+										)}
+									/>
+								</>
 							)}
 						/>
 
-						<div>
-							<h3 className="text-xs font-bold text-surface-muted-foreground-title uppercase tracking-[0.2em] mb-4">
-								Langues
-							</h3>
+						<ProfileBlock
+							category="Langues"
+							list={resumeData.languages}
+							keyExtractor={(item) => item.id}
+							renderItem={(lang) => (
+								<Chip variant="default" color="default">
+									{lang.label} ({lang.level})
+								</Chip>
+							)}
+							variantTitle="default"
+							marginTitle="m-0 mb-4"
+						/>
 
-							<div className="flex flex-wrap gap-2">
-								<ListRenderer
-									items={resumeData.languages}
-									keyExtractor={(item) => item.id}
-									renderItem={(language) => (
-										<Chip variant="default" color="default">
-											{language.label} ({language.level})
-										</Chip>
-									)}
-								/>
-							</div>
-						</div>
-
-						<div className="pt-4">
-							<h3 className="text-[10px] font-bold text-surface-muted-foreground-title-secondary uppercase tracking-widest border-b border-border-separator pb-1.5 mb-4">
-								Loisirs
-							</h3>
-
-							<div className="grid grid-cols-2 gap-x-4 gap-y-6">
-								<ListRenderer
-									items={resumeData.hobbies}
-									keyExtractor={(item) => item.id}
-									renderItem={(hobby) => <HobbyCard hobby={hobby} />}
-								/>
-							</div>
-						</div>
+						<ProfileBlock
+							variant="grid"
+							category="Loisirs"
+							list={resumeData.hobbies}
+							keyExtractor={(item) => item.id}
+							renderItem={(hobby) => <HobbyCard hobby={hobby} />}
+							variantTitle="hobby"
+							marginTitle="m-0 mb-4"
+							containerClassName="pt-4"
+						/>
 					</div>
 				</div>
 			</aside>
