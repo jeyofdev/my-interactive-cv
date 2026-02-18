@@ -3,6 +3,7 @@ import { HobbyCard } from "@/components/cards/hobby-card";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
 import { Chip, ChipColor } from "@/components/ui/chips/chip";
+import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
 import Image from "next/image";
 
@@ -51,16 +52,16 @@ const ResumePage = () => {
 					</div>
 
 					{/* Profile name + job */}
-					<h1 className="text-2xl font-bold tracking-tight surface-muted-foreground-secondary capitalize">
-						{resumeData.name}
-					</h1>
+					<Typography variant="h1">{resumeData.name}</Typography>
 
-					<p className="text-primary font-semibold text-sm uppercase tracking-wider mt-1">{resumeData.title}</p>
+					<Typography variant="h6" className="mt-1">
+						{resumeData.title}
+					</Typography>
 
 					{/* description summary */}
-					<p className="mt-4 text-sm text-surface-muted-foreground leading-relaxed text-justify px-2">
+					<Typography variant="lead" className="mt-4 px-2">
 						{resumeData.summary}
-					</p>
+					</Typography>
 
 					<div className="mt-8 w-full space-y-4">
 						<ProfileItem icon="mail" label={resumeData.email} />
@@ -108,9 +109,19 @@ const ResumePage = () => {
 												}
 												rounded="sm"
 											>
-												{skill.label}
+												<Typography
+													variant="small"
+													color="text-current"
+													fontSize="xs"
+													fontWeight="semibold"
+													lineHeight="none"
+													asChild
+												>
+													<span>{skill.label}</span>
+												</Typography>
 											</Chip>
 										)}
+										titleClassName="m-0 mb-4"
 									/>
 								</>
 							)}
@@ -122,11 +133,22 @@ const ResumePage = () => {
 							keyExtractor={(item) => item.id}
 							renderItem={(lang) => (
 								<Chip variant="default" color="default">
-									{lang.label} ({lang.level})
+									<Typography
+										variant="small"
+										color="text-current"
+										fontSize="xs"
+										fontWeight="semibold"
+										lineHeight="none"
+										asChild
+									>
+										<span>
+											{lang.label} ({lang.level})
+										</span>
+									</Typography>
 								</Chip>
 							)}
 							variantTitle="default"
-							marginTitle="m-0 mb-4"
+							titleClassName="m-0 mb-4"
 						/>
 
 						<ProfileBlock
@@ -136,7 +158,10 @@ const ResumePage = () => {
 							keyExtractor={(item) => item.id}
 							renderItem={(hobby) => <HobbyCard hobby={hobby} />}
 							variantTitle="hobby"
-							marginTitle="m-0 mb-4"
+							colorTitle="secondary"
+							fontSizeTitle="sm"
+							borderTitle="thin"
+							titleClassName="m-0 mb-4"
 							containerClassName="pt-4"
 						/>
 					</div>
