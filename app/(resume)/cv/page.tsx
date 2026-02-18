@@ -3,6 +3,7 @@ import { HobbyCard } from "@/components/cards/hobby-card";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
 import { Chip, ChipColor } from "@/components/ui/chips/chip";
+import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
 import Image from "next/image";
 
@@ -55,12 +56,12 @@ const ResumePage = () => {
 						{resumeData.name}
 					</h1>
 
-					<p className="text-primary font-semibold text-sm uppercase tracking-wider mt-1">{resumeData.title}</p>
+					<h6 className="text-primary font-semibold text-sm uppercase tracking-wider mt-1">{resumeData.title}</h6>
 
 					{/* description summary */}
-					<p className="mt-4 text-sm text-surface-muted-foreground leading-relaxed text-justify px-2">
+					<Typography variant="lead" className="mt-4 px-2">
 						{resumeData.summary}
-					</p>
+					</Typography>
 
 					<div className="mt-8 w-full space-y-4">
 						<ProfileItem icon="mail" label={resumeData.email} />
