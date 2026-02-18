@@ -5,7 +5,7 @@ import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 const chipVariants = cva(
-	"inline-flex items-center justify-center px-3 py-1 text-xs font-semibold shadow-sm transition-colors cursor-default whitespace-nowrap",
+	"inline-flex items-center justify-center px-3 py-1 shadow-sm transition-colors cursor-default whitespace-nowrap",
 	{
 		variants: {
 			variant: {
@@ -75,16 +75,24 @@ const Chip = ({
 	asChild = false,
 	...props
 }: React.ComponentProps<"span"> & VariantProps<typeof chipVariants> & { asChild?: boolean }) => {
-	const Comp = asChild ? Slot.Root : "span";
+	const Component = asChild ? Slot.Root : "span";
 
 	return (
-		<Comp
+		<Component
 			data-slot="badge"
 			data-variant={variant}
 			data-color={color}
 			data-rounded={rounded}
 			data-borderWidth={borderWidth}
-			className={cn(chipVariants({ variant, color, rounded, borderWidth }), className)}
+			className={cn(
+				chipVariants({
+					variant,
+					color,
+					rounded,
+					borderWidth,
+				}),
+				className,
+			)}
 			{...props}
 		/>
 	);

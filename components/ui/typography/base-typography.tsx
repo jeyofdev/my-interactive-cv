@@ -11,6 +11,17 @@ const baseTypographyVariants = cva("", {
 			muted: "text-sm text-muted-foreground", // l’information secondaire, Moins prioritaire
 			small: "text-sm font-medium leading-none", // le micro-texte UI, label, badge...
 			code: "rounded bg-muted px-1 py-0.5 font-mono text-sm", // le code inline
+			h1: "",
+			h6: "",
+		},
+		color: {
+			default: "text-foreground",
+			primary: "text-primary",
+			"surface-muted-foreground": "text-surface-muted-foreground",
+			"surface-muted-foreground-secondary": "text-surface-muted-foreground-secondary",
+			"surface-muted-foreground-info": "text-surface-muted-foreground-info",
+			"surface-muted-foreground-info-title": "text-surface-muted-foreground-info-title",
+			"text-current": "text-current",
 		},
 		fontSize: {
 			xs: "text-xs",
@@ -21,13 +32,18 @@ const baseTypographyVariants = cva("", {
 			"2xl": "text-2xl",
 			"3xl": "text-3xl",
 			"4xl": "text-4xl",
+			"custom-11": "text-[11px]",
 		},
-		color: {
-			default: "text-foreground",
-			primary: "text-primary",
-			"surface-muted-foreground": "text-surface-muted-foreground",
+		fontWeight: {
+			thin: "font-thin",
+			light: "font-light",
+			normal: "font-normal",
+			medium: "font-medium",
+			semibold: "font-semibold",
+			bold: "font-bold",
+			extrabold: "font-extrabold",
 		},
-		align: {
+		textAlign: {
 			left: "text-left",
 			center: "text-center",
 			right: "text-right",
@@ -38,15 +54,31 @@ const baseTypographyVariants = cva("", {
 			tight: "leading-tight",
 			normal: "leading-normal",
 			relaxed: "leading-relaxed",
-			loose: "leading-loose",
+		},
+		letterSpacing: {
+			tighter: "tracking-tighter",
+			tight: "tracking-tight",
+			normal: "tracking-normal",
+			wide: "tracking-wide",
+			wider: "tracking-wider",
+			widest: "tracking-widest",
+		},
+		textTransform: {
+			uppercase: "uppercase",
+			lowercase: "lowercase",
+			capitalize: "capitalize",
+			normal: "normal-case",
 		},
 	},
 	defaultVariants: {
 		variant: "p",
-		fontSize: "sm",
 		color: "default",
-		align: "left",
+		fontSize: "sm",
+		fontWeight: "normal",
+		textAlign: "left",
 		lineHeight: "normal",
+		letterSpacing: "normal",
+		textTransform: "normal",
 	},
 });
 
@@ -59,6 +91,8 @@ const variantElementMap: Record<
 	muted: "p",
 	small: "span",
 	code: "code",
+	h1: "h1",
+	h6: "h6",
 };
 
 export type BaseTypographyProps = Omit<React.HTMLAttributes<HTMLElement>, "color"> &
@@ -69,10 +103,13 @@ export type BaseTypographyProps = Omit<React.HTMLAttributes<HTMLElement>, "color
 export const BaseTypography = ({
 	asChild,
 	variant,
-	fontSize,
 	color,
-	align,
+	fontSize,
+	fontWeight,
+	textAlign,
 	lineHeight,
+	letterSpacing,
+	textTransform,
 	className,
 	...props
 }: BaseTypographyProps) => {
@@ -80,7 +117,19 @@ export const BaseTypography = ({
 
 	return (
 		<Component
-			className={cn(baseTypographyVariants({ variant, fontSize, color, align, lineHeight }), className)}
+			className={cn(
+				baseTypographyVariants({
+					variant,
+					color,
+					fontSize,
+					fontWeight,
+					textAlign,
+					lineHeight,
+					letterSpacing,
+					textTransform,
+				}),
+				className,
+			)}
 			{...props}
 		/>
 	);

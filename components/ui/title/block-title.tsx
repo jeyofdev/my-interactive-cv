@@ -4,11 +4,15 @@ import { Slot } from "radix-ui";
 
 import { cn } from "@/lib/utils";
 
-const profileBlockTitleVariants = cva("font-bold uppercase", {
+const profileBlockTitleVariants = cva("flex font-bold uppercase", {
 	variants: {
 		variant: {
 			default: "text-surface-muted-foreground-title tracking-[0.2em]",
 			hobby: "text-[10px] text-surface-muted-foreground-title-secondary tracking-widest pb-1.5",
+		},
+		color: {
+			default: "text-surface-muted-foreground-title",
+			secondary: "text-foreground",
 		},
 		fontSize: {
 			"10": "text-[10px]",
@@ -26,6 +30,7 @@ const profileBlockTitleVariants = cva("font-bold uppercase", {
 	},
 	defaultVariants: {
 		variant: "default",
+		color: "default",
 		fontSize: "xs",
 		border: "none",
 	},
@@ -34,10 +39,10 @@ const profileBlockTitleVariants = cva("font-bold uppercase", {
 export type ProfileBlockTitleVariant = VariantProps<typeof profileBlockTitleVariants>["variant"];
 export type ProfileBlockTitleBorder = VariantProps<typeof profileBlockTitleVariants>["border"];
 export type ProfileBlockTitleFontSize = VariantProps<typeof profileBlockTitleVariants>["fontSize"];
+export type ProfileBlockTitleColor = VariantProps<typeof profileBlockTitleVariants>["color"];
 
 type ProfileBlockTitleProps = VariantProps<typeof profileBlockTitleVariants> & {
 	label: string;
-	margin?: string;
 	asChild?: boolean;
 	className?: string;
 };
@@ -45,18 +50,18 @@ type ProfileBlockTitleProps = VariantProps<typeof profileBlockTitleVariants> & {
 export const ProfileBlockTitle = ({
 	label,
 	variant,
-	margin = "m-0 mb-4",
+	color,
 	fontSize,
 	border,
 	className,
 	asChild = false,
 	...props
 }: ProfileBlockTitleProps & React.HTMLAttributes<HTMLElement>) => {
-	const Comp: React.ElementType = asChild ? Slot.Root : "h3";
+	const Component: React.ElementType = asChild ? Slot.Root : "span";
 
 	return (
-		<Comp className={cn(profileBlockTitleVariants({ variant, fontSize, border }), margin, className)} {...props}>
+		<Component className={cn(profileBlockTitleVariants({ variant, color, fontSize, border }), className)} {...props}>
 			{label}
-		</Comp>
+		</Component>
 	);
 };

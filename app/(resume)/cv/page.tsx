@@ -52,11 +52,11 @@ const ResumePage = () => {
 					</div>
 
 					{/* Profile name + job */}
-					<h1 className="text-2xl font-bold tracking-tight surface-muted-foreground-secondary capitalize">
-						{resumeData.name}
-					</h1>
+					<Typography variant="h1">{resumeData.name}</Typography>
 
-					<h6 className="text-primary font-semibold text-sm uppercase tracking-wider mt-1">{resumeData.title}</h6>
+					<Typography variant="h6" className="mt-1">
+						{resumeData.title}
+					</Typography>
 
 					{/* description summary */}
 					<Typography variant="lead" className="mt-4 px-2">
@@ -109,9 +109,19 @@ const ResumePage = () => {
 												}
 												rounded="sm"
 											>
-												{skill.label}
+												<Typography
+													variant="small"
+													color="text-current"
+													fontSize="xs"
+													fontWeight="semibold"
+													lineHeight="none"
+													asChild
+												>
+													<span>{skill.label}</span>
+												</Typography>
 											</Chip>
 										)}
+										titleClassName="m-0 mb-4"
 									/>
 								</>
 							)}
@@ -123,11 +133,22 @@ const ResumePage = () => {
 							keyExtractor={(item) => item.id}
 							renderItem={(lang) => (
 								<Chip variant="default" color="default">
-									{lang.label} ({lang.level})
+									<Typography
+										variant="small"
+										color="text-current"
+										fontSize="xs"
+										fontWeight="semibold"
+										lineHeight="none"
+										asChild
+									>
+										<span>
+											{lang.label} ({lang.level})
+										</span>
+									</Typography>
 								</Chip>
 							)}
 							variantTitle="default"
-							marginTitle="m-0 mb-4"
+							titleClassName="m-0 mb-4"
 						/>
 
 						<ProfileBlock
@@ -137,9 +158,10 @@ const ResumePage = () => {
 							keyExtractor={(item) => item.id}
 							renderItem={(hobby) => <HobbyCard hobby={hobby} />}
 							variantTitle="hobby"
-							fontSizeTitle="xs"
-							marginTitle="m-0 mb-4"
+							colorTitle="secondary"
+							fontSizeTitle="sm"
 							borderTitle="thin"
+							titleClassName="m-0 mb-4"
 							containerClassName="pt-4"
 						/>
 					</div>
