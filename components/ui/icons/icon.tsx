@@ -1,10 +1,10 @@
+import { cn } from "@/lib/utils";
 import { FC } from "react";
 
 type IconProps = {
 	icon: string;
 	size: string;
 	color?: string;
-	animate?: string;
 	fill?: boolean;
 	className?: string;
 };
@@ -12,7 +12,7 @@ type IconProps = {
 export const Icon: FC<IconProps> = ({ icon, size = "20px", color, fill, className = "" }) => {
 	return (
 		<span
-			className={`material-symbols-outlined ${size} ${color} ${className}`}
+			className={cn("material-symbols-outlined", color, className)}
 			style={{
 				fontSize: size,
 				fontVariationSettings: `'FILL' ${fill ? 1 : 0}`,
@@ -22,5 +22,3 @@ export const Icon: FC<IconProps> = ({ icon, size = "20px", color, fill, classNam
 		</span>
 	);
 };
-
-<span className="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">mail</span>;

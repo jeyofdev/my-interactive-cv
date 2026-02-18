@@ -6,25 +6,44 @@ type ResumeData = {
 	phone: string;
 	location: string;
 	birthDate: string;
-	vehicle: Vehicule;
+	vehicle: Vehicle;
 	website: Link;
 	social: {
 		linkedin: Link;
 		github: Link;
 	};
 	skills: Skill[];
-	languages: { name: string; level: string }[];
-	hobbies: { name: string; detail?: string; duration?: string }[];
+	languages: Language[];
+	hobbies: Hobby[];
 };
 
-type Vehicule = {
+export type Hobby = {
+	id: number;
+	label: string;
+	detail?: string;
+	duration?: string;
+};
+
+type Language = {
+	id: number;
+	label: string;
+	level: string;
+};
+
+type Vehicle = {
 	carLicense: boolean;
 	vehicule: boolean;
 };
 
 type Skill = {
+	id: number;
 	category: string;
-	items: string[];
+	items: SkillItem[];
+};
+
+export type SkillItem = {
+	id: number;
+	label: string;
 };
 
 type Link = {
@@ -62,27 +81,44 @@ export const resumeData: ResumeData = {
 
 	skills: [
 		{
+			id: 1,
 			category: "Frontend",
-			items: ["React.js", "TypeScript", "Tailwind CSS", "Next.js"],
+			items: [
+				{ id: 1, label: "React" },
+				{ id: 2, label: "Typescript" },
+				{ id: 3, label: "Tailwind CSS" },
+				{ id: 4, label: "Next.js" },
+			],
 		},
 		{
+			id: 2,
 			category: "Backend",
-			items: ["Node.js", "PostgreSQL", "Redis", "GraphQL"],
+			items: [
+				{ id: 1, label: "Node.js" },
+				{ id: 2, label: "PostgreSQL" },
+				{ id: 3, label: "Redis" },
+				{ id: 4, label: "GraphQL" },
+			],
 		},
 		{
+			id: 3,
 			category: "Tools",
-			items: ["Docker", "AWS", "GitLab CI"],
+			items: [
+				{ id: 1, label: "Docker" },
+				{ id: 2, label: "AWS" },
+				{ id: 3, label: "GitLab CI" },
+			],
 		},
 	],
 	languages: [
-		{ name: "Français", level: "Maternel" },
-		{ name: "Anglais", level: "Professionnel" },
-		{ name: "Espagnol", level: "Intermédiaire" },
+		{ id: 1, label: "Français", level: "Maternel" },
+		{ id: 2, label: "Anglais", level: "Professionnel" },
+		{ id: 3, label: "Espagnol", level: "Intermédiaire" },
 	],
 	hobbies: [
-		{ name: "Photographie", detail: "Photo de rue", duration: "5 ans" },
-		{ name: "Randonnée", detail: "Sentiers de montagne" },
-		{ name: "Open Source" },
-		{ name: "Guitare", duration: "3 ans" },
+		{ id: 1, label: "Photographie", detail: "Photo de rue", duration: "5 ans" },
+		{ id: 2, label: "Randonnée", detail: "Sentiers de montagne" },
+		{ id: 3, label: "Open Source" },
+		{ id: 4, label: "Guitare", duration: "3 ans" },
 	],
 };
