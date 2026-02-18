@@ -136,7 +136,9 @@ const ResumePage = () => {
 							keyExtractor={(item) => item.id}
 							renderItem={(hobby) => <HobbyCard hobby={hobby} />}
 							variantTitle="hobby"
+							fontSizeTitle="xs"
 							marginTitle="m-0 mb-4"
+							borderTitle="thin"
 							containerClassName="pt-4"
 						/>
 					</div>

@@ -1,6 +1,11 @@
 import { ReactNode } from "react";
 import { ListRenderer } from "@/components/list/list-renderer";
-import { ProfileBlockTitle, VariantProfileBlockTitle } from "@/components/ui/title/block-title";
+import {
+	ProfileBlockTitle,
+	type ProfileBlockTitleFontSize,
+	type ProfileBlockTitleBorder,
+	type ProfileBlockTitleVariant,
+} from "@/components/ui/title/block-title";
 import { cn } from "@/lib/utils";
 
 type ProfileBlockProps<T> = {
@@ -10,13 +15,17 @@ type ProfileBlockProps<T> = {
 	keyExtractor: (item: T) => string | number;
 	renderItem: (item: T) => ReactNode;
 	marginTitle?: string;
-	variantTitle?: VariantProfileBlockTitle;
+	variantTitle?: ProfileBlockTitleVariant;
+	fontSizeTitle?: ProfileBlockTitleFontSize;
+	borderTitle?: ProfileBlockTitleBorder;
 	containerClassName?: string;
 };
 
 export const ProfileBlock = <T,>({
 	variant = "flex",
-	variantTitle = "default",
+	variantTitle,
+	fontSizeTitle,
+	borderTitle,
 	marginTitle,
 	category,
 	list,
@@ -26,7 +35,13 @@ export const ProfileBlock = <T,>({
 }: ProfileBlockProps<T>) => {
 	return (
 		<div className={cn(containerClassName)}>
-			<ProfileBlockTitle variant={variantTitle} label={category} margin={marginTitle} />
+			<ProfileBlockTitle
+				variant={variantTitle}
+				label={category}
+				fontSize={fontSizeTitle}
+				margin={marginTitle}
+				border={borderTitle}
+			/>
 
 			<div className={cn(variant === "flex" ? "flex flex-wrap gap-2" : "grid grid-cols-2 gap-x-4 gap-y-6")}>
 				<ListRenderer list={list} keyExtractor={keyExtractor} renderItem={renderItem} />
