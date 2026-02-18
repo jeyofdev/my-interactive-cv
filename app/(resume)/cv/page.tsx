@@ -1,7 +1,23 @@
+import { HobbyCard } from "@/components/cards/hobby-card";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
+import { Chip, ChipColor } from "@/components/ui/chips/chip";
 import { resumeData } from "@/data/resume-data";
 import Image from "next/image";
+
+const skillColorMap: Record<string, ChipColor> = {
+	react: "react",
+	typescript: "typescript",
+	tailwindcss: "tailwindcss",
+	nextjs: "nextjs",
+	nodejs: "nodejs",
+	postgresql: "postgresql",
+	redis: "redis",
+	graphql: "graphql",
+	docker: "docker",
+	aws: "aws",
+	gitlabci: "gitlabci",
+};
 
 const ResumePage = () => {
 	const formatVehiculeLabel = () => {
@@ -11,35 +27,6 @@ const ResumePage = () => {
 		else if (resumeData.vehicle.carLicense && resumeData.vehicle.vehicule) return "Permis B + véhicule";
 
 		return output;
-	};
-
-	const getSkillStyle = (skill: string) => {
-		switch (skill) {
-			case "React.js":
-				return "bg-react text-react-foreground border-react-border hover:border-react-foreground";
-			case "TypeScript":
-				return " bg-typescript text-typescript-foreground border-typescript-border hover:border-typescript-foreground";
-			case "Tailwind CSS":
-				return "bg-tailwindcss text-tailwindcss-foreground border-tailwindcss-border hover:border-tailwindcss-foreground";
-			case "Next.js":
-				return "bg-nextjs text-nextjs-foreground border-nextjs-border hover:border-nextjs-foreground";
-			case "Node.js":
-				return "bg-nodejs text-nodejs-foreground border-nodejs-border hover:border-nodejs-foreground";
-			case "PostgreSQL":
-				return "bg-postgresql text-postgresql-foreground border-postgresql-border hover:border-postgresql-foreground";
-			case "Redis":
-				return "bg-redis text-redis-foreground border-redis-border hover:border-redis-foreground";
-			case "GraphQL":
-				return "bg-graphql text-graphql-foreground border-graphql-border hover:border-graphql-foreground";
-			case "Docker":
-				return "bg-docker text-docker-foreground border-docker-border hover:border-docker-foreground";
-			case "AWS":
-				return "bg-aws text-aws-foreground border-aws-border hover:border-aws-foreground";
-			case "GitLab CI":
-				return "bg-gitlab text-gitlab-foreground border-gitlab-border hover:border-gitlab-foreground";
-			default:
-				return "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-600 hover:border-primary";
-		}
 	};
 
 	return (
@@ -112,11 +99,20 @@ const ResumePage = () => {
 											items={skillGroup.items}
 											keyExtractor={(item) => item.id}
 											renderItem={(skill) => (
-												<span
-													className={`px-3 py-1 text-xs font-semibold rounded-md shadow-sm border transition-colors cursor-default ${getSkillStyle(skill.label)}`}
+												<Chip
+													variant="rounded"
+													color={
+														skillColorMap[
+															skill.label
+																.split(/[\s.]+/)
+																.join("")
+																.toLowerCase()
+														] ?? "default"
+													}
+													rounded="sm"
 												>
 													{skill.label}
-												</span>
+												</Chip>
 											)}
 										/>
 									</div>
@@ -134,9 +130,9 @@ const ResumePage = () => {
 									items={resumeData.languages}
 									keyExtractor={(item) => item.id}
 									renderItem={(language) => (
-										<span className="px-3 py-1 bg-chip text-chip-foreground text-xs font-medium rounded shadow-sm border border-chip-border hover:border-primary transition-colors cursor-default">
+										<Chip variant="default" color="default">
 											{language.label} ({language.level})
-										</span>
+										</Chip>
 									)}
 								/>
 							</div>
@@ -151,15 +147,7 @@ const ResumePage = () => {
 								<ListRenderer
 									items={resumeData.hobbies}
 									keyExtractor={(item) => item.id}
-									renderItem={(hobby) => (
-										<div>
-											<p className="text-sm font-semibold text-surface-muted-foreground-info-title">{hobby.label}</p>
-											{hobby.detail && <p className="text-[11px] text-surface-muted-foreground-info">{hobby.detail}</p>}
-											{hobby.duration && (
-												<p className="text-[11px] text-surface-muted-foreground-info">{hobby.duration}</p>
-											)}
-										</div>
-									)}
+									renderItem={(hobby) => <HobbyCard hobby={hobby} />}
 								/>
 							</div>
 						</div>

@@ -17,7 +17,7 @@ type ResumeData = {
 	hobbies: Hobby[];
 };
 
-type Hobby = {
+export type Hobby = {
 	id: number;
 	label: string;
 	detail?: string;
@@ -84,8 +84,8 @@ export const resumeData: ResumeData = {
 			id: 1,
 			category: "Frontend",
 			items: [
-				{ id: 1, label: "React.js" },
-				{ id: 2, label: "TypeScript" },
+				{ id: 1, label: "React" },
+				{ id: 2, label: "Typescript" },
 				{ id: 3, label: "Tailwind CSS" },
 				{ id: 4, label: "Next.js" },
 			],
