@@ -7,10 +7,10 @@ const baseTypographyVariants = cva("", {
 	variants: {
 		variant: {
 			p: "text-primary font-semibold text-sm uppercase tracking-wider",
-			lead: "text-2xl text-surface-muted-foreground leading-relaxed text-justify", // texte d’introduction, Phrase d’intro, Résumé de section
-			muted: "text-sm text-muted-foreground", // l’information secondaire, Moins prioritaire
-			small: "text-sm font-medium leading-none", // le micro-texte UI, label, badge...
-			code: "rounded bg-muted px-1 py-0.5 font-mono text-sm", // le code inline
+			lead: "text-2xl text-surface-muted-foreground leading-relaxed text-justify",
+			muted: "text-sm text-muted-foreground",
+			small: "text-sm font-medium leading-none",
+			code: "rounded bg-muted px-1 py-0.5 font-mono text-sm",
 			h1: "",
 			h6: "",
 		},
