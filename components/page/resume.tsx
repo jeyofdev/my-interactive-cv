@@ -5,18 +5,19 @@ import { HobbyCard } from "@/components/cards/hobby-card";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Chip, ChipColor } from "@/components/ui/chips/chip";
+import { ChipBase, ChipBaseColor } from "@/components/ui/chips/chip-base";
 import { Icon } from "@/components/ui/icons/icon";
 import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
-import { cn } from "@/lib/utils";
+import { cn, getChipSkillColor } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { SectionTitle } from "@/components/sections/section-title";
 import { TimelineBar, TimelineDot } from "@/components/ui/timeline/timeline";
+import { Chip } from "@/components/ui/chips/chip";
 
-const skillColorMap: Record<string, ChipColor> = {
+export const skillColorMap: Record<string, ChipBaseColor> = {
 	react: "react",
 	typescript: "typescript",
 	tailwindcss: "tailwindcss",
@@ -108,7 +109,7 @@ export const Resume = () => {
 										list={skillGroup.items}
 										keyExtractor={(item) => item.id}
 										renderItem={(skill) => (
-											<Chip
+											<ChipBase
 												variant="rounded"
 												color={
 													skillColorMap[
@@ -130,7 +131,7 @@ export const Resume = () => {
 												>
 													<span>{skill.label}</span>
 												</Typography>
-											</Chip>
+											</ChipBase>
 										)}
 										titleClassName="m-0 mb-4"
 									/>
@@ -143,7 +144,7 @@ export const Resume = () => {
 							list={resumeData.languages}
 							keyExtractor={(item) => item.id}
 							renderItem={(lang) => (
-								<Chip variant="default" color="default">
+								<ChipBase variant="default" color="default">
 									<Typography
 										variant="small"
 										color="text-current"
@@ -156,7 +157,7 @@ export const Resume = () => {
 											{lang.label} ({lang.level})
 										</span>
 									</Typography>
-								</Chip>
+								</ChipBase>
 							)}
 							variantTitle="default"
 							titleClassName="m-0 mb-4"
@@ -203,30 +204,7 @@ export const Resume = () => {
 													<div className="flex items-center gap-2.5 flex-wrap">
 														<Typography variant="h3">{experience.role}</Typography>
 
-														{experience.id === 1 && (
-															<Chip
-																variant="rounded"
-																color="white"
-																backgroundColor="primary"
-																rounded="sm"
-																borderWidth="none"
-																size="thin"
-																className="inline-flex items-center shadow-sm"
-															>
-																<Typography
-																	variant="small"
-																	color="text-current"
-																	fontSize="custom-10"
-																	fontWeight="bold"
-																	lineHeight="none"
-																	textTransform="uppercase"
-																	letterSpacing="wide"
-																	asChild
-																>
-																	<span>Latest</span>
-																</Typography>
-															</Chip>
-														)}
+														{experience.id === 1 && <Chip variant="info">Latest</Chip>}
 													</div>
 
 													<Typography
@@ -237,27 +215,8 @@ export const Resume = () => {
 														className="flex items-center gap-2"
 													>
 														{experience.company}
-														<Chip
-															variant="rounded"
-															color="surface-muted-foreground-info"
-															backgroundColor="secondary"
-															rounded="sm"
-															borderWidth="none"
-															size="thin"
-															className="inline-flex items-center shadow-none"
-														>
-															<Typography
-																variant="small"
-																color="text-current"
-																fontSize="custom-10"
-																fontWeight="bold"
-																lineHeight="none"
-																textTransform="uppercase"
-																letterSpacing="wide"
-																asChild
-															>
-																<span>{experience.type}</span>
-															</Typography>
+														<Chip variant="info" backgroundColor="secondary" color="surface-muted-foreground-info">
+															{experience.type}
 														</Chip>
 
 														<span className="text-slate-300 dark:text-slate-600 mx-1">|</span>
@@ -294,29 +253,8 @@ export const Resume = () => {
 																list={experience.technologies}
 																keyExtractor={(item) => item.id}
 																renderItem={(technology) => (
-																	<Chip
-																		variant="rounded"
-																		color={
-																			skillColorMap[
-																				technology.label
-																					.split(/[\s.]+/)
-																					.join("")
-																					.toLowerCase()
-																			] ?? "default"
-																		}
-																		rounded="sm"
-																		size="thin"
-																	>
-																		<Typography
-																			variant="small"
-																			color="text-current"
-																			fontSize="xs"
-																			fontWeight="semibold"
-																			lineHeight="none"
-																			asChild
-																		>
-																			<span>{technology.label}</span>
-																		</Typography>
+																	<Chip variant="outline" color={getChipSkillColor(technology)}>
+																		{technology.label}
 																	</Chip>
 																)}
 															/>
@@ -510,29 +448,8 @@ export const Resume = () => {
 														list={project.tags}
 														keyExtractor={(item) => item.id}
 														renderItem={(technology) => (
-															<Chip
-																variant="rounded"
-																color={
-																	skillColorMap[
-																		technology.label
-																			.split(/[\s.]+/)
-																			.join("")
-																			.toLowerCase()
-																	] ?? "default"
-																}
-																rounded="sm"
-																size="thin"
-															>
-																<Typography
-																	variant="small"
-																	color="text-current"
-																	fontSize="xs"
-																	fontWeight="semibold"
-																	lineHeight="none"
-																	asChild
-																>
-																	<span>{technology.label}</span>
-																</Typography>
+															<Chip variant="outline" color={getChipSkillColor(technology)}>
+																{technology.label}
 															</Chip>
 														)}
 													/>
@@ -597,29 +514,8 @@ export const Resume = () => {
 													list={project.tags}
 													keyExtractor={(item) => item.id}
 													renderItem={(technology) => (
-														<Chip
-															variant="rounded"
-															color={
-																skillColorMap[
-																	technology.label
-																		.split(/[\s.]+/)
-																		.join("")
-																		.toLowerCase()
-																] ?? "default"
-															}
-															rounded="sm"
-															size="thin"
-														>
-															<Typography
-																variant="small"
-																color="text-current"
-																fontSize="xs"
-																fontWeight="semibold"
-																lineHeight="none"
-																asChild
-															>
-																<span>{technology.label}</span>
-															</Typography>
+														<Chip variant="outline" color={getChipSkillColor(technology)}>
+															{technology.label}
 														</Chip>
 													)}
 												/>

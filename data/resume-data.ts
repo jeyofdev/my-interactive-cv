@@ -79,7 +79,7 @@ type Skill = {
 	items: SkillItem[];
 };
 
-type Technology = Pick<SkillItem, "id" | "label">;
+export type Technology = Pick<SkillItem, "id" | "label">;
 type Formation = Pick<Technology, "id" | "label">;
 type Tag = Pick<Technology, "id" | "label">;
 
