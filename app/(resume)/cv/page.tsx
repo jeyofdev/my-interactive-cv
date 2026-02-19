@@ -7,6 +7,7 @@ import { Chip, ChipColor } from "@/components/ui/chips/chip";
 import { Icon } from "@/components/ui/icons/icon";
 import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 const skillColorMap: Record<string, ChipColor> = {
@@ -183,7 +184,7 @@ const ResumePage = () => {
 						{/* Timeline Wrapper */}
 						<div className="relative space-y-12">
 							{/* Single continuous timeline line */}
-							<div className="absolute left-0 top-2 bottom-4 w-0.5 bg-slate-200 dark:bg-slate-700"></div>
+							<div className="absolute left-0 top-2 -bottom-11 w-0.5 bg-timeline-background"></div>
 
 							<ListRenderer
 								list={resumeData.experiences}
@@ -192,12 +193,13 @@ const ResumePage = () => {
 									<div className="relative pl-8">
 										{/* Timeline dot */}
 										<div
-											className={`absolute left-[-5px] top-6 rounded-full border-4 border-white shadow-sm z-10 ${
-												experience.id === 0
-													? "scale-125 top-8"
-													: "top-6 bg-slate-300 dark:bg-slate-600 border-2 size-[10px] left-[-4px]"
-											}`}
-											style={experience.id === 0 ? { backgroundColor: "#10b981" } : {}}
+											className={cn(
+												"absolute left-[-6px] top-6 size-[16px] bg-primary rounded-full border-4 border-timeline-border shadow-sm ring-4 ring-primary/10 z-10",
+												{
+													"bg-primary scale-125 top-8": experience.id === 1,
+													"top-6 bg-timeline-background-inactive": experience.id !== 1,
+												},
+											)}
 										/>
 
 										<Accordion type="single" collapsible>
@@ -292,7 +294,7 @@ const ResumePage = () => {
 												</AccordionTrigger>
 
 												<AccordionContent className="px-4 pb-6">
-													<div className="space-y-4 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-accordion-separator pt-4">
+													<div className="space-y-4 border-t border-accordion-separator pt-4">
 														<div className="flex flex-wrap gap-1.5 mb-4">
 															<ListRenderer
 																list={experience.technologies}

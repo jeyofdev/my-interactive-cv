@@ -92,6 +92,11 @@
 		--accordion-muted-foreground-title
 	);
 
+	/* Timeline */
+	--color-timeline-background: var(--timeline-background);
+	--color-timeline-background-inactive: var(--timeline-background-inactive);
+	--color-timeline-border: var(--timeline-border);
+
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
 }
@@ -171,6 +176,10 @@
 	--border-accordion: theme(--color-slate-100);
 	--accordion-separator: theme(--color-slate-100);
 	--accordion-muted-foreground-title: theme(--color-slate-700);
+
+	--timeline-background: theme(--color-slate-200);
+	--timeline-background-inactive: theme(--color-slate-300);
+	--timeline-border: theme(--color-white);
 }
 
 .dark {
@@ -216,6 +225,10 @@
 	--border-accordion: theme(--color-slate-800);
 	--accordion-separator: theme(--color-slate-700 / 30%);
 	--accordion-muted-foreground-title: theme(--color-slate-200);
+
+	--timeline-background: theme(--color-slate-600);
+	--timeline-background-inactive: theme(--color-slate-600);
+	--timeline-border: theme(--color-slate-900);
 }
 
 @layer base {
