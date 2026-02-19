@@ -29,6 +29,7 @@
 
 	--color-border: var(--border);
 	--color-border-separator: var(--border-separator);
+	--color-border-separator-secondary: var(--border-separator-secondary);
 	--color-border-image: var(--border-image);
 	--color-border-secondary: var(--border-secondary);
 
@@ -97,6 +98,15 @@
 	--color-timeline-background-inactive: var(--timeline-background-inactive);
 	--color-timeline-border: var(--timeline-border);
 
+	/* Tabs */
+	--color-tabs-background: var(--tabs-background);
+
+	--color-link-icon-foreground: var(--link-icon-foreground);
+
+	/* Card */
+	--color-card-background: var(--card-background);
+	--color-card-border: var(--card-border);
+
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
 }
@@ -122,6 +132,7 @@
 	--border-secondary: theme(--color-white);
 	--border-image: theme(--color-white);
 	--border-separator: theme(--color-slate-200);
+	--border-separator-secondary: theme(--color-slate-200 / 50%);
 
 	--chip: theme(--color-white);
 	--chip-border: theme(--color-slate-200);
@@ -180,6 +191,13 @@
 	--timeline-background: theme(--color-slate-200);
 	--timeline-background-inactive: theme(--color-slate-300);
 	--timeline-border: theme(--color-white);
+
+	--tabs-background: theme(--color-slate-100);
+
+	--link-icon-foreground: theme(--color-slate-400);
+
+	--card-background: theme(--color-white);
+	--card-border: theme(--color-slate-100);
 }
 
 .dark {
@@ -201,6 +219,7 @@
 	--border-secondary: theme(--color-slate-800);
 	--border-image: theme(--color-slate-700);
 	--border-separator: theme(--color-slate-700);
+	--border-separator-secondary: theme(--color-slate-700);
 
 	--chip: theme(--color-slate-700);
 	--chip-border: theme(--color-slate-600);
@@ -229,6 +248,13 @@
 	--timeline-background: theme(--color-slate-600);
 	--timeline-background-inactive: theme(--color-slate-600);
 	--timeline-border: theme(--color-slate-900);
+
+	--tabs-background: theme(--color-slate-800);
+
+	--link-icon-foreground: theme(--color-slate-400);
+
+	--card-background: theme(--color-slate-800);
+	--card-border: theme(--color-slate-700);
 }
 
 @layer base {

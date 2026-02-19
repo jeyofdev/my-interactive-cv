@@ -12,6 +12,7 @@ const iconVariants = cva("material-symbols-outlined", {
 		color: {
 			default: "text-foreground",
 			primary: "text-primary",
+			link: "text-link-icon-foreground",
 		},
 		backgroundColor: {
 			default: "bg-transparent",
