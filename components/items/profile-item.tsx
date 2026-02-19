@@ -17,7 +17,7 @@ type ProfileItemLabel = {
 export const ProfileItem: FC<ProfileItem> = ({ icon, label, hasLink, href, isSocial }) => {
 	return (
 		<div className="group flex items-center gap-3">
-			<Icon icon={icon} color="text-primary" size="1.5rem" className="group-hover:scale-110 transition-transform" />
+			<Icon icon={icon} color="primary" size="1.5rem" className="group-hover:scale-110 transition-transform" />
 
 			{hasLink && href ? (
 				<a href={href} target="_blank" className="cursor-pointer">

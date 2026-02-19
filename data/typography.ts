@@ -51,6 +51,27 @@ const headingVariants: Record<string, TypographyVariantConfig> = {
 		letterSpacing: "tight",
 		textTransform: "capitalize",
 	},
+	h2: {
+		variant: "h2",
+		color: "surface-muted-foreground-secondary",
+		fontSize: "3xl",
+		fontWeight: "black",
+		textAlign: "left",
+		lineHeight: "normal",
+		letterSpacing: "tight",
+		textTransform: "capitalize",
+	},
+	h3: {
+		variant: "h3",
+		color: "surface-muted-foreground-secondary",
+		fontSize: "xl",
+		fontWeight: "bold",
+		textAlign: "left",
+		lineHeight: "normal",
+		letterSpacing: "tight",
+		textTransform: "capitalize",
+	},
+	// text-xl font-bold text-slate-900 dark:text-white
 	h6: {
 		variant: "h6",
 		color: "primary",

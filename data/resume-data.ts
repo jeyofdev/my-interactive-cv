@@ -15,6 +15,18 @@ type ResumeData = {
 	skills: Skill[];
 	languages: Language[];
 	hobbies: Hobby[];
+	experiences: Experience[];
+};
+
+type Experience = {
+	id: number;
+	company: string;
+	role: string;
+	period: string;
+	type: string;
+	description: string;
+	details: string[];
+	technologies: string[];
 };
 
 export type Hobby = {
@@ -120,5 +132,40 @@ export const resumeData: ResumeData = {
 		{ id: 2, label: "Randonnée", detail: "Sentiers de montagne" },
 		{ id: 3, label: "Open Source" },
 		{ id: 4, label: "Guitare", duration: "3 ans" },
+	],
+	experiences: [
+		{
+			id: 1,
+			company: "TechCorp",
+			role: "Développeuse Fullstack Senior",
+			period: "2022 – Présent",
+			type: "CDI",
+			description:
+				"Direction du développement d'une plateforme SaaS utilisée par 10k+ utilisateurs. Architecture microservices et frontend React.",
+			details: [
+				"Conception et implémentation de l'architecture frontend (monorepo, bibliothèque de composants partagés)",
+				"Création d'un système de notifications temps réel via WebSockets et Redis pub/sub",
+				"Migration du code legacy de JavaScript vers TypeScript (200+ fichiers)",
+				"Implémentation d'un contrôle d'accès basé sur les rôles (RBAC) sur toute la plateforme",
+				"Mise en place de tests automatisés avec 85% de couverture (unitaires, intégration, E2E)",
+				"Pilotage de la migration de REST vers GraphQL pour l'API principale",
+			],
+			technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "GraphQL", "Redis", "Docker", "AWS"],
+		},
+		{
+			id: 2,
+			company: "Global Web Agency",
+			role: "Fullstack Engineer",
+			period: "Aug 2018 – Dec 2020",
+			type: "CDI",
+			description: "Équipe de 8 développeurs au sein d'une société produit de 50 personnes. Méthodologie Agile/Scrum.",
+			details: [
+				"Développement de fonctionnalités critiques pour des clients internationaux",
+				"Optimisation des performances de rendu côté client",
+				"Mise en place de pipelines CI/CD",
+				"Support technique et maintenance évolutive",
+			],
+			technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "GraphQL", "Docker"],
+		},
 	],
 };

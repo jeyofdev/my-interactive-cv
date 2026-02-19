@@ -2,7 +2,9 @@ import { ProfileBlock } from "@/components/block/profile-block";
 import { HobbyCard } from "@/components/cards/hobby-card";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Chip, ChipColor } from "@/components/ui/chips/chip";
+import { Icon } from "@/components/ui/icons/icon";
 import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
 import Image from "next/image";
@@ -37,7 +39,7 @@ const ResumePage = () => {
 				<div className="p-8 flex flex-col items-center text-center">
 					{/* Profile Picture */}
 					<div className="relative mb-6">
-						<div className="relative size-32 rounded-full border-4 border-white dark:border-slate-700 shadow-xl overflow-hidden bg-primary/10">
+						<div className="relative size-32 rounded-full border-4 border-border-image shadow-xl overflow-hidden bg-primary/10">
 							<Image
 								src="/images/profile.jpg"
 								alt={`${resumeData.name} Profile`}
@@ -169,7 +171,135 @@ const ResumePage = () => {
 			</aside>
 
 			<main className="flex-1 flex flex-col bg-destructive">
-				<h1>main content</h1>
+				<div className="px-8 lg:px-12 py-12 max-w-4xl">
+					{/* Experience Section */}
+					<section className="mb-16">
+						<div className="flex items-center gap-4 mb-10">
+							<Icon variant="rounded" backgroundColor="primary" icon="work" size="26px" containerSize="40px" />
+
+							<Typography variant="h2">Expériences Professionnelles</Typography>
+						</div>
+
+						{/* Timeline Wrapper */}
+						<div className="relative space-y-12">
+							{/* Single continuous timeline line */}
+							<div className="absolute left-0 top-2 bottom-4 w-0.5 bg-slate-200 dark:bg-slate-700"></div>
+
+							<ListRenderer
+								list={resumeData.experiences}
+								keyExtractor={(item) => item.id}
+								renderItem={(experience) => (
+									<div className="relative pl-8">
+										{/* Timeline dot */}
+										<div
+											className={`absolute left-[-5px] top-6 rounded-full border-4 border-white shadow-sm z-10 ${
+												experience.id === 0
+													? "scale-125 top-8"
+													: "top-6 bg-slate-300 dark:bg-slate-600 border-2 size-[10px] left-[-4px]"
+											}`}
+											style={experience.id === 0 ? { backgroundColor: "#10b981" } : {}}
+										/>
+
+										<Accordion type="single" collapsible>
+											<AccordionItem key={experience.id} value={`exp-${experience.id}`}>
+												{/* Trigger = summary */}
+												<AccordionTrigger className="p-4 cursor-pointer relative pr-10 flex flex-col gap-2">
+													<div className="flex items-center gap-2.5 flex-wrap">
+														<Typography variant="h3">{experience.role}</Typography>
+
+														{experience.id === 1 && (
+															<Chip
+																variant="rounded"
+																color="white"
+																backgroundColor="primary"
+																rounded="sm"
+																borderWidth="none"
+																size="thin"
+																className="inline-flex items-center shadow-sm"
+															>
+																<Typography
+																	variant="small"
+																	color="text-current"
+																	fontSize="custom-10"
+																	fontWeight="bold"
+																	lineHeight="none"
+																	textTransform="uppercase"
+																	letterSpacing="wide"
+																	asChild
+																>
+																	<span>Latest</span>
+																</Typography>
+															</Chip>
+														)}
+													</div>
+
+													<Typography
+														variant="muted"
+														color="primary"
+														fontSize="base"
+														fontWeight="semibold"
+														className="flex items-center gap-2"
+													>
+														{experience.company}
+														<Chip
+															variant="rounded"
+															color="surface-muted-foreground-info"
+															backgroundColor="secondary"
+															rounded="sm"
+															borderWidth="none"
+															size="thin"
+															className="inline-flex items-center shadow-none"
+														>
+															<Typography
+																variant="small"
+																color="text-current"
+																fontSize="custom-10"
+																fontWeight="bold"
+																lineHeight="none"
+																textTransform="uppercase"
+																letterSpacing="wide"
+																asChild
+															>
+																<span>{experience.type}</span>
+															</Typography>
+														</Chip>
+
+														<span className="text-slate-300 dark:text-slate-600 mx-1">|</span>
+
+														<Typography
+															variant="small"
+															color="surface-muted-foreground-info"
+															fontSize="base"
+															fontWeight="normal"
+															lineHeight="none"
+															textTransform="capitalize"
+															letterSpacing="normal"
+														>
+															{experience.period}
+														</Typography>
+													</Typography>
+
+													<Typography
+														variant="lead"
+														fontSize="sm"
+														lineHeight="relaxed"
+														fontWeight="normal"
+														letterSpacing="normal"
+														textAlign="left"
+													>
+														{experience.description}
+													</Typography>
+												</AccordionTrigger>
+
+												<AccordionContent className="px-4 pb-6"></AccordionContent>
+											</AccordionItem>
+										</Accordion>
+									</div>
+								)}
+							/>
+						</div>
+					</section>
+				</div>
 			</main>
 		</>
 	);

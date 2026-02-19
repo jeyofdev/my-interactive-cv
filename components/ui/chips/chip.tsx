@@ -19,6 +19,8 @@ const chipVariants = cva(
 			},
 			color: {
 				default: "bg-chip text-chip-foreground border-chip-border hover:border-primary",
+				white: "text-white",
+				"surface-muted-foreground-info": "text-surface-muted-foreground-info",
 				primary: "bg-primary/10 text-primary border-primary/20 hover:border-primary",
 				success: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20 hover:border-emerald-500",
 				warning: "bg-amber-500/10 text-amber-600 border-amber-500/20 hover:border-amber-500",
@@ -38,6 +40,11 @@ const chipVariants = cva(
 				aws: "bg-aws text-aws-foreground border-aws-border hover:border-aws-foreground",
 				gitlabci: "bg-gitlab text-gitlab-foreground border-gitlab-border hover:border-gitlab-foreground",
 			},
+			backgroundColor: {
+				default: "bg-transparent",
+				primary: "bg-primary",
+				secondary: "bg-chip-secondary",
+			},
 			rounded: {
 				none: "rounded-none",
 				xs: "rounded-xs",
@@ -50,11 +57,13 @@ const chipVariants = cva(
 				"4xl": "rounded-4xl",
 			},
 			borderWidth: {
+				none: "border-0",
 				thin: "border",
 				medium: "border-2",
 				thick: "border-4",
 			},
 			size: {
+				thin: "px-2 py-1",
 				small: "px-3 py-2",
 				large: "px-5 py-3",
 			},
@@ -65,6 +74,7 @@ const chipVariants = cva(
 			rounded: "sm",
 			borderWidth: "thin",
 			size: "small",
+			backgroundColor: "default",
 		},
 	},
 );
@@ -78,6 +88,7 @@ const Chip = ({
 	rounded,
 	borderWidth,
 	size,
+	backgroundColor,
 	asChild = false,
 	...props
 }: React.ComponentProps<"span"> & VariantProps<typeof chipVariants> & { asChild?: boolean }) => {
@@ -89,7 +100,8 @@ const Chip = ({
 			data-variant={variant}
 			data-color={color}
 			data-rounded={rounded}
-			data-borderWidth={borderWidth}
+			data-borderwidth={borderWidth}
+			data-backgroundcolor={backgroundColor}
 			data-size={size}
 			className={cn(
 				chipVariants({
@@ -98,6 +110,7 @@ const Chip = ({
 					rounded,
 					borderWidth,
 					size,
+					backgroundColor,
 				}),
 				className,
 			)}

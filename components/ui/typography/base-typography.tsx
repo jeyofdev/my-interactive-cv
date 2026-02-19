@@ -12,6 +12,8 @@ const baseTypographyVariants = cva("", {
 			small: "text-sm font-medium leading-none",
 			code: "rounded bg-muted px-1 py-0.5 font-mono text-sm",
 			h1: "",
+			h2: "",
+			h3: "",
 			h6: "",
 		},
 		color: {
@@ -32,6 +34,7 @@ const baseTypographyVariants = cva("", {
 			"2xl": "text-2xl",
 			"3xl": "text-3xl",
 			"4xl": "text-4xl",
+			"custom-10": "text-[10px]",
 			"custom-11": "text-[11px]",
 		},
 		fontWeight: {
@@ -42,6 +45,7 @@ const baseTypographyVariants = cva("", {
 			semibold: "font-semibold",
 			bold: "font-bold",
 			extrabold: "font-extrabold",
+			black: "font-black",
 		},
 		textAlign: {
 			left: "text-left",
@@ -92,6 +96,8 @@ const variantElementMap: Record<
 	small: "span",
 	code: "code",
 	h1: "h1",
+	h2: "h2",
+	h3: "h3",
 	h6: "h6",
 };
 
