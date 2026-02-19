@@ -29,6 +29,7 @@
 
 	--color-border: var(--border);
 	--color-border-separator: var(--border-separator);
+	--color-border-separator-secondary: var(--border-separator-secondary);
 	--color-border-image: var(--border-image);
 	--color-border-secondary: var(--border-secondary);
 
@@ -131,6 +132,7 @@
 	--border-secondary: theme(--color-white);
 	--border-image: theme(--color-white);
 	--border-separator: theme(--color-slate-200);
+	--border-separator-secondary: theme(--color-slate-200 / 50%);
 
 	--chip: theme(--color-white);
 	--chip-border: theme(--color-slate-200);
@@ -217,6 +219,7 @@
 	--border-secondary: theme(--color-slate-800);
 	--border-image: theme(--color-slate-700);
 	--border-separator: theme(--color-slate-700);
+	--border-separator-secondary: theme(--color-slate-700);
 
 	--chip: theme(--color-slate-700);
 	--chip-border: theme(--color-slate-600);

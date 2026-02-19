@@ -41,50 +41,6 @@ export const Resume = () => {
 		return output;
 	};
 
-	const getProjectTagStyle = (tag: string, view: "card" | "list") => {
-		if (view === "list") {
-			const base = "px-3 py-1 bg-slate-800/80 text-sm font-medium rounded-md border";
-			switch (tag) {
-				case "Next.js":
-					return `${base} text-slate-400 border-slate-700`;
-				case "PostgreSQL":
-					return `${base} text-indigo-400 border-indigo-500/20`;
-				case "Tailwind CSS":
-					return `${base} text-cyan-400 border-cyan-500/20`;
-				case "React":
-					return `${base} text-blue-400 border-blue-500/20`;
-				case "Node.js":
-					return `${base} text-green-400 border-green-500/20`;
-				case "GraphQL":
-					return `${base} text-pink-400 border-pink-500/20`;
-				case "TypeScript":
-					return `${base} text-sky-400 border-sky-500/20`;
-				default:
-					return `${base} text-slate-400 border-slate-700`;
-			}
-		} else {
-			// Card view
-			switch (tag) {
-				case "Next.js":
-					return "px-2 py-0.5 bg-slate-100 text-slate-800 text-[10px] font-bold rounded border border-slate-200";
-				case "PostgreSQL":
-					return "px-2 py-0.5 bg-indigo-50 text-indigo-600 text-[10px] font-bold rounded border border-indigo-100";
-				case "Tailwind CSS":
-					return "px-2 py-0.5 bg-cyan-50 text-cyan-600 text-[10px] font-bold rounded border border-cyan-100";
-				case "React":
-					return "px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded border border-blue-100";
-				case "Node.js":
-					return "px-2 py-0.5 bg-green-50 text-green-600 text-[10px] font-bold rounded border border-green-100";
-				case "GraphQL":
-					return "px-2 py-0.5 bg-pink-50 text-pink-600 text-[10px] font-bold rounded border border-pink-100";
-				case "TypeScript":
-					return "px-2 py-0.5 bg-sky-50 text-sky-600 text-[10px] font-bold rounded border border-sky-100";
-				default:
-					return "px-2 py-0.5 bg-slate-100 text-slate-800 text-[10px] font-bold rounded border border-slate-200";
-			}
-		}
-	};
-
 	return (
 		<>
 			<aside className="flex flex-col w-full lg:w-80 xl:w-96 lg:h-screen bg-surface-muted border-r border-border overflow-y-auto">
@@ -604,7 +560,91 @@ export const Resume = () => {
 								/>
 							</div>
 						) : (
-							<p>list</p>
+							<div className="grid grid-cols-1 gap-6">
+								<ListRenderer
+									list={resumeData.projects}
+									keyExtractor={(item) => item.id}
+									renderItem={(project) => (
+										<div className="flex flex-col gap-2 py-6 first:pt-0 border-t border-border-separator-secondary first:border-t-0 w-full">
+											<div className="flex items-center gap-3">
+												<Typography variant="h3">{project.title}</Typography>
+
+												<div className="flex gap-1.25">
+													<a
+														className="text-primary hover:text-primary/80 transition-colors"
+														href={project.link}
+														target="_blank"
+													>
+														<Icon
+															variant="default"
+															icon="open_in_new"
+															color="primary"
+															size="21px"
+															className="hover:text-primary transition-colors"
+														/>
+													</a>
+
+													<a
+														className="text-primary hover:text-primary/80 transition-colors"
+														href={project.github}
+														target="_blank"
+													>
+														<svg className="size-5 fill-current" viewBox="0 0 24 24">
+															<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+														</svg>
+													</a>
+												</div>
+											</div>
+
+											<Typography
+												variant="lead"
+												color="surface-muted-foreground-info"
+												fontSize="base"
+												lineHeight="relaxed"
+												fontWeight="normal"
+												letterSpacing="normal"
+												textAlign="left"
+												className="line-clamp-2"
+											>
+												{project.description}
+											</Typography>
+
+											<div className="flex flex-wrap gap-2 mt-1">
+												<ListRenderer
+													list={project.tags}
+													keyExtractor={(item) => item.id}
+													renderItem={(technology) => (
+														<Chip
+															variant="rounded"
+															color={
+																skillColorMap[
+																	technology.label
+																		.split(/[\s.]+/)
+																		.join("")
+																		.toLowerCase()
+																] ?? "default"
+															}
+															rounded="sm"
+															size="thin"
+														>
+															<Typography
+																variant="small"
+																color="text-current"
+																fontSize="xs"
+																fontWeight="semibold"
+																lineHeight="none"
+																asChild
+															>
+																<span>{technology.label}</span>
+															</Typography>
+														</Chip>
+													)}
+												/>
+											</div>
+										</div>
+									)}
+								/>
+							</div>
 						)}
 					</section>
 				</div>
