@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { ChipBase, chipBaseVariants } from "@/components/ui/chips/chip-base";
+import { ChipBase, chipBaseVariants } from "@/components/ui/chip/chip-base";
 import { Typography } from "@/components/ui/typography/typography";
 
 const chipVariants = cva("inline-flex items-center", {

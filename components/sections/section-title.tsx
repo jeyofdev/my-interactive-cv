@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { Icon } from "@/components/ui/icons/icon";
+import { Icon } from "@/components/ui/icon/icon";
 import { Typography } from "@/components/ui/typography/typography";
 
 const sectionTitleVariants = cva("flex items-center", {

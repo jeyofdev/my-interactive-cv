@@ -35,6 +35,9 @@
 
 	--color-icon-muted-foreground: var(--icon-muted-foreground);
 
+	--color-divider-vertical: var(--divider-vertical);
+	--color-divider-horizontal: var(--divider-horizontal);
+
 	/* chip skills */
 	--color-chip: var(--chip);
 	--color-chip-border: var(--chip-border);
@@ -88,7 +91,6 @@
 	/* Accordion */
 	--color-accordion-background: var(--accordion-background);
 	--color-border-accordion: var(--border-accordion);
-	--color-accordion-separator: var(--accordion-separator);
 	--color-accordion-muted-foreground-title: var(
 		--accordion-muted-foreground-title
 	);
@@ -136,6 +138,9 @@
 	--border-image: theme(--color-white);
 	--border-separator: theme(--color-slate-200);
 	--border-separator-secondary: theme(--color-slate-200 / 50%);
+
+	--divider-vertical: theme(--color-slate-300);
+	--divider-horizontal: theme(--color-slate-100);
 
 	--chip: theme(--color-white);
 	--chip-border: theme(--color-slate-200);
@@ -188,7 +193,6 @@
 
 	--accordion-background: theme(--color-slate-50, 50%);
 	--border-accordion: theme(--color-slate-100);
-	--accordion-separator: theme(--color-slate-100);
 	--accordion-muted-foreground-title: theme(--color-slate-700);
 
 	--timeline-background: theme(--color-slate-200);
@@ -227,6 +231,9 @@
 	--border-separator: theme(--color-slate-700);
 	--border-separator-secondary: theme(--color-slate-700);
 
+	--divider-vertical: theme(--color-slate-600);
+	--divider-horizontal: theme(--color-slate-700 / 30%);
+
 	--chip: theme(--color-slate-700);
 	--chip-border: theme(--color-slate-600);
 	--chip-foreground: theme(--color-slate-200);
@@ -248,7 +255,6 @@
 
 	--accordion-background: theme(--color-slate-800 / 30%);
 	--border-accordion: theme(--color-slate-800);
-	--accordion-separator: theme(--color-slate-700 / 30%);
 	--accordion-muted-foreground-title: theme(--color-slate-200);
 
 	--timeline-background: theme(--color-slate-600);

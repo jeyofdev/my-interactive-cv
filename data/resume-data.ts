@@ -38,7 +38,7 @@ type Project = {
 	image: string;
 };
 
-type Experience = {
+export type Experience = {
 	id: number;
 	company: string;
 	role: string;

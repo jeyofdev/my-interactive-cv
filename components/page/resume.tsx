@@ -4,9 +4,8 @@ import { ProfileBlock } from "@/components/block/profile-block";
 import { HobbyCard } from "@/components/cards/hobby-card";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ChipBase, ChipBaseColor } from "@/components/ui/chips/chip-base";
-import { Icon } from "@/components/ui/icons/icon";
+import { ChipBase, ChipBaseColor } from "@/components/ui/chip/chip-base";
+import { Icon } from "@/components/ui/icon/icon";
 import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
 import { cn, getChipSkillColor } from "@/lib/utils";
@@ -15,7 +14,8 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { SectionTitle } from "@/components/sections/section-title";
 import { TimelineBar, TimelineDot } from "@/components/ui/timeline/timeline";
-import { Chip } from "@/components/ui/chips/chip";
+import { Chip } from "@/components/ui/chip/chip";
+import { AccordionExperience } from "@/components/ui/accordion/accordion-experience";
 
 export const skillColorMap: Record<string, ChipBaseColor> = {
 	react: "react",
@@ -196,161 +196,7 @@ export const Resume = () => {
 								renderItem={(experience) => (
 									<div className="relative pl-8">
 										<TimelineDot state={experience.id === 1 ? "active" : "inactive"} />
-
-										<Accordion type="single" collapsible>
-											<AccordionItem key={experience.id} value={`exp-${experience.id}`}>
-												{/* Trigger = summary */}
-												<AccordionTrigger className="p-4 cursor-pointer relative pr-10 flex flex-col gap-2">
-													<div className="flex items-center gap-2.5 flex-wrap">
-														<Typography variant="h3">{experience.role}</Typography>
-
-														{experience.id === 1 && <Chip variant="info">Latest</Chip>}
-													</div>
-
-													<Typography
-														variant="muted"
-														color="primary"
-														fontSize="base"
-														fontWeight="semibold"
-														className="flex items-center gap-2"
-													>
-														{experience.company}
-														<Chip variant="info" backgroundColor="secondary" color="surface-muted-foreground-info">
-															{experience.type}
-														</Chip>
-
-														<span className="text-slate-300 dark:text-slate-600 mx-1">|</span>
-
-														<Typography
-															variant="small"
-															color="surface-muted-foreground-info"
-															fontSize="base"
-															fontWeight="normal"
-															lineHeight="none"
-															textTransform="capitalize"
-															letterSpacing="normal"
-														>
-															{experience.period}
-														</Typography>
-													</Typography>
-
-													<Typography
-														variant="lead"
-														fontSize="sm"
-														lineHeight="relaxed"
-														fontWeight="normal"
-														letterSpacing="normal"
-														textAlign="left"
-													>
-														{experience.description}
-													</Typography>
-												</AccordionTrigger>
-
-												<AccordionContent className="px-4 pb-6">
-													<div className="space-y-4 border-t border-accordion-separator pt-4">
-														<div className="flex flex-wrap gap-1.5 mb-4">
-															<ListRenderer
-																list={experience.technologies}
-																keyExtractor={(item) => item.id}
-																renderItem={(technology) => (
-																	<Chip variant="outline" color={getChipSkillColor(technology)}>
-																		{technology.label}
-																	</Chip>
-																)}
-															/>
-														</div>
-
-														<div>
-															<Typography
-																variant="muted"
-																color="accordion-muted-foreground-title"
-																fontSize="sm"
-																fontWeight="bold"
-																className="mb-1"
-															>
-																Tâches principales :
-															</Typography>
-
-															<ul className="space-y-1">
-																<ListRenderer
-																	list={experience.details}
-																	keyExtractor={(item) => item.id}
-																	renderItem={(detail) => (
-																		<Typography variant="list" className="flex gap-2">
-																			<span className="text-primary">•</span>
-																			<span>{detail.body}</span>
-																		</Typography>
-																	)}
-																/>
-
-																{experience.id === 1 && (
-																	<Typography
-																		variant="muted"
-																		color="surface-muted-foreground-title"
-																		fontSize="xs"
-																		fontWeight="normal"
-																		fontStyle="italic"
-																		className="mt-1 ml-4"
-																	>
-																		+2 autres tâches...
-																	</Typography>
-																)}
-															</ul>
-														</div>
-
-														{experience.id === 1 && (
-															<div>
-																<Typography
-																	variant="muted"
-																	color="accordion-muted-foreground-title"
-																	fontSize="sm"
-																	fontWeight="bold"
-																	className="mb-1"
-																>
-																	Formations :
-																</Typography>
-
-																<ul className="space-y-1">
-																	<ListRenderer
-																		list={experience.formations}
-																		keyExtractor={(item) => item.id}
-																		renderItem={(formation) => (
-																			<Typography variant="list" className="flex gap-2">
-																				<span className="text-primary">•</span>
-																				<span>{formation.label}</span>
-																			</Typography>
-																		)}
-																	/>
-																</ul>
-															</div>
-														)}
-
-														<div className="pt-4 border-t border-accordion-separator">
-															<Typography
-																variant="muted"
-																color="surface-muted-foreground-info"
-																fontSize="custom-11"
-																fontWeight="bold"
-																textTransform="uppercase"
-																letterSpacing="wider"
-																className="mb-2"
-															>
-																Env. technique :
-															</Typography>
-
-															<Typography
-																variant="muted"
-																color="surface-muted-foreground"
-																fontSize="custom-11"
-																fontWeight="normal"
-															>
-																{experience.technologies.map((tech) => tech.label).join(" / ")}
-															</Typography>
-														</div>
-													</div>
-												</AccordionContent>
-											</AccordionItem>
-										</Accordion>
+										<AccordionExperience data={experience} />
 									</div>
 								)}
 							/>
