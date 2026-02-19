@@ -97,6 +97,9 @@
 	--color-timeline-background-inactive: var(--timeline-background-inactive);
 	--color-timeline-border: var(--timeline-border);
 
+	/* Tabs */
+	--color-tabs-background: var(--tabs-background);
+
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
 }
@@ -180,6 +183,8 @@
 	--timeline-background: theme(--color-slate-200);
 	--timeline-background-inactive: theme(--color-slate-300);
 	--timeline-border: theme(--color-white);
+
+	--tabs-background: theme(--color-slate-100);
 }
 
 .dark {
@@ -229,6 +234,8 @@
 	--timeline-background: theme(--color-slate-600);
 	--timeline-background-inactive: theme(--color-slate-600);
 	--timeline-border: theme(--color-slate-900);
+
+	--tabs-background: theme(--color-slate-800);
 }
 
 @layer base {
