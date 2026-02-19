@@ -107,6 +107,9 @@
 	--color-card-background: var(--card-background);
 	--color-card-border: var(--card-border);
 
+	--color-card-education-background: var(--card-education-background);
+	--color-border-card-education: var(--border-card-education);
+
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
 }
@@ -198,6 +201,9 @@
 
 	--card-background: theme(--color-white);
 	--card-border: theme(--color-slate-100);
+
+	--card-education-background: theme(--color-slate-50, 50%);
+	--border-card-education: theme(--color-slate-100);
 }
 
 .dark {
@@ -255,6 +261,9 @@
 
 	--card-background: theme(--color-slate-800);
 	--card-border: theme(--color-slate-700);
+
+	--card-education-background: theme(--color-slate-800 / 30%);
+	--border-card-education: theme(--color-slate-800);
 }
 
 @layer base {

@@ -17,6 +17,15 @@ type ResumeData = {
 	hobbies: Hobby[];
 	experiences: Experience[];
 	projects: Project[];
+	education: Education[];
+};
+
+type Education = {
+	id: number;
+	school: string;
+	degree: string;
+	year: string;
+	specialization: string;
 };
 
 type Project = {
@@ -250,6 +259,22 @@ export const resumeData: ResumeData = {
 			],
 			image: "https://picsum.photos/seed/weather/600/400",
 			github: "#",
+		},
+	],
+	education: [
+		{
+			id: 1,
+			school: "EPITA - Graduate School of Computer Science",
+			degree: "Master's in Computer Science",
+			year: "2016 – 2018",
+			specialization: "Software Engineering",
+		},
+		{
+			id: 2,
+			school: "Professional Certification",
+			degree: "AWS Certified Solutions Architect",
+			year: "Earned 2022",
+			specialization: "Cloud Architecture",
 		},
 	],
 };
