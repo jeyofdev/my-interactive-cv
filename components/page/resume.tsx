@@ -13,7 +13,8 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import { AppWindowIcon, CodeIcon } from "lucide-react";
+import { SectionTitle } from "@/components/sections/section-title";
+import { TimelineBar, TimelineDot } from "@/components/ui/timeline/timeline";
 
 const skillColorMap: Record<string, ChipColor> = {
 	react: "react",
@@ -182,32 +183,18 @@ export const Resume = () => {
 				<div className="px-8 lg:px-12 py-12 max-w-4xl">
 					{/* Experience Section */}
 					<section className="mb-16">
-						<div className="flex items-center gap-4 mb-10">
-							<Icon variant="rounded" backgroundColor="primary" icon="work" size="26px" containerSize="40px" />
-
-							<Typography variant="h2">Expériences Professionnelles</Typography>
-						</div>
+						<SectionTitle label="Expériences Professionnelles" icon="work" className="mb-10" />
 
 						{/* Timeline Wrapper */}
 						<div className="relative space-y-12">
-							{/* Single continuous timeline line */}
-							<div className="absolute left-0 top-2 -bottom-11 w-0.5 bg-timeline-background"></div>
+							<TimelineBar orientation="vertical" />
 
 							<ListRenderer
 								list={resumeData.experiences}
 								keyExtractor={(item) => item.id}
 								renderItem={(experience) => (
 									<div className="relative pl-8">
-										{/* Timeline dot */}
-										<div
-											className={cn(
-												"absolute left-[-6px] top-6 size-[16px] bg-primary rounded-full border-4 border-timeline-border shadow-sm ring-4 ring-primary/10 z-10",
-												{
-													"bg-primary scale-125 top-8": experience.id === 1,
-													"top-6 bg-timeline-background-inactive": experience.id !== 1,
-												},
-											)}
-										/>
+										<TimelineDot state={experience.id === 1 ? "active" : "inactive"} />
 
 										<Accordion type="single" collapsible>
 											<AccordionItem key={experience.id} value={`exp-${experience.id}`}>
@@ -434,11 +421,7 @@ export const Resume = () => {
 
 					{/* Projects Section */}
 					<section className="mb-16">
-						<div className="flex items-center gap-4 mb-10">
-							<Icon variant="rounded" backgroundColor="primary" icon="rocket_launch" size="26px" containerSize="40px" />
-
-							<Typography variant="h2">Projets</Typography>
-						</div>
+						<SectionTitle label="Projets" icon="rocket_launch" className="mb-10" />
 
 						<Tabs defaultValue="preview">
 							<TabsList className="flex gap-2 bg-tabs-background rounded-lg w-fit ml-auto lg:ml-0  p-1 mb-6">
@@ -650,11 +633,7 @@ export const Resume = () => {
 
 					{/* Education Section */}
 					<section>
-						<div className="flex items-center gap-4 mb-10">
-							<Icon variant="rounded" backgroundColor="primary" icon="school" size="26px" containerSize="40px" />
-
-							<Typography variant="h2">Formation</Typography>
-						</div>
+						<SectionTitle label="Formation" icon="school" className="mb-10" />
 
 						<div className="space-y-6">
 							<ListRenderer
