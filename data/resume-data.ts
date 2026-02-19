@@ -25,7 +25,7 @@ type Project = {
 	description: string;
 	link?: string;
 	github?: string;
-	tags: string[];
+	tags: Tag[];
 	image: string;
 };
 
@@ -72,6 +72,7 @@ type Skill = {
 
 type Technology = Pick<SkillItem, "id" | "label">;
 type Formation = Pick<Technology, "id" | "label">;
+type Tag = Pick<Technology, "id" | "label">;
 
 export type SkillItem = {
 	id: number;
@@ -218,7 +219,11 @@ export const resumeData: ResumeData = {
 			title: "OmniTask AI",
 			description:
 				"A comprehensive project management tool with AI-assisted task prioritization and automatic documentation generation.",
-			tags: ["Next.js", "PostgreSQL", "Tailwind CSS"],
+			tags: [
+				{ id: 1, label: "Next.js" },
+				{ id: 2, label: "PostgreSQL" },
+				{ id: 3, label: "Tailwind CSS" },
+			],
 			image: "https://picsum.photos/seed/omnitask/600/400",
 			github: "#",
 		},
@@ -227,7 +232,11 @@ export const resumeData: ResumeData = {
 			title: "PulseCommerce",
 			description:
 				"A high-performance headless e-commerce engine built for extreme scalability and 100ms response times.",
-			tags: ["React", "Node.js", "GraphQL"],
+			tags: [
+				{ id: 1, label: "React" },
+				{ id: 2, label: "Node.js" },
+				{ id: 3, label: "GraphQL" },
+			],
 			image: "https://picsum.photos/seed/pulse/600/400",
 			github: "#",
 		},
@@ -235,7 +244,10 @@ export const resumeData: ResumeData = {
 			id: 3,
 			title: "WeatherApp",
 			description: "Un tableau de bord météo en temps réel construit avec React et l'API OpenWeather.",
-			tags: ["React", "TypeScript"],
+			tags: [
+				{ id: 1, label: "React" },
+				{ id: 2, label: "TypeScript" },
+			],
 			image: "https://picsum.photos/seed/weather/600/400",
 			github: "#",
 		},

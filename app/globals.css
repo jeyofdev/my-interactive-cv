@@ -100,6 +100,12 @@
 	/* Tabs */
 	--color-tabs-background: var(--tabs-background);
 
+	--color-link-icon-foreground: var(--link-icon-foreground);
+
+	/* Card */
+	--color-card-background: var(--card-background);
+	--color-card-border: var(--card-border);
+
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
 }
@@ -185,6 +191,11 @@
 	--timeline-border: theme(--color-white);
 
 	--tabs-background: theme(--color-slate-100);
+
+	--link-icon-foreground: theme(--color-slate-400);
+
+	--card-background: theme(--color-white);
+	--card-border: theme(--color-slate-100);
 }
 
 .dark {
@@ -236,6 +247,11 @@
 	--timeline-border: theme(--color-slate-900);
 
 	--tabs-background: theme(--color-slate-800);
+
+	--link-icon-foreground: theme(--color-slate-400);
+
+	--card-background: theme(--color-slate-800);
+	--card-border: theme(--color-slate-700);
 }
 
 @layer base {

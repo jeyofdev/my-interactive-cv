@@ -41,6 +41,50 @@ export const Resume = () => {
 		return output;
 	};
 
+	const getProjectTagStyle = (tag: string, view: "card" | "list") => {
+		if (view === "list") {
+			const base = "px-3 py-1 bg-slate-800/80 text-sm font-medium rounded-md border";
+			switch (tag) {
+				case "Next.js":
+					return `${base} text-slate-400 border-slate-700`;
+				case "PostgreSQL":
+					return `${base} text-indigo-400 border-indigo-500/20`;
+				case "Tailwind CSS":
+					return `${base} text-cyan-400 border-cyan-500/20`;
+				case "React":
+					return `${base} text-blue-400 border-blue-500/20`;
+				case "Node.js":
+					return `${base} text-green-400 border-green-500/20`;
+				case "GraphQL":
+					return `${base} text-pink-400 border-pink-500/20`;
+				case "TypeScript":
+					return `${base} text-sky-400 border-sky-500/20`;
+				default:
+					return `${base} text-slate-400 border-slate-700`;
+			}
+		} else {
+			// Card view
+			switch (tag) {
+				case "Next.js":
+					return "px-2 py-0.5 bg-slate-100 text-slate-800 text-[10px] font-bold rounded border border-slate-200";
+				case "PostgreSQL":
+					return "px-2 py-0.5 bg-indigo-50 text-indigo-600 text-[10px] font-bold rounded border border-indigo-100";
+				case "Tailwind CSS":
+					return "px-2 py-0.5 bg-cyan-50 text-cyan-600 text-[10px] font-bold rounded border border-cyan-100";
+				case "React":
+					return "px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded border border-blue-100";
+				case "Node.js":
+					return "px-2 py-0.5 bg-green-50 text-green-600 text-[10px] font-bold rounded border border-green-100";
+				case "GraphQL":
+					return "px-2 py-0.5 bg-pink-50 text-pink-600 text-[10px] font-bold rounded border border-pink-100";
+				case "TypeScript":
+					return "px-2 py-0.5 bg-sky-50 text-sky-600 text-[10px] font-bold rounded border border-sky-100";
+				default:
+					return "px-2 py-0.5 bg-slate-100 text-slate-800 text-[10px] font-bold rounded border border-slate-200";
+			}
+		}
+	};
+
 	return (
 		<>
 			<aside className="flex flex-col w-full lg:w-80 xl:w-96 lg:h-screen bg-surface-muted border-r border-border overflow-y-auto">
@@ -449,7 +493,7 @@ export const Resume = () => {
 										"px-3 py-1.5 text-xs rounded-md shadow-none flex items-center gap-2 transition-all text-slate-500 dark:text-slate-400 font-medium data-[state=active]:bg-white data-[state=active]:dark:bg-slate-700data-[state=active]:text-primarydata-[state=active]:font-bold",
 									)}
 								>
-									<Icon variant="default" backgroundColor="primary" icon="grid_view" size="24px" />
+									<Icon variant="default" icon="grid_view" size="24px" />
 									Card
 								</TabsTrigger>
 								<TabsTrigger
@@ -463,13 +507,105 @@ export const Resume = () => {
 										},
 									)}
 								>
-									<Icon variant="default" backgroundColor="primary" icon="list" size="24px" />
+									<Icon variant="default" icon="list" size="24px" />
 									List
 								</TabsTrigger>
 							</TabsList>
 						</Tabs>
 
-						{projectView === "grid" ? <p>grid</p> : <p>list</p>}
+						{projectView === "grid" ? (
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+								<ListRenderer
+									list={resumeData.projects}
+									keyExtractor={(item) => item.id}
+									renderItem={(project) => (
+										<div className="group relative flex flex-col bg-card-background border border-card-border rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all hover:-translate-y-1">
+											<div className="relative h-40 overflow-hidden">
+												<Image
+													src={project.image}
+													alt={project.title}
+													fill
+													sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+													className="object-cover transition-transform duration-500 opacity-80 group-hover:opacity-100 group-hover:scale-105"
+												/>
+											</div>
+
+											<div className="p-6">
+												<div className="flex items-center gap-2 mb-2">
+													<Typography variant="h3" fontSize="lg">
+														{project.title}
+													</Typography>
+
+													<div className="flex gap-1.25">
+														<a href={project.link} className="flex">
+															<Icon
+																variant="default"
+																icon="open_in_new"
+																color="link"
+																size="21px"
+																className="hover:text-primary transition-colors"
+															/>
+														</a>
+														<a href={project.github} className="text-slate-400 hover:text-primary transition-colors">
+															<svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+																<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.311.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+															</svg>
+														</a>
+													</div>
+												</div>
+
+												<Typography
+													variant="lead"
+													fontSize="sm"
+													lineHeight="relaxed"
+													fontWeight="normal"
+													letterSpacing="normal"
+													textAlign="left"
+													className="line-clamp-2 mb-4"
+												>
+													{project.description}
+												</Typography>
+
+												<div className="flex flex-wrap gap-1.5 mb-4">
+													<ListRenderer
+														list={project.tags}
+														keyExtractor={(item) => item.id}
+														renderItem={(technology) => (
+															<Chip
+																variant="rounded"
+																color={
+																	skillColorMap[
+																		technology.label
+																			.split(/[\s.]+/)
+																			.join("")
+																			.toLowerCase()
+																	] ?? "default"
+																}
+																rounded="sm"
+																size="thin"
+															>
+																<Typography
+																	variant="small"
+																	color="text-current"
+																	fontSize="xs"
+																	fontWeight="semibold"
+																	lineHeight="none"
+																	asChild
+																>
+																	<span>{technology.label}</span>
+																</Typography>
+															</Chip>
+														)}
+													/>
+												</div>
+											</div>
+										</div>
+									)}
+								/>
+							</div>
+						) : (
+							<p>list</p>
+						)}
 					</section>
 				</div>
 			</main>
