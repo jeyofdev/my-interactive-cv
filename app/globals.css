@@ -23,16 +23,22 @@
 		--surface-muted-foreground-title-secondary
 	);
 	--color-surface-muted-foreground-info: var(--surface-muted-foreground-info);
-	--color-surface-muted-foreground-info-title: var(--surface-muted-foreground-info-title);
+	--color-surface-muted-foreground-info-title: var(
+		--surface-muted-foreground-info-title
+	);
 
 	--color-border: var(--border);
 	--color-border-separator: var(--border-separator);
+	--color-border-image: var(--border-image);
 	--color-border-secondary: var(--border-secondary);
+
+	--color-icon-muted-foreground: var(--icon-muted-foreground);
 
 	/* chip skills */
 	--color-chip: var(--chip);
 	--color-chip-border: var(--chip-border);
-	--color-chip-foreground: var(--chi-foreground);
+	--color-chip-foreground: var(--chip-foreground);
+	--color-chip-secondary: var(--chip-secondary);
 
 	--color-react: var(--react);
 	--color-react-border: var(--react-border);
@@ -78,6 +84,19 @@
 	--color-gitlab-border: var(--gitlab-border);
 	--color-gitlab-foreground: var(--gitlab-foreground);
 
+	/* Accordion */
+	--color-accordion-background: var(--accordion-background);
+	--color-border-accordion: var(--border-accordion);
+	--color-accordion-separator: var(--accordion-separator);
+	--color-accordion-muted-foreground-title: var(
+		--accordion-muted-foreground-title
+	);
+
+	/* Timeline */
+	--color-timeline-background: var(--timeline-background);
+	--color-timeline-background-inactive: var(--timeline-background-inactive);
+	--color-timeline-border: var(--timeline-border);
+
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
 }
@@ -95,16 +114,19 @@
 	--surface-muted-foreground-title: theme(--color-slate-400);
 	--surface-muted-foreground-title-secondary: theme(--color-slate-900);
 	--surface-muted-foreground-info: theme(--color-slate-500);
-		--surface-muted-foreground-info-title: theme(--color-slate-800);
+	--surface-muted-foreground-info-title: theme(--color-slate-800);
 
+	--icon-muted-foreground: theme(--color-slate-400);
 
 	--border: theme(--color-slate-200);
 	--border-secondary: theme(--color-white);
+	--border-image: theme(--color-white);
 	--border-separator: theme(--color-slate-200);
 
 	--chip: theme(--color-white);
 	--chip-border: theme(--color-slate-200);
 	--chip-foreground: theme(--color-slate-700);
+	--chip-secondary: theme(--color-slate-100);
 
 	--react: theme(--color-blue-500 / 10%);
 	--react-border: theme(--color-blue-500 / 20%);
@@ -149,6 +171,15 @@
 	--gitlab: theme(--color-purple-500 / 10%);
 	--gitlab-border: theme(--color-purple-500 / 20%);
 	--gitlab-foreground: theme(--color-purple-400);
+
+	--accordion-background: theme(--color-slate-50, 50%);
+	--border-accordion: theme(--color-slate-100);
+	--accordion-separator: theme(--color-slate-100);
+	--accordion-muted-foreground-title: theme(--color-slate-700);
+
+	--timeline-background: theme(--color-slate-200);
+	--timeline-background-inactive: theme(--color-slate-300);
+	--timeline-border: theme(--color-white);
 }
 
 .dark {
@@ -168,11 +199,15 @@
 
 	--border: theme(--color-slate-700);
 	--border-secondary: theme(--color-slate-800);
+	--border-image: theme(--color-slate-700);
 	--border-separator: theme(--color-slate-700);
 
 	--chip: theme(--color-slate-700);
 	--chip-border: theme(--color-slate-600);
 	--chip-foreground: theme(--color-slate-200);
+	--chip-secondary: theme(--color-slate-700);
+
+	--icon-muted-foreground: theme(--color-slate-400);
 
 	--react: theme(--color-slate-800 / 80%);
 	--typescript: theme(--color-slate-800 / 80%);
@@ -185,6 +220,15 @@
 	--docker: theme(--color-slate-800 / 80%);
 	--aws: theme(--color-slate-800 / 80%);
 	--gitlab: theme(--color-slate-800 / 80%);
+
+	--accordion-background: theme(--color-slate-800 / 30%);
+	--border-accordion: theme(--color-slate-800);
+	--accordion-separator: theme(--color-slate-700 / 30%);
+	--accordion-muted-foreground-title: theme(--color-slate-200);
+
+	--timeline-background: theme(--color-slate-600);
+	--timeline-background-inactive: theme(--color-slate-600);
+	--timeline-border: theme(--color-slate-900);
 }
 
 @layer base {

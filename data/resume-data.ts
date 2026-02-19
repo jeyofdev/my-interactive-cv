@@ -15,6 +15,24 @@ type ResumeData = {
 	skills: Skill[];
 	languages: Language[];
 	hobbies: Hobby[];
+	experiences: Experience[];
+};
+
+type Experience = {
+	id: number;
+	company: string;
+	role: string;
+	period: string;
+	type: string;
+	description: string;
+	details: ExperienceDetails[];
+	technologies: Technology[];
+	formations: Formation[];
+};
+
+type ExperienceDetails = {
+	id: number;
+	body: string;
 };
 
 export type Hobby = {
@@ -40,6 +58,9 @@ type Skill = {
 	category: string;
 	items: SkillItem[];
 };
+
+type Technology = Pick<SkillItem, "id" | "label">;
+type Formation = Pick<Technology, "id" | "label">;
 
 export type SkillItem = {
 	id: number;
@@ -120,5 +141,64 @@ export const resumeData: ResumeData = {
 		{ id: 2, label: "Randonnée", detail: "Sentiers de montagne" },
 		{ id: 3, label: "Open Source" },
 		{ id: 4, label: "Guitare", duration: "3 ans" },
+	],
+	experiences: [
+		{
+			id: 1,
+			company: "TechCorp",
+			role: "Développeuse Fullstack Senior",
+			period: "2022 – Présent",
+			type: "CDI",
+			description:
+				"Direction du développement d'une plateforme SaaS utilisée par 10k+ utilisateurs. Architecture microservices et frontend React.",
+			details: [
+				{
+					id: 1,
+					body: "Conception et implémentation de l'architecture frontend (monorepo, bibliothèque de composants partagés)",
+				},
+				{ id: 2, body: "Création d'un système de notifications temps réel via WebSockets et Redis pub/sub" },
+				{ id: 3, body: "Migration du code legacy de JavaScript vers TypeScript (200+ fichiers)" },
+				{ id: 4, body: "Implémentation d'un contrôle d'accès basé sur les rôles (RBAC) sur toute la plateforme" },
+				{ id: 5, body: "Mise en place de tests automatisés avec 85% de couverture (unitaires, intégration, E2E)" },
+				{ id: 6, body: "Pilotage de la migration de REST vers GraphQL pour l'API principale" },
+			],
+			formations: [
+				{ id: 1, label: "Certifications AWS Solutions Architect & Docker Certified Associate" },
+				{ id: 2, label: "Conférencière régulière à React Europe et Node Summit" },
+			],
+			technologies: [
+				{ id: 1, label: "React" },
+				{ id: 2, label: "TypeScript" },
+				{ id: 3, label: "Node.js" },
+				{ id: 4, label: "PostgreSQL" },
+				{ id: 5, label: "GraphQL" },
+				{ id: 6, label: "Redis" },
+				{ id: 7, label: "Docker" },
+				{ id: 8, label: "AWS" },
+			],
+		},
+		{
+			id: 2,
+			company: "Global Web Agency",
+			role: "Fullstack Engineer",
+			period: "Aug 2018 – Dec 2020",
+			type: "CDI",
+			description: "Équipe de 8 développeurs au sein d'une société produit de 50 personnes. Méthodologie Agile/Scrum.",
+			details: [
+				{ id: 1, body: "Développement de fonctionnalités critiques pour des clients internationaux" },
+				{ id: 2, body: "Optimisation des performances de rendu côté client" },
+				{ id: 3, body: "Mise en place de pipelines CI/CD" },
+				{ id: 4, body: "Support technique et maintenance évolutive" },
+			],
+			formations: [],
+			technologies: [
+				{ id: 1, label: "React" },
+				{ id: 2, label: "TypeScript" },
+				{ id: 3, label: "Node.js" },
+				{ id: 4, label: "PostgreSQL" },
+				{ id: 5, label: "GraphQL" },
+				{ id: 6, label: "Docker" },
+			],
+		},
 	],
 };

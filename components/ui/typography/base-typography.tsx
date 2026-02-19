@@ -12,7 +12,10 @@ const baseTypographyVariants = cva("", {
 			small: "text-sm font-medium leading-none",
 			code: "rounded bg-muted px-1 py-0.5 font-mono text-sm",
 			h1: "",
+			h2: "",
+			h3: "",
 			h6: "",
+			list: "",
 		},
 		color: {
 			default: "text-foreground",
@@ -22,6 +25,8 @@ const baseTypographyVariants = cva("", {
 			"surface-muted-foreground-info": "text-surface-muted-foreground-info",
 			"surface-muted-foreground-info-title": "text-surface-muted-foreground-info-title",
 			"text-current": "text-current",
+			"accordion-muted-foreground-title": "text-accordion-muted-foreground-title",
+			"surface-muted-foreground-title": "text-surface-muted-foreground-title",
 		},
 		fontSize: {
 			xs: "text-xs",
@@ -32,6 +37,7 @@ const baseTypographyVariants = cva("", {
 			"2xl": "text-2xl",
 			"3xl": "text-3xl",
 			"4xl": "text-4xl",
+			"custom-10": "text-[10px]",
 			"custom-11": "text-[11px]",
 		},
 		fontWeight: {
@@ -42,6 +48,11 @@ const baseTypographyVariants = cva("", {
 			semibold: "font-semibold",
 			bold: "font-bold",
 			extrabold: "font-extrabold",
+			black: "font-black",
+		},
+		fontStyle: {
+			normal: "not-italic",
+			italic: "italic",
 		},
 		textAlign: {
 			left: "text-left",
@@ -75,6 +86,7 @@ const baseTypographyVariants = cva("", {
 		color: "default",
 		fontSize: "sm",
 		fontWeight: "normal",
+		fontStyle: "normal",
 		textAlign: "left",
 		lineHeight: "normal",
 		letterSpacing: "normal",
@@ -92,7 +104,10 @@ const variantElementMap: Record<
 	small: "span",
 	code: "code",
 	h1: "h1",
+	h2: "h2",
+	h3: "h3",
 	h6: "h6",
+	list: "li",
 };
 
 export type BaseTypographyProps = Omit<React.HTMLAttributes<HTMLElement>, "color"> &
@@ -106,6 +121,7 @@ export const BaseTypography = ({
 	color,
 	fontSize,
 	fontWeight,
+	fontStyle,
 	textAlign,
 	lineHeight,
 	letterSpacing,
@@ -123,6 +139,7 @@ export const BaseTypography = ({
 					color,
 					fontSize,
 					fontWeight,
+					fontStyle,
 					textAlign,
 					lineHeight,
 					letterSpacing,
