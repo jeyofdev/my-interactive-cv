@@ -647,6 +647,57 @@ export const Resume = () => {
 							</div>
 						)}
 					</section>
+
+					{/* Education Section */}
+					<section>
+						<div className="flex items-center gap-4 mb-10">
+							<Icon variant="rounded" backgroundColor="primary" icon="school" size="26px" containerSize="40px" />
+
+							<Typography variant="h2">Formation</Typography>
+						</div>
+
+						<div className="space-y-6">
+							<ListRenderer
+								list={resumeData.education}
+								keyExtractor={(item) => item.id}
+								renderItem={(formation) => (
+									<div className="flex gap-4 p-5 rounded-2xl border border-border-card-education bg-card-education-background transition-colors duration-300">
+										<div className="size-12 bg-white dark:bg-slate-700 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0 transition-colors duration-300">
+											<Icon variant="rounded" color="secondary" icon="history_edu" size="26px" containerSize="48px" />
+										</div>
+
+										<div className="flex flex-col gap-1">
+											<Typography variant="h4">{formation.degree}</Typography>
+
+											<Typography
+												variant="small"
+												color="surface-muted-foreground-info"
+												fontSize="base"
+												fontWeight="medium"
+												lineHeight="none"
+												textTransform="capitalize"
+												letterSpacing="normal"
+											>
+												{formation.school}
+											</Typography>
+
+											<Typography
+												variant="small"
+												color="surface-muted-foreground-title"
+												fontSize="sm"
+												fontWeight="normal"
+												lineHeight="none"
+												textTransform="capitalize"
+												letterSpacing="normal"
+											>
+												{formation.year} | {formation.specialization}
+											</Typography>
+										</div>
+									</div>
+								)}
+							/>
+						</div>
+					</section>
 				</div>
 			</main>
 		</>
