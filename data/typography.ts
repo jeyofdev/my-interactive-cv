@@ -38,6 +38,14 @@ const paragraphVariants: Record<string, TypographyVariantConfig> = {
 		lineHeight: "relaxed",
 		letterSpacing: "wider",
 	},
+	list: {
+		variant: "small",
+		color: "surface-muted-foreground",
+		fontSize: "sm",
+		textAlign: "left",
+		lineHeight: "relaxed",
+		letterSpacing: "normal",
+	},
 };
 
 const headingVariants: Record<string, TypographyVariantConfig> = {

@@ -87,6 +87,10 @@
 	/* Accordion */
 	--color-accordion-background: var(--accordion-background);
 	--color-border-accordion: var(--border-accordion);
+	--color-accordion-separator: var(--accordion-separator);
+	--color-accordion-muted-foreground-title: var(
+		--accordion-muted-foreground-title
+	);
 
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
@@ -165,6 +169,8 @@
 
 	--accordion-background: theme(--color-slate-50, 50%);
 	--border-accordion: theme(--color-slate-100);
+	--accordion-separator: theme(--color-slate-100);
+	--accordion-muted-foreground-title: theme(--color-slate-700);
 }
 
 .dark {
@@ -208,6 +214,8 @@
 
 	--accordion-background: theme(--color-slate-800 / 30%);
 	--border-accordion: theme(--color-slate-800);
+	--accordion-separator: theme(--color-slate-700 / 30%);
+	--accordion-muted-foreground-title: theme(--color-slate-200);
 }
 
 @layer base {

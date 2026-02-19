@@ -25,8 +25,14 @@ type Experience = {
 	period: string;
 	type: string;
 	description: string;
-	details: string[];
-	technologies: string[];
+	details: ExperienceDetails[];
+	technologies: Technology[];
+	formations: Formation[];
+};
+
+type ExperienceDetails = {
+	id: number;
+	body: string;
 };
 
 export type Hobby = {
@@ -52,6 +58,9 @@ type Skill = {
 	category: string;
 	items: SkillItem[];
 };
+
+type Technology = Pick<SkillItem, "id" | "label">;
+type Formation = Pick<Technology, "id" | "label">;
 
 export type SkillItem = {
 	id: number;
@@ -143,14 +152,30 @@ export const resumeData: ResumeData = {
 			description:
 				"Direction du développement d'une plateforme SaaS utilisée par 10k+ utilisateurs. Architecture microservices et frontend React.",
 			details: [
-				"Conception et implémentation de l'architecture frontend (monorepo, bibliothèque de composants partagés)",
-				"Création d'un système de notifications temps réel via WebSockets et Redis pub/sub",
-				"Migration du code legacy de JavaScript vers TypeScript (200+ fichiers)",
-				"Implémentation d'un contrôle d'accès basé sur les rôles (RBAC) sur toute la plateforme",
-				"Mise en place de tests automatisés avec 85% de couverture (unitaires, intégration, E2E)",
-				"Pilotage de la migration de REST vers GraphQL pour l'API principale",
+				{
+					id: 1,
+					body: "Conception et implémentation de l'architecture frontend (monorepo, bibliothèque de composants partagés)",
+				},
+				{ id: 2, body: "Création d'un système de notifications temps réel via WebSockets et Redis pub/sub" },
+				{ id: 3, body: "Migration du code legacy de JavaScript vers TypeScript (200+ fichiers)" },
+				{ id: 4, body: "Implémentation d'un contrôle d'accès basé sur les rôles (RBAC) sur toute la plateforme" },
+				{ id: 5, body: "Mise en place de tests automatisés avec 85% de couverture (unitaires, intégration, E2E)" },
+				{ id: 6, body: "Pilotage de la migration de REST vers GraphQL pour l'API principale" },
 			],
-			technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "GraphQL", "Redis", "Docker", "AWS"],
+			formations: [
+				{ id: 1, label: "Certifications AWS Solutions Architect & Docker Certified Associate" },
+				{ id: 2, label: "Conférencière régulière à React Europe et Node Summit" },
+			],
+			technologies: [
+				{ id: 1, label: "React" },
+				{ id: 2, label: "TypeScript" },
+				{ id: 3, label: "Node.js" },
+				{ id: 4, label: "PostgreSQL" },
+				{ id: 5, label: "GraphQL" },
+				{ id: 6, label: "Redis" },
+				{ id: 7, label: "Docker" },
+				{ id: 8, label: "AWS" },
+			],
 		},
 		{
 			id: 2,
@@ -160,12 +185,20 @@ export const resumeData: ResumeData = {
 			type: "CDI",
 			description: "Équipe de 8 développeurs au sein d'une société produit de 50 personnes. Méthodologie Agile/Scrum.",
 			details: [
-				"Développement de fonctionnalités critiques pour des clients internationaux",
-				"Optimisation des performances de rendu côté client",
-				"Mise en place de pipelines CI/CD",
-				"Support technique et maintenance évolutive",
+				{ id: 1, body: "Développement de fonctionnalités critiques pour des clients internationaux" },
+				{ id: 2, body: "Optimisation des performances de rendu côté client" },
+				{ id: 3, body: "Mise en place de pipelines CI/CD" },
+				{ id: 4, body: "Support technique et maintenance évolutive" },
 			],
-			technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "GraphQL", "Docker"],
+			formations: [],
+			technologies: [
+				{ id: 1, label: "React" },
+				{ id: 2, label: "TypeScript" },
+				{ id: 3, label: "Node.js" },
+				{ id: 4, label: "PostgreSQL" },
+				{ id: 5, label: "GraphQL" },
+				{ id: 6, label: "Docker" },
+			],
 		},
 	],
 };

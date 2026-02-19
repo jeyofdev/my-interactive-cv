@@ -291,7 +291,130 @@ const ResumePage = () => {
 													</Typography>
 												</AccordionTrigger>
 
-												<AccordionContent className="px-4 pb-6"></AccordionContent>
+												<AccordionContent className="px-4 pb-6">
+													<div className="space-y-4 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-accordion-separator pt-4">
+														<div className="flex flex-wrap gap-1.5 mb-4">
+															<ListRenderer
+																list={experience.technologies}
+																keyExtractor={(item) => item.id}
+																renderItem={(technology) => (
+																	<Chip
+																		variant="rounded"
+																		color={
+																			skillColorMap[
+																				technology.label
+																					.split(/[\s.]+/)
+																					.join("")
+																					.toLowerCase()
+																			] ?? "default"
+																		}
+																		rounded="sm"
+																		size="thin"
+																	>
+																		<Typography
+																			variant="small"
+																			color="text-current"
+																			fontSize="xs"
+																			fontWeight="semibold"
+																			lineHeight="none"
+																			asChild
+																		>
+																			<span>{technology.label}</span>
+																		</Typography>
+																	</Chip>
+																)}
+															/>
+														</div>
+
+														<div>
+															<Typography
+																variant="muted"
+																color="accordion-muted-foreground-title"
+																fontSize="sm"
+																fontWeight="bold"
+																className="mb-1"
+															>
+																Tâches principales :
+															</Typography>
+
+															<ul className="space-y-1">
+																<ListRenderer
+																	list={experience.details}
+																	keyExtractor={(item) => item.id}
+																	renderItem={(detail) => (
+																		<Typography variant="list" className="flex gap-2">
+																			<span className="text-primary">•</span>
+																			<span>{detail.body}</span>
+																		</Typography>
+																	)}
+																/>
+
+																{experience.id === 1 && (
+																	<Typography
+																		variant="muted"
+																		color="surface-muted-foreground-title"
+																		fontSize="xs"
+																		fontWeight="normal"
+																		fontStyle="italic"
+																		className="mt-1 ml-4"
+																	>
+																		+2 autres tâches...
+																	</Typography>
+																)}
+															</ul>
+														</div>
+
+														{experience.id === 1 && (
+															<div>
+																<Typography
+																	variant="muted"
+																	color="accordion-muted-foreground-title"
+																	fontSize="sm"
+																	fontWeight="bold"
+																	className="mb-1"
+																>
+																	Formations :
+																</Typography>
+
+																<ul className="space-y-1">
+																	<ListRenderer
+																		list={experience.formations}
+																		keyExtractor={(item) => item.id}
+																		renderItem={(formation) => (
+																			<Typography variant="list" className="flex gap-2">
+																				<span className="text-primary">•</span>
+																				<span>{formation.label}</span>
+																			</Typography>
+																		)}
+																	/>
+																</ul>
+															</div>
+														)}
+
+														<div className="pt-4 border-t border-accordion-separator">
+															<Typography
+																variant="muted"
+																color="surface-muted-foreground-info"
+																fontSize="custom-11"
+																fontWeight="bold"
+																textTransform="uppercase"
+																letterSpacing="wider"
+																className="mb-2"
+															>
+																Env. technique :
+															</Typography>
+
+															<Typography
+																variant="muted"
+																color="surface-muted-foreground"
+																fontSize="custom-11"
+																fontWeight="normal"
+															>
+																{experience.technologies.map((tech) => tech.label).join(" / ")}
+															</Typography>
+														</div>
+													</div>
+												</AccordionContent>
 											</AccordionItem>
 										</Accordion>
 									</div>

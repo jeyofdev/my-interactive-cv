@@ -15,6 +15,7 @@ const baseTypographyVariants = cva("", {
 			h2: "",
 			h3: "",
 			h6: "",
+			list: "",
 		},
 		color: {
 			default: "text-foreground",
@@ -24,6 +25,8 @@ const baseTypographyVariants = cva("", {
 			"surface-muted-foreground-info": "text-surface-muted-foreground-info",
 			"surface-muted-foreground-info-title": "text-surface-muted-foreground-info-title",
 			"text-current": "text-current",
+			"accordion-muted-foreground-title": "text-accordion-muted-foreground-title",
+			"surface-muted-foreground-title": "text-surface-muted-foreground-title",
 		},
 		fontSize: {
 			xs: "text-xs",
@@ -46,6 +49,10 @@ const baseTypographyVariants = cva("", {
 			bold: "font-bold",
 			extrabold: "font-extrabold",
 			black: "font-black",
+		},
+		fontStyle: {
+			normal: "not-italic",
+			italic: "italic",
 		},
 		textAlign: {
 			left: "text-left",
@@ -79,6 +86,7 @@ const baseTypographyVariants = cva("", {
 		color: "default",
 		fontSize: "sm",
 		fontWeight: "normal",
+		fontStyle: "normal",
 		textAlign: "left",
 		lineHeight: "normal",
 		letterSpacing: "normal",
@@ -99,6 +107,7 @@ const variantElementMap: Record<
 	h2: "h2",
 	h3: "h3",
 	h6: "h6",
+	list: "li",
 };
 
 export type BaseTypographyProps = Omit<React.HTMLAttributes<HTMLElement>, "color"> &
@@ -112,6 +121,7 @@ export const BaseTypography = ({
 	color,
 	fontSize,
 	fontWeight,
+	fontStyle,
 	textAlign,
 	lineHeight,
 	letterSpacing,
@@ -129,6 +139,7 @@ export const BaseTypography = ({
 					color,
 					fontSize,
 					fontWeight,
+					fontStyle,
 					textAlign,
 					lineHeight,
 					letterSpacing,
