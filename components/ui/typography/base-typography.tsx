@@ -28,6 +28,7 @@ const baseTypographyVariants = cva("", {
 			"text-current": "text-current",
 			"accordion-muted-foreground-title": "text-accordion-muted-foreground-title",
 			"surface-muted-foreground-title": "text-surface-muted-foreground-title",
+			"link-surface-foreground": "text-link-surface-foreground",
 		},
 		fontSize: {
 			xs: "text-xs",

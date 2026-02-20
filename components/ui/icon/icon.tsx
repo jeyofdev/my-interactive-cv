@@ -15,6 +15,7 @@ const iconVariants = cva("material-symbols-outlined", {
 			secondary: "text-icon-muted-foreground",
 			link: "text-link-icon-foreground",
 			inherit: "text-inherit",
+			info: "text-surface-muted-foreground-info",
 		},
 		backgroundColor: {
 			default: "bg-transparent",

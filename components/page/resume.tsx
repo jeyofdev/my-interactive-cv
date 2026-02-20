@@ -15,6 +15,8 @@ import Section from "@/components/sections/section";
 import { ProjectTabs } from "@/components/ui/tabs/project-tabs";
 import { Divider } from "@/components/ui/divider/divider";
 import { ProjectGridCard, ProjectListCard, HobbyCard, EducationCard } from "@/components/ui/card/cards";
+import { ResumeMainFooter } from "@/components/layout/resume/resume-main-footer";
+import { ResumeMainHeader } from "@/components/layout/resume/resume-main-header";
 
 export const skillColorMap: Record<string, ChipBaseColor> = {
 	react: "react",
@@ -46,7 +48,7 @@ export const Resume = () => {
 
 	return (
 		<>
-			<aside className="flex flex-col w-full lg:w-80 xl:w-96 lg:h-screen bg-surface-muted border-r border-border overflow-y-auto">
+			<aside className="flex flex-col w-full lg:w-80 xl:w-96 lg:min-h-screen bg-surface-muted border-r border-border overflow-y-auto">
 				<div className="p-8 flex flex-col items-center text-center">
 					{/* Profile Picture */}
 					<div className="relative mb-6">
@@ -182,6 +184,8 @@ export const Resume = () => {
 			</aside>
 
 			<main className="flex-1 flex flex-col bg-destructive">
+				<ResumeMainHeader />
+
 				<div className="px-8 lg:px-12 py-12 max-w-4xl">
 					{/* Experience Section */}
 					<Section>
@@ -247,6 +251,8 @@ export const Resume = () => {
 						</div>
 					</section>
 				</div>
+
+				<ResumeMainFooter socialLinks={resumeData.social} />
 			</main>
 		</>
 	);
