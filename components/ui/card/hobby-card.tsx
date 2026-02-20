@@ -1,7 +1,7 @@
 import { Hobby } from "@/data/resume-data";
 import { FC } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/cards/card";
-import { Typography } from "../ui/typography/typography";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card/card-base";
+import { Typography } from "@/components/ui/typography/typography";
 
 type HobbyCard = {
 	hobby: Hobby;
@@ -24,6 +24,7 @@ export const HobbyCard: FC<HobbyCard> = ({ hobby }) => {
 					</Typography>
 				</CardTitle>
 			</CardHeader>
+
 			<CardContent className="p-0">
 				{hobby.detail && <Typography variant="muted">{hobby.detail}</Typography>}
 				{hobby.duration && <Typography variant="muted">{hobby.duration}</Typography>}

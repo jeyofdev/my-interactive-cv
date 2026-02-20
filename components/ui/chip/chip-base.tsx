@@ -4,7 +4,7 @@ import { Slot } from "radix-ui";
 
 import { cn } from "@/lib/utils";
 
-const chipVariants = cva(
+export const chipBaseVariants = cva(
 	"inline-flex items-center justify-center  shadow-sm transition-colors cursor-default whitespace-nowrap",
 	{
 		variants: {
@@ -16,6 +16,7 @@ const chipVariants = cva(
 				outline: "",
 				ghost: "",
 				link: "",
+				info: "",
 			},
 			color: {
 				default: "bg-chip text-chip-foreground border-chip-border hover:border-primary",
@@ -42,6 +43,7 @@ const chipVariants = cva(
 			},
 			backgroundColor: {
 				default: "bg-transparent",
+				transparent: "bg-transparent",
 				primary: "bg-primary",
 				secondary: "bg-chip-secondary",
 			},
@@ -79,9 +81,9 @@ const chipVariants = cva(
 	},
 );
 
-export type ChipColor = NonNullable<VariantProps<typeof chipVariants>["color"]>;
+export type ChipBaseColor = NonNullable<VariantProps<typeof chipBaseVariants>["color"]>;
 
-const Chip = ({
+export const ChipBase = ({
 	className,
 	variant = "default",
 	color,
@@ -91,7 +93,7 @@ const Chip = ({
 	backgroundColor,
 	asChild = false,
 	...props
-}: React.ComponentProps<"span"> & VariantProps<typeof chipVariants> & { asChild?: boolean }) => {
+}: React.ComponentProps<"span"> & VariantProps<typeof chipBaseVariants> & { asChild?: boolean }) => {
 	const Component = asChild ? Slot.Root : "span";
 
 	return (
@@ -104,7 +106,7 @@ const Chip = ({
 			data-backgroundcolor={backgroundColor}
 			data-size={size}
 			className={cn(
-				chipVariants({
+				chipBaseVariants({
 					variant,
 					color,
 					rounded,
@@ -118,5 +120,3 @@ const Chip = ({
 		/>
 	);
 };
-
-export { Chip, chipVariants };

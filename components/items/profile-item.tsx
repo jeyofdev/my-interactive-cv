@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { Icon } from "@/components/ui/icons/icon";
+import { Icon } from "@/components/ui/icon/icon";
 import { Typography } from "@/components/ui/typography/typography";
 
 type ProfileItem = {
