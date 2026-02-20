@@ -34,8 +34,10 @@
 	--color-border-secondary: var(--border-secondary);
 
 	--color-icon-muted-foreground: var(--icon-muted-foreground);
+	--color-icon-dark-mode-background: var(--icon-dark-mode-background);
 
 	--color-link-muted-foreground: var(--link-muted-foreground);
+	--color-link-surface-foreground: var(--link-surface-foreground);
 
 	--color-divider-vertical: var(--divider-vertical);
 	--color-divider-horizontal: var(--divider-horizontal);
@@ -137,8 +139,10 @@
 	--surface-muted-foreground-info-title: theme(--color-slate-800);
 
 	--icon-muted-foreground: theme(--color-slate-400);
+	--icon-dark-mode-background: theme(--color-slate-100);
 
 	--link-muted-foreground: theme(--color-slate-400);
+	--link-surface-foreground: theme(--color-white);
 
 	--border: theme(--color-slate-200);
 	--border-secondary: theme(--color-white);
@@ -251,8 +255,10 @@
 	--chip-secondary: theme(--color-slate-700);
 
 	--icon-muted-foreground: theme(--color-slate-400);
+	--icon-dark-mode-background: theme(--color-slate-800);
 
 	--link-muted-foreground: theme(--color-slate-400);
+	--link-surface-foreground: theme(--color-slate-700);
 
 	--react: theme(--color-slate-800 / 80%);
 	--typescript: theme(--color-slate-800 / 80%);

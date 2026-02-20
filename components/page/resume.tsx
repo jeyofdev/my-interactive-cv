@@ -16,6 +16,7 @@ import { ProjectTabs } from "@/components/ui/tabs/project-tabs";
 import { Divider } from "@/components/ui/divider/divider";
 import { ProjectGridCard, ProjectListCard, HobbyCard, EducationCard } from "@/components/ui/card/cards";
 import { ResumeMainFooter } from "@/components/layout/resume/resume-main-footer";
+import { ResumeMainHeader } from "@/components/layout/resume/resume-main-header";
 
 export const skillColorMap: Record<string, ChipBaseColor> = {
 	react: "react",
@@ -183,6 +184,8 @@ export const Resume = () => {
 			</aside>
 
 			<main className="flex-1 flex flex-col bg-destructive">
+				<ResumeMainHeader />
+
 				<div className="px-8 lg:px-12 py-12 max-w-4xl">
 					{/* Experience Section */}
 					<Section>
