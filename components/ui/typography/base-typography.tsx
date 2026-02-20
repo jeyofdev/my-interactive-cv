@@ -39,6 +39,8 @@ const baseTypographyVariants = cva("", {
 			"2xl": "text-2xl",
 			"3xl": "text-3xl",
 			"4xl": "text-4xl",
+			"5xl": "text-5xl",
+			"6xl": "text-6xl",
 			"custom-10": "text-[10px]",
 			"custom-11": "text-[11px]",
 		},
@@ -75,6 +77,7 @@ const baseTypographyVariants = cva("", {
 			wide: "tracking-wide",
 			wider: "tracking-wider",
 			widest: "tracking-widest",
+			"custom-0.03em": "tracking-[-0.03em]",
 		},
 		textTransform: {
 			uppercase: "uppercase",

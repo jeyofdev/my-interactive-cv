@@ -5,7 +5,7 @@ import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 export const chipBaseVariants = cva(
-	"inline-flex items-center justify-center  shadow-sm transition-colors cursor-default whitespace-nowrap",
+	"inline-flex items-center gap-2 justify-center  shadow-sm transition-colors cursor-default whitespace-nowrap",
 	{
 		variants: {
 			variant: {
@@ -57,6 +57,7 @@ export const chipBaseVariants = cva(
 				"2xl": "rounded-2xl",
 				"3xl": "rounded-3xl",
 				"4xl": "rounded-4xl",
+				full: "rounded-full",
 			},
 			borderWidth: {
 				none: "border-0",
