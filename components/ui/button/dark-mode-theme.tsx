@@ -1,14 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { cva, type VariantProps } from "class-variance-authority";
-
-import { cn } from "@/lib/utils";
 import { Icon } from "../icon/icon";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-const toggleThemeVariants = cva(
+const DarkModeThemeVariants = cva(
 	"relative inline-flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rotate-0 scale-100 transition-all cursor-pointer",
 	{
 		variants: {
@@ -39,16 +37,25 @@ const sizeMap = {
 	xl: "32px",
 } as const;
 
-export type ToggleThemeProps = React.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof toggleThemeVariants>;
+export type DarkModeThemeProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+	VariantProps<typeof DarkModeThemeVariants>;
 
-export const ToggleTheme = ({ className, variant, size, ...props }: ToggleThemeProps) => {
+export const DarkModeTheme = ({ className, variant, size, ...props }: DarkModeThemeProps) => {
 	const { theme, setTheme } = useTheme();
+	const [mounted, setMounted] = React.useState(false);
+
+	// Côté client seulement
+	React.useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!mounted) return <span className="w-[24px] h-[24px] inline-block" />;
 
 	return (
 		<button
 			type="button"
 			onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-			className={cn(toggleThemeVariants({ variant, size }), className)}
+			className={cn(DarkModeThemeVariants({ variant, size }), className)}
 			{...props}
 		>
 			<Icon
@@ -57,7 +64,6 @@ export const ToggleTheme = ({ className, variant, size, ...props }: ToggleThemeP
 				size={size ? sizeMap[size] : sizeMap.base}
 				className="group-hover:scale-110 transition-transform"
 			/>
-
 			<span className="sr-only">Toggle theme</span>
 		</button>
 	);

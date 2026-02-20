@@ -17,6 +17,9 @@ import { Divider } from "@/components/ui/divider/divider";
 import { ProjectGridCard, ProjectListCard, HobbyCard, EducationCard } from "@/components/ui/card/cards";
 import { ResumeMainFooter } from "@/components/layout/resume/resume-main-footer";
 import { ResumeMainHeader } from "@/components/layout/resume/resume-main-header";
+import { Tabs } from "../ui/tabs/tabs";
+import { Icon } from "../ui/icon/icon";
+import { cn } from "@/lib/utils";
 
 export const skillColorMap: Record<string, ChipBaseColor> = {
 	react: "react",
@@ -31,6 +34,21 @@ export const skillColorMap: Record<string, ChipBaseColor> = {
 	aws: "aws",
 	gitlabci: "gitlabci",
 };
+
+const tabItems = [
+	{
+		id: 1,
+		value: "grid",
+		label: "Card",
+		icon: "grid_view",
+	},
+	{
+		id: 2,
+		value: "list",
+		label: "List",
+		icon: "list",
+	},
+];
 
 export type ProjectView = "grid" | "list";
 
@@ -212,7 +230,19 @@ export const Resume = () => {
 					<section className="mb-16">
 						<SectionTitle label="Projets" icon="rocket_launch" className="mb-10" />
 
-						<ProjectTabs view={projectView} setView={setProjectView} />
+						<Tabs
+							items={tabItems}
+							value={projectView}
+							onChange={(v) => setProjectView(v as ProjectView)}
+							keyExtractor={(item) => item.value}
+							renderItem={(item) => (
+								<>
+									<Icon variant="default" icon={item.icon} color="inherit" size="24px" />
+									{item.label}
+								</>
+							)}
+							className="mb-6"
+						/>
 
 						{projectView === "grid" ? (
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
