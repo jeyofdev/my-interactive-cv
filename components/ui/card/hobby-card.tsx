@@ -1,6 +1,6 @@
 import { Hobby } from "@/data/resume-data";
 import { FC } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card/card-base";
 import { Typography } from "@/components/ui/typography/typography";
 
 type HobbyCard = {

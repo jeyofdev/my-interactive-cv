@@ -7,7 +7,7 @@ import { Project } from "@/data/resume-data";
 import { FC } from "react";
 import { getChipSkillColor } from "@/lib/utils";
 import { GithubIcon } from "@/components/ui/icon/github-icon";
-import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card";
+import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card-base";
 
 export type ProjectGridCardProps = {
 	project: Project;
@@ -15,7 +15,7 @@ export type ProjectGridCardProps = {
 
 export const ProjectGridCard: FC<ProjectGridCardProps> = ({ project }) => {
 	return (
-		<Card className="group relative p-0 pb-6 gap-4 bg-card-background border-card-border rounded-2xl overflow-hidden shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all">
+		<Card className="group relative p-0 pb-6 gap-4 bg-card-background border-card-border rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-1 transition-all">
 			<div className="absolute inset-0 z-30 bg-black/20 group-hover:bg-transparent h-40 transition-all" />
 
 			<div className="relative h-40 overflow-hidden mb-0">
@@ -90,4 +90,3 @@ export const ProjectGridCard: FC<ProjectGridCardProps> = ({ project }) => {
 		</Card>
 	);
 };
-export default ProjectGridCard;

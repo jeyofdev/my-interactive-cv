@@ -1,11 +1,9 @@
 "use client";
 
 import { ProfileBlock } from "@/components/block/profile-block";
-import { HobbyCard } from "@/components/ui/card/hobby-card";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
 import { ChipBase, ChipBaseColor } from "@/components/ui/chip/chip-base";
-import { Icon } from "@/components/ui/icon/icon";
 import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
 import Image from "next/image";
@@ -15,9 +13,8 @@ import { TimelineBar, TimelineDot } from "@/components/ui/timeline/timeline";
 import { AccordionExperience } from "@/components/ui/accordion/accordion-experience";
 import Section from "@/components/sections/section";
 import { ProjectTabs } from "@/components/ui/tabs/project-tabs";
-import { ProjectGridCard } from "@/components/ui/card/project-grid-card";
-import { ProjectListCard } from "@/components/ui/card/project-list-card";
 import { Divider } from "@/components/ui/divider/divider";
+import { ProjectGridCard, ProjectListCard, HobbyCard, EducationCard } from "@/components/ui/card/cards";
 
 export const skillColorMap: Record<string, ChipBaseColor> = {
 	react: "react",
@@ -36,7 +33,7 @@ export const skillColorMap: Record<string, ChipBaseColor> = {
 export type ProjectView = "grid" | "list";
 
 export const Resume = () => {
-	const [projectView, setProjectView] = useState<ProjectView>("list");
+	const [projectView, setProjectView] = useState<ProjectView>("grid");
 
 	const formatVehiculeLabel = () => {
 		const output = "";
@@ -245,41 +242,7 @@ export const Resume = () => {
 							<ListRenderer
 								list={resumeData.education}
 								keyExtractor={(item) => item.id}
-								renderItem={(formation) => (
-									<div className="flex gap-4 p-5 rounded-2xl border border-border-card-education bg-card-education-background transition-colors duration-300">
-										<div className="size-12 bg-white dark:bg-slate-700 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0 transition-colors duration-300">
-											<Icon variant="rounded" color="secondary" icon="history_edu" size="26px" containerSize="48px" />
-										</div>
-
-										<div className="flex flex-col gap-1">
-											<Typography variant="h4">{formation.degree}</Typography>
-
-											<Typography
-												variant="small"
-												color="surface-muted-foreground-info"
-												fontSize="base"
-												fontWeight="medium"
-												lineHeight="none"
-												textTransform="capitalize"
-												letterSpacing="normal"
-											>
-												{formation.school}
-											</Typography>
-
-											<Typography
-												variant="small"
-												color="surface-muted-foreground-title"
-												fontSize="sm"
-												fontWeight="normal"
-												lineHeight="none"
-												textTransform="capitalize"
-												letterSpacing="normal"
-											>
-												{formation.year} | {formation.specialization}
-											</Typography>
-										</div>
-									</div>
-								)}
+								renderItem={(formation) => <EducationCard education={formation} />}
 							/>
 						</div>
 					</section>

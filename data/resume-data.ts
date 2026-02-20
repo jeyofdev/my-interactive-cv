@@ -20,7 +20,7 @@ type ResumeData = {
 	education: Education[];
 };
 
-type Education = {
+export type Education = {
 	id: number;
 	school: string;
 	degree: string;

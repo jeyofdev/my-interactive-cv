@@ -6,7 +6,7 @@ import { ProjectGridCardProps } from "@/components/ui/card/project-grid-card";
 import { getChipSkillColor } from "@/lib/utils";
 import { FC } from "react";
 import { GithubIcon } from "@/components/ui/icon/github-icon";
-import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card";
+import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card-base";
 
 type ProjectListCard = ProjectGridCardProps;
 
@@ -76,4 +76,3 @@ export const ProjectListCard: FC<ProjectListCard> = ({ project }) => {
 		</Card>
 	);
 };
-export default ProjectListCard;
