@@ -8,16 +8,18 @@ type ResumeData = {
 	birthDate: string;
 	vehicle: Vehicle;
 	website: Link;
-	social: {
-		linkedin: Link;
-		github: Link;
-	};
+	social: Social;
 	skills: Skill[];
 	languages: Language[];
 	hobbies: Hobby[];
 	experiences: Experience[];
 	projects: Project[];
 	education: Education[];
+};
+
+export type Social = {
+	linkedin: Link;
+	github: Link;
 };
 
 export type Education = {

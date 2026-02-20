@@ -39,6 +39,7 @@
 
 	--color-divider-vertical: var(--divider-vertical);
 	--color-divider-horizontal: var(--divider-horizontal);
+	--color-divider-horizontal-secondary: var(--divider-horizontal-secondary);
 
 	/* chip skills */
 	--color-chip: var(--chip);
@@ -147,6 +148,7 @@
 
 	--divider-vertical: theme(--color-slate-300);
 	--divider-horizontal: theme(--color-slate-100);
+	--divider-horizontal-secondary: theme(--color-slate-100);
 
 	--chip: theme(--color-white);
 	--chip-border: theme(--color-slate-200);
@@ -241,6 +243,7 @@
 
 	--divider-vertical: theme(--color-slate-600);
 	--divider-horizontal: theme(--color-slate-700 / 30%);
+	--divider-horizontal-secondary: theme(--color-slate-800);
 
 	--chip: theme(--color-slate-700);
 	--chip-border: theme(--color-slate-600);
