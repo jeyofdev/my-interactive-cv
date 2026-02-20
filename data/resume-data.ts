@@ -28,12 +28,11 @@ type Education = {
 	specialization: string;
 };
 
-type Project = {
+export type Project = {
 	id: number;
 	title: string;
 	description: string;
-	link?: string;
-	github?: string;
+	links: ProjectLink[];
 	tags: Tag[];
 	image: string;
 };
@@ -93,6 +92,10 @@ type Link = {
 	url: string;
 };
 
+type ProjectLink = Pick<Link, "label" | "url"> & {
+	id: number;
+};
+
 export const resumeData: ResumeData = {
 	name: "jeyofdev",
 	title: "Fullstack Developer",
@@ -120,7 +123,6 @@ export const resumeData: ResumeData = {
 			url: "github.com/jeyofdev",
 		},
 	},
-
 	skills: [
 		{
 			id: 1,
@@ -234,7 +236,10 @@ export const resumeData: ResumeData = {
 				{ id: 3, label: "Tailwind CSS" },
 			],
 			image: "https://picsum.photos/seed/omnitask/600/400",
-			github: "#",
+			links: [
+				{ id: 1, label: "website", url: "https://omnitask.ai" },
+				{ id: 2, label: "gitHub", url: "https://github.com/jeyofdev/omnitask" },
+			],
 		},
 		{
 			id: 2,
@@ -247,7 +252,10 @@ export const resumeData: ResumeData = {
 				{ id: 3, label: "GraphQL" },
 			],
 			image: "https://picsum.photos/seed/pulse/600/400",
-			github: "#",
+			links: [
+				{ id: 1, label: "website", url: "https://pulsecommerce.com" },
+				{ id: 2, label: "gitHub", url: "https://github.com/jeyofdev/pulsecommerce" },
+			],
 		},
 		{
 			id: 3,
@@ -258,7 +266,10 @@ export const resumeData: ResumeData = {
 				{ id: 2, label: "TypeScript" },
 			],
 			image: "https://picsum.photos/seed/weather/600/400",
-			github: "#",
+			links: [
+				{ id: 1, label: "website", url: "https://weatherapp.com" },
+				{ id: 2, label: "gitHub", url: "https://github.com/jeyofdev/weatherapp" },
+			],
 		},
 	],
 	education: [

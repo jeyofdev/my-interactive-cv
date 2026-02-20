@@ -1,21 +1,23 @@
 "use client";
 
 import { ProfileBlock } from "@/components/block/profile-block";
-import { HobbyCard } from "@/components/cards/hobby-card";
+import { HobbyCard } from "@/components/ui/card/hobby-card";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
 import { ChipBase, ChipBaseColor } from "@/components/ui/chip/chip-base";
 import { Icon } from "@/components/ui/icon/icon";
 import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
-import { cn, getChipSkillColor } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
-import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { SectionTitle } from "@/components/sections/section-title";
 import { TimelineBar, TimelineDot } from "@/components/ui/timeline/timeline";
-import { Chip } from "@/components/ui/chip/chip";
 import { AccordionExperience } from "@/components/ui/accordion/accordion-experience";
+import Section from "@/components/sections/section";
+import { ProjectTabs } from "@/components/ui/tabs/project-tabs";
+import { ProjectGridCard } from "@/components/ui/card/project-grid-card";
+import { ProjectListCard } from "@/components/ui/card/project-list-card";
+import { Divider } from "@/components/ui/divider/divider";
 
 export const skillColorMap: Record<string, ChipBaseColor> = {
 	react: "react",
@@ -31,8 +33,10 @@ export const skillColorMap: Record<string, ChipBaseColor> = {
 	gitlabci: "gitlabci",
 };
 
+export type ProjectView = "grid" | "list";
+
 export const Resume = () => {
-	const [projectView, setProjectView] = useState<"grid" | "list">("grid");
+	const [projectView, setProjectView] = useState<ProjectView>("list");
 
 	const formatVehiculeLabel = () => {
 		const output = "";
@@ -183,7 +187,7 @@ export const Resume = () => {
 			<main className="flex-1 flex flex-col bg-destructive">
 				<div className="px-8 lg:px-12 py-12 max-w-4xl">
 					{/* Experience Section */}
-					<section className="mb-16">
+					<Section>
 						<SectionTitle label="Expériences Professionnelles" icon="work" className="mb-10" />
 
 						{/* Timeline Wrapper */}
@@ -201,172 +205,32 @@ export const Resume = () => {
 								)}
 							/>
 						</div>
-					</section>
+					</Section>
 
 					{/* Projects Section */}
 					<section className="mb-16">
 						<SectionTitle label="Projets" icon="rocket_launch" className="mb-10" />
 
-						<Tabs defaultValue="preview">
-							<TabsList className="flex gap-2 bg-tabs-background rounded-lg w-fit ml-auto lg:ml-0  p-1 mb-6">
-								<TabsTrigger
-									value="grid"
-									onClick={() => setProjectView("grid")}
-									className={cn(
-										"px-3 py-1.5 text-xs rounded-md shadow-none flex items-center gap-2 transition-all text-slate-500 dark:text-slate-400 font-medium data-[state=active]:bg-white data-[state=active]:dark:bg-slate-700data-[state=active]:text-primarydata-[state=active]:font-bold",
-									)}
-								>
-									<Icon variant="default" icon="grid_view" size="24px" />
-									Card
-								</TabsTrigger>
-								<TabsTrigger
-									value="list"
-									onClick={() => setProjectView("list")}
-									className={cn(
-										"px-3 py-1.5 text-xs rounded-md shadow-none flex items-center gap-2 transition-all text-slate-500 dark:text-slate-400 font-medium data-[state=active]:bg-white data-[state=active]:dark:bg-slate-700 data-[state=active]:text-primary data-[state=active]:font-bold",
-										{
-											"bg-white dark:bg-slate-700 text-primary font-bold": projectView === "list",
-											"text-slate-500 dark:text-slate-400 hover:text-primary font-medium": projectView === "grid",
-										},
-									)}
-								>
-									<Icon variant="default" icon="list" size="24px" />
-									List
-								</TabsTrigger>
-							</TabsList>
-						</Tabs>
+						<ProjectTabs view={projectView} setView={setProjectView} />
 
 						{projectView === "grid" ? (
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 								<ListRenderer
 									list={resumeData.projects}
 									keyExtractor={(item) => item.id}
-									renderItem={(project) => (
-										<div className="group relative flex flex-col bg-card-background border border-card-border rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all hover:-translate-y-1">
-											<div className="relative h-40 overflow-hidden">
-												<Image
-													src={project.image}
-													alt={project.title}
-													fill
-													sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-													className="object-cover transition-transform duration-500 opacity-80 group-hover:opacity-100 group-hover:scale-105"
-												/>
-											</div>
-
-											<div className="p-6">
-												<div className="flex items-center gap-2 mb-2">
-													<Typography variant="h3" fontSize="lg">
-														{project.title}
-													</Typography>
-
-													<div className="flex gap-1.25">
-														<a href={project.link} className="flex">
-															<Icon
-																variant="default"
-																icon="open_in_new"
-																color="link"
-																size="21px"
-																className="hover:text-primary transition-colors"
-															/>
-														</a>
-														<a href={project.github} className="text-slate-400 hover:text-primary transition-colors">
-															<svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
-																<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.311.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
-															</svg>
-														</a>
-													</div>
-												</div>
-
-												<Typography
-													variant="lead"
-													fontSize="sm"
-													lineHeight="relaxed"
-													fontWeight="normal"
-													letterSpacing="normal"
-													textAlign="left"
-													className="line-clamp-2 mb-4"
-												>
-													{project.description}
-												</Typography>
-
-												<div className="flex flex-wrap gap-1.5 mb-4">
-													<ListRenderer
-														list={project.tags}
-														keyExtractor={(item) => item.id}
-														renderItem={(technology) => (
-															<Chip variant="outline" color={getChipSkillColor(technology)}>
-																{technology.label}
-															</Chip>
-														)}
-													/>
-												</div>
-											</div>
-										</div>
-									)}
+									renderItem={(project) => <ProjectGridCard project={project} />}
 								/>
 							</div>
 						) : (
-							<div className="grid grid-cols-1 gap-6">
+							<div className="grid grid-cols-1 gap-1">
 								<ListRenderer
 									list={resumeData.projects}
 									keyExtractor={(item) => item.id}
-									renderItem={(project) => (
-										<div className="flex flex-col gap-2 py-6 first:pt-0 border-t border-border-separator-secondary first:border-t-0 w-full">
-											<div className="flex items-center gap-3">
-												<Typography variant="h3">{project.title}</Typography>
-
-												<div className="flex gap-1.25">
-													<a
-														className="text-primary hover:text-primary/80 transition-colors"
-														href={project.link}
-														target="_blank"
-													>
-														<Icon
-															variant="default"
-															icon="open_in_new"
-															color="primary"
-															size="21px"
-															className="hover:text-primary transition-colors"
-														/>
-													</a>
-
-													<a
-														className="text-primary hover:text-primary/80 transition-colors"
-														href={project.github}
-														target="_blank"
-													>
-														<svg className="size-5 fill-current" viewBox="0 0 24 24">
-															<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
-														</svg>
-													</a>
-												</div>
-											</div>
-
-											<Typography
-												variant="lead"
-												color="surface-muted-foreground-info"
-												fontSize="base"
-												lineHeight="relaxed"
-												fontWeight="normal"
-												letterSpacing="normal"
-												textAlign="left"
-												className="line-clamp-2"
-											>
-												{project.description}
-											</Typography>
-
-											<div className="flex flex-wrap gap-2 mt-1">
-												<ListRenderer
-													list={project.tags}
-													keyExtractor={(item) => item.id}
-													renderItem={(technology) => (
-														<Chip variant="outline" color={getChipSkillColor(technology)}>
-															{technology.label}
-														</Chip>
-													)}
-												/>
-											</div>
-										</div>
+									renderItem={(project, index) => (
+										<>
+											<ProjectListCard project={project} />
+											{index < resumeData.projects.length - 1 && <Divider variant="horizontal" className="mt-3" />}
+										</>
 									)}
 								/>
 							</div>

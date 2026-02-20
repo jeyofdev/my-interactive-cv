@@ -35,6 +35,8 @@
 
 	--color-icon-muted-foreground: var(--icon-muted-foreground);
 
+	--color-link-muted-foreground: var(--link-muted-foreground);
+
 	--color-divider-vertical: var(--divider-vertical);
 	--color-divider-horizontal: var(--divider-horizontal);
 
@@ -102,6 +104,8 @@
 
 	/* Tabs */
 	--color-tabs-background: var(--tabs-background);
+	--color-tabs-trigger-background: var(--tabs-trigger-background);
+	--color-tabs-trigger-foreground: var(--tabs-trigger-foreground);
 
 	--color-link-icon-foreground: var(--link-icon-foreground);
 
@@ -132,6 +136,8 @@
 	--surface-muted-foreground-info-title: theme(--color-slate-800);
 
 	--icon-muted-foreground: theme(--color-slate-400);
+
+	--link-muted-foreground: theme(--color-slate-400);
 
 	--border: theme(--color-slate-200);
 	--border-secondary: theme(--color-white);
@@ -200,6 +206,8 @@
 	--timeline-border: theme(--color-white);
 
 	--tabs-background: theme(--color-slate-100);
+	--tabs-trigger-background: theme(--color-white);
+	--tabs-trigger-foreground: theme(--color-slate-400);
 
 	--link-icon-foreground: theme(--color-slate-400);
 
@@ -241,6 +249,8 @@
 
 	--icon-muted-foreground: theme(--color-slate-400);
 
+	--link-muted-foreground: theme(--color-slate-400);
+
 	--react: theme(--color-slate-800 / 80%);
 	--typescript: theme(--color-slate-800 / 80%);
 	--tailwindcss: theme(--color-slate-800 / 80%);
@@ -262,6 +272,8 @@
 	--timeline-border: theme(--color-slate-900);
 
 	--tabs-background: theme(--color-slate-800);
+	--tabs-trigger-background: theme(--color-slate-700);
+	--tabs-trigger-foreground: theme(--color-slate-400);
 
 	--link-icon-foreground: theme(--color-slate-400);
 
