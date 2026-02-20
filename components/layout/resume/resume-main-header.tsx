@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { DarkModeTheme } from "@/components/ui/button/dark-mode-theme";
 import { Tabs } from "@/components/ui/tabs/tabs";
-import { cn } from "@/lib/utils";
 
 type Lang = "EN" | "FR";
 

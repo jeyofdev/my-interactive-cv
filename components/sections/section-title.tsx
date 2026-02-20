@@ -32,7 +32,7 @@ type SectionTitleProps = React.HTMLAttributes<HTMLDivElement> &
 		containerIconSize?: string;
 	};
 
-export function SectionTitle({
+export const SectionTitle = ({
 	label,
 	icon,
 	size,
@@ -42,12 +42,18 @@ export function SectionTitle({
 	className,
 	ref,
 	...props
-}: SectionTitleProps & { ref?: React.Ref<HTMLDivElement> }) {
+}: SectionTitleProps & { ref?: React.Ref<HTMLDivElement> }) => {
 	return (
 		<div ref={ref} className={cn(sectionTitleVariants({ size, justifyContent }), className)} {...props}>
-			<Icon variant="rounded" backgroundColor="primary" icon={icon} size={iconSize} containerSize={containerIconSize} />
+			<Icon
+				variant="rounded"
+				backgroundColor="primary-10"
+				icon={icon}
+				size={iconSize}
+				containerSize={containerIconSize}
+			/>
 
 			<Typography variant="h2">{label}</Typography>
 		</div>
 	);
-}
+};
