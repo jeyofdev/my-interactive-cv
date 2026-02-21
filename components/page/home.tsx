@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button/button";
 import { Icon } from "../ui/icon/icon";
 import { getChipSkillColor } from "@/lib/utils";
 import { resumeData } from "@/data/resume-data";
+import { ResumeMainFooter } from "../layout/resume/resume-main-footer";
 
 export const Home = () => {
 	return (
@@ -119,7 +120,61 @@ export const Home = () => {
 						/>
 					</div>
 				</section>
+
+				{/* Call to Action Section */}
+				<section className="w-full bg-white dark:bg-slate-900 border-t border-primary/10 px-6 py-20">
+					<div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+						<Typography
+							variant="h2"
+							fontSize="3xl"
+							fontWeight="bold"
+							textTransform="normal"
+							lineHeight="tight"
+							letterSpacing="normal"
+							className="mb-6"
+						>
+							Vous souhaitez collaborer ?
+						</Typography>
+
+						<Typography
+							variant="lead"
+							fontSize="lg"
+							lineHeight="relaxed"
+							fontWeight="normal"
+							letterSpacing="normal"
+							textAlign="center"
+							className="max-w-2xl mx-auto mb-10"
+						>
+							Contactez-moi directement pour discuter de vos projets.
+						</Typography>
+
+						<div className="flex flex-col sm:flex-row gap-4 w-full max-w-[400px]">
+							<Button
+								variant="outlined"
+								withIcon
+								iconPosition="start"
+								className="w-full py-6 rounded-lg hover:text-white"
+							>
+								<Icon variant="default" icon="mail" color="surface-muted-foreground-secondary" size="24px" />
+								<Typography
+									variant="small"
+									color="surface-muted-foreground-secondary"
+									fontSize="base"
+									fontWeight="bold"
+									lineHeight="none"
+									textTransform="capitalize"
+									letterSpacing="wide"
+									className="hover:text-white"
+								>
+									Me contacter
+								</Typography>
+							</Button>
+						</div>
+					</div>
+				</section>
 			</main>
+
+			<ResumeMainFooter socialLinks={resumeData.social} className="max-w-6xl mx-auto" />
 		</div>
 	);
 };

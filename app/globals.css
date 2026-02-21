@@ -94,6 +94,10 @@
 	--color-gitlab-border: var(--gitlab-border);
 	--color-gitlab-foreground: var(--gitlab-foreground);
 
+	--color-angular: var(--angular);
+	--color-angular-border: var(--angular-border);
+	--color-angular-foreground: var(--angular-foreground);
+
 	/* Accordion */
 	--color-accordion-background: var(--accordion-background);
 	--color-border-accordion: var(--border-accordion);
@@ -208,6 +212,10 @@
 	--gitlab-border: theme(--color-purple-500 / 20%);
 	--gitlab-foreground: theme(--color-purple-400);
 
+	--angular: theme(--color-fuchsia-500 / 10%);
+	--angular-border: theme(--color-fuchsia-500 / 20%);
+	--angular-foreground: theme(--color-fuchsia-400);
+
 	--accordion-background: theme(--color-slate-50, 50%);
 	--border-accordion: theme(--color-slate-100);
 	--accordion-muted-foreground-title: theme(--color-slate-700);
@@ -280,6 +288,7 @@
 	--docker: theme(--color-slate-800 / 80%);
 	--aws: theme(--color-slate-800 / 80%);
 	--gitlab: theme(--color-slate-800 / 80%);
+	--angular: theme(--color-fuchsia-800 / 80%);
 
 	--accordion-background: theme(--color-slate-800 / 30%);
 	--border-accordion: theme(--color-slate-800);

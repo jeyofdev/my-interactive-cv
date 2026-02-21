@@ -40,6 +40,7 @@ export const chipBaseVariants = cva(
 				docker: "bg-docker text-docker-foreground border-docker-border hover:border-docker-foreground",
 				aws: "bg-aws text-aws-foreground border-aws-border hover:border-aws-foreground",
 				gitlabci: "bg-gitlab text-gitlab-foreground border-gitlab-border hover:border-gitlab-foreground",
+				angular: "bg-angular text-angular-foreground border-angular-border hover:border-angular-foreground",
 			},
 			backgroundColor: {
 				default: "bg-transparent",
