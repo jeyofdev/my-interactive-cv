@@ -3,7 +3,7 @@
 import { ProfileBlock } from "@/components/block/profile-block";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
-import { ChipBase, ChipBaseColor } from "@/components/ui/chip/chip-base";
+import { ChipBase } from "@/components/ui/chip/chip-base";
 import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
 import Image from "next/image";
@@ -18,20 +18,7 @@ import { ResumeMainFooter } from "@/components/layout/resume/resume-main-footer"
 import { ResumeMainHeader } from "@/components/layout/resume/resume-main-header";
 import { Tabs } from "../ui/tabs/tabs";
 import { Icon } from "../ui/icon/icon";
-
-export const skillColorMap: Record<string, ChipBaseColor> = {
-	react: "react",
-	typescript: "typescript",
-	tailwindcss: "tailwindcss",
-	nextjs: "nextjs",
-	nodejs: "nodejs",
-	postgresql: "postgresql",
-	redis: "redis",
-	graphql: "graphql",
-	docker: "docker",
-	aws: "aws",
-	gitlabci: "gitlabci",
-};
+import { skillColorMap } from "@/types/skill-type";
 
 const tabItems = [
 	{

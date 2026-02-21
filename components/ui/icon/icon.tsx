@@ -14,16 +14,18 @@ const iconVariants = cva("material-symbols-outlined", {
 		color: {
 			default: "text-foreground",
 			white: "text-white",
+			"primary/10": "text-primary/10",
 			primary: "text-primary",
 			secondary: "text-icon-muted-foreground",
 			link: "text-link-icon-foreground",
 			inherit: "text-inherit",
 			info: "text-surface-muted-foreground-info",
+			"surface-muted-foreground-secondary": "surface-muted-foreground-secondary",
 		},
 		backgroundColor: {
 			transparent: "bg-transparent",
 			primary: "bg-primary",
-			"primary-10": "bg-primary/10",
+			"primary/10": "bg-primary/10",
 		},
 		rounded: {
 			sm: "rounded-sm",

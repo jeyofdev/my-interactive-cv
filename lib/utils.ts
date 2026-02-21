@@ -1,6 +1,6 @@
-import { skillColorMap } from "@/components/page/resume";
-import { ChipBaseColor } from "@/components/ui/chips/chip-base";
+import { ChipBaseColor } from "@/components/ui/chip/chip-base";
 import { SkillItem } from "@/data/resume-data";
+import { skillColorMap } from "@/types/skill-type";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

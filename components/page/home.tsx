@@ -2,6 +2,13 @@ import { Header } from "@/components/layout/home/header";
 import { Typography } from "@/components/ui/typography/typography";
 import { Chip } from "@/components/ui/chip/chip";
 import { DotIcon } from "@/components/ui/icon/dot";
+import { ListRenderer } from "@/components/list/list-renderer";
+import { homeData } from "@/data/home-data";
+import { CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card-base";
+import { Button } from "@/components/ui/button/button";
+import { Icon } from "../ui/icon/icon";
+import { getChipSkillColor } from "@/lib/utils";
+import { resumeData } from "@/data/resume-data";
 
 export const Home = () => {
 	return (
@@ -26,7 +33,7 @@ export const Home = () => {
 						letterSpacing="custom-0.03em"
 						className="mb-6"
 					>
-						Bienvenue sur le portfolio de <span className="text-primary">Jane Doe</span>
+						Bienvenue sur le portfolio de <span className="text-primary capitalize">{resumeData.name}</span>
 					</Typography>
 
 					<Typography
@@ -41,6 +48,76 @@ export const Home = () => {
 						Choisissez une version pour explorer mon parcours professionnel pour découvrir mes compétences et mon
 						expérience.
 					</Typography>
+				</section>
+
+				<section className="max-w-6xl w-full px-6 pb-24">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+						<ListRenderer
+							list={homeData.resumeItems}
+							keyExtractor={(item) => item.id}
+							renderItem={(resume) => (
+								<div className="group cursor-pointer relative flex flex-col overflow-hidden rounded-xl border border-primary/10 bg-card-home-background shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+									<div className="aspect-video w-full bg-card-home-image-background overflow-hidden relative border-b border-border-light">
+										<div className="absolute inset-0 bg-gradient-to-bl from-primary/5 to-white opacity-60" />
+										<div className="absolute inset-0 flex items-center justify-center">
+											<Icon variant="default" icon="list_alt" color="primary/10" size="96px" />
+										</div>
+
+										<div className="absolute top-4 right-4 flex gap-2">
+											<ListRenderer
+												list={resume.skills}
+												keyExtractor={(item) => item.id}
+												renderItem={(skill) => (
+													<Chip variant="outline" color={getChipSkillColor(skill)}>
+														{skill.label}
+													</Chip>
+												)}
+											/>
+										</div>
+									</div>
+
+									<CardHeader className="flex p-6">
+										<CardTitle>
+											<Typography variant="h3" fontSize="xl" lineHeight="none" letterSpacing="normal">
+												{resume.title}
+											</Typography>
+										</CardTitle>
+									</CardHeader>
+
+									<CardContent className="mb-6">
+										<Typography
+											variant="lead"
+											fontSize="sm"
+											lineHeight="relaxed"
+											fontWeight="normal"
+											letterSpacing="normal"
+											textAlign="left"
+											className="line-clamp-2"
+										>
+											{resume.description}
+										</Typography>
+									</CardContent>
+
+									<CardFooter className="pb-6">
+										<Button withIcon iconPosition="end" className="w-full py-6 rounded-lg">
+											<Icon variant="default" icon="arrow_forward" color="white" size="24px" />
+											<Typography
+												variant="small"
+												color="white"
+												fontSize="sm"
+												fontWeight="bold"
+												lineHeight="none"
+												textTransform="capitalize"
+												letterSpacing="wide"
+											>
+												Explorer la Vue Liste
+											</Typography>
+										</Button>
+									</CardFooter>
+								</div>
+							)}
+						/>
+					</div>
 				</section>
 			</main>
 		</div>

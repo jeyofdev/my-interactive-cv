@@ -21,6 +21,7 @@ const baseTypographyVariants = cva("", {
 		color: {
 			default: "text-foreground",
 			primary: "text-primary",
+			white: "text-white",
 			"surface-muted-foreground": "text-surface-muted-foreground",
 			"surface-muted-foreground-secondary": "text-surface-muted-foreground-secondary",
 			"surface-muted-foreground-info": "text-surface-muted-foreground-info",
