@@ -32,6 +32,7 @@
 	--color-border-separator-secondary: var(--border-separator-secondary);
 	--color-border-image: var(--border-image);
 	--color-border-secondary: var(--border-secondary);
+	--color-border-light: var(--border-light);
 
 	--color-icon-muted-foreground: var(--icon-muted-foreground);
 	--color-icon-dark-mode-background: var(--icon-dark-mode-background);
@@ -93,6 +94,10 @@
 	--color-gitlab-border: var(--gitlab-border);
 	--color-gitlab-foreground: var(--gitlab-foreground);
 
+	--color-angular: var(--angular);
+	--color-angular-border: var(--angular-border);
+	--color-angular-foreground: var(--angular-foreground);
+
 	/* Accordion */
 	--color-accordion-background: var(--accordion-background);
 	--color-border-accordion: var(--border-accordion);
@@ -118,6 +123,9 @@
 
 	--color-card-education-background: var(--card-education-background);
 	--color-border-card-education: var(--border-card-education);
+
+	--color-card-home-background: var(--card-home-background);
+	--color-card-home-image-background: var(--card-home-image-background);
 
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
@@ -149,6 +157,7 @@
 	--border-image: theme(--color-white);
 	--border-separator: theme(--color-slate-200);
 	--border-separator-secondary: theme(--color-slate-200 / 50%);
+	--border-light: theme(--color-slate-100);
 
 	--divider-vertical: theme(--color-slate-300);
 	--divider-horizontal: theme(--color-slate-100);
@@ -203,6 +212,10 @@
 	--gitlab-border: theme(--color-purple-500 / 20%);
 	--gitlab-foreground: theme(--color-purple-400);
 
+	--angular: theme(--color-fuchsia-500 / 10%);
+	--angular-border: theme(--color-fuchsia-500 / 20%);
+	--angular-foreground: theme(--color-fuchsia-400);
+
 	--accordion-background: theme(--color-slate-50, 50%);
 	--border-accordion: theme(--color-slate-100);
 	--accordion-muted-foreground-title: theme(--color-slate-700);
@@ -222,6 +235,9 @@
 
 	--card-education-background: theme(--color-slate-50, 50%);
 	--border-card-education: theme(--color-slate-100);
+
+	--card-home-background: theme(--color-white);
+	--card-home-image-background: theme(--color-slate-50);
 }
 
 .dark {
@@ -244,6 +260,7 @@
 	--border-image: theme(--color-slate-700);
 	--border-separator: theme(--color-slate-700);
 	--border-separator-secondary: theme(--color-slate-700);
+	--border-light: theme(--color-slate-100);
 
 	--divider-vertical: theme(--color-slate-600);
 	--divider-horizontal: theme(--color-slate-700 / 30%);
@@ -271,6 +288,7 @@
 	--docker: theme(--color-slate-800 / 80%);
 	--aws: theme(--color-slate-800 / 80%);
 	--gitlab: theme(--color-slate-800 / 80%);
+	--angular: theme(--color-fuchsia-800 / 80%);
 
 	--accordion-background: theme(--color-slate-800 / 30%);
 	--border-accordion: theme(--color-slate-800);
@@ -291,6 +309,9 @@
 
 	--card-education-background: theme(--color-slate-800 / 30%);
 	--border-card-education: theme(--color-slate-800);
+
+	--card-home-background: theme(--color-slate-900);
+	--card-home-image-background: theme(--color-slate-50);
 }
 
 @layer base {

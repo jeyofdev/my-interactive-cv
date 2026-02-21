@@ -5,7 +5,7 @@ import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 export const chipBaseVariants = cva(
-	"inline-flex items-center justify-center  shadow-sm transition-colors cursor-default whitespace-nowrap",
+	"inline-flex items-center gap-2 justify-center  shadow-sm transition-colors cursor-default whitespace-nowrap",
 	{
 		variants: {
 			variant: {
@@ -40,6 +40,7 @@ export const chipBaseVariants = cva(
 				docker: "bg-docker text-docker-foreground border-docker-border hover:border-docker-foreground",
 				aws: "bg-aws text-aws-foreground border-aws-border hover:border-aws-foreground",
 				gitlabci: "bg-gitlab text-gitlab-foreground border-gitlab-border hover:border-gitlab-foreground",
+				angular: "bg-angular text-angular-foreground border-angular-border hover:border-angular-foreground",
 			},
 			backgroundColor: {
 				default: "bg-transparent",
@@ -57,6 +58,7 @@ export const chipBaseVariants = cva(
 				"2xl": "rounded-2xl",
 				"3xl": "rounded-3xl",
 				"4xl": "rounded-4xl",
+				full: "rounded-full",
 			},
 			borderWidth: {
 				none: "border-0",

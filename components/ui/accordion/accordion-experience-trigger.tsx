@@ -1,5 +1,5 @@
-import { Chip } from "../chip/chip";
-import { Typography } from "../typography/typography";
+import { Chip } from "@/components/ui/chip/chip";
+import { Typography } from "@/components/ui/typography/typography";
 import { Divider } from "../divider/divider";
 import { Experience } from "@/data/resume-data";
 import { FC } from "react";

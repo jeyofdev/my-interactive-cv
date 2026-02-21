@@ -10,6 +10,7 @@ const chipVariants = cva("inline-flex items-center", {
 			default: "",
 			basic: "",
 			outline: "",
+			rounded: "px-4 py-1.25",
 		},
 	},
 	defaultVariants: {
@@ -42,6 +43,14 @@ const chipStyleMap = {
 		size: "thin",
 		className: "shadow-sm",
 	},
+	rounded: {
+		color: "primary",
+		backgroundColor: "primary/10",
+		rounded: "full",
+		borderWidth: "none",
+		size: "thin",
+		className: "shadow-none",
+	},
 } as const;
 
 const chipTypographyMap = {
@@ -72,6 +81,15 @@ const chipTypographyMap = {
 		textTransform: "normal",
 		letterSpacing: "wider",
 	},
+	rounded: {
+		variant: "small",
+		color: "text-current",
+		fontSize: "xs",
+		fontWeight: "bold",
+		lineHeight: "normal",
+		textTransform: "uppercase",
+		letterSpacing: "wider",
+	},
 } as const;
 
 // extract types chipBase
@@ -85,6 +103,7 @@ type BaseSize = NonNullable<VariantProps<typeof chipBaseVariants>["size"]>;
 export type ChipProps = Omit<React.HTMLAttributes<HTMLSpanElement>, "color"> & {
 	children: React.ReactNode;
 	variant?: keyof typeof chipStyleMap | string | null;
+	icon?: React.ReactNode;
 	typographyProps?: Partial<React.ComponentProps<typeof Typography>>;
 } & Partial<VariantProps<typeof chipBaseVariants>>;
 
@@ -97,6 +116,7 @@ export const Chip = ({
 	rounded,
 	borderWidth,
 	size,
+	icon,
 	typographyProps,
 	...props
 }: ChipProps) => {
@@ -124,6 +144,7 @@ export const Chip = ({
 			className={cn(chipVariants({ variant: safeVariant }), chipStyle.className, className)}
 			{...props}
 		>
+			{icon ?? null}
 			<Typography {...typographyStyle} {...typographyProps} asChild>
 				<span>{children}</span>
 			</Typography>

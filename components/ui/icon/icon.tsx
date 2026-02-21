@@ -9,25 +9,36 @@ const iconVariants = cva("material-symbols-outlined", {
 	variants: {
 		variant: {
 			default: "",
-			rounded: "",
+			rounded: "items-center justify-center",
 		},
 		color: {
 			default: "text-foreground",
+			white: "text-white",
+			"primary/10": "text-primary/10",
 			primary: "text-primary",
 			secondary: "text-icon-muted-foreground",
 			link: "text-link-icon-foreground",
 			inherit: "text-inherit",
 			info: "text-surface-muted-foreground-info",
+			"surface-muted-foreground-secondary": "surface-muted-foreground-secondary",
 		},
 		backgroundColor: {
-			default: "bg-transparent",
-			primary: "bg-primary/10",
+			transparent: "bg-transparent",
+			primary: "bg-primary",
+			"primary/10": "bg-primary/10",
+		},
+		rounded: {
+			sm: "rounded-sm",
+			md: "rounded-md",
+			lg: "rounded-lg",
+			xl: "rounded-xl",
 		},
 	},
 	defaultVariants: {
 		variant: "default",
 		color: "primary",
-		backgroundColor: "default",
+		backgroundColor: "transparent",
+		rounded: "xl",
 	},
 });
 
@@ -47,6 +58,7 @@ export const Icon = ({
 	containerSize,
 	color,
 	backgroundColor,
+	rounded,
 	fill = false,
 	asChild = false,
 	className,
@@ -69,12 +81,8 @@ export const Icon = ({
 	if (variant === "rounded") {
 		return (
 			<div
-				className={cn(
-					"flex items-center justify-center rounded-xl",
-					backgroundColor === "primary" ? "bg-primary/10" : "bg-transparent",
-					className,
-				)}
-				style={{ width: containerSize, height: containerSize }}
+				className={cn(iconVariants({ variant, color, backgroundColor, rounded }), className)}
+				style={{ width: containerSize, height: containerSize, display: "flex" }}
 			>
 				{IconComponent}
 			</div>

@@ -3,7 +3,7 @@
 import { ProfileBlock } from "@/components/block/profile-block";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
-import { ChipBase, ChipBaseColor } from "@/components/ui/chip/chip-base";
+import { ChipBase } from "@/components/ui/chip/chip-base";
 import { Typography } from "@/components/ui/typography/typography";
 import { resumeData } from "@/data/resume-data";
 import Image from "next/image";
@@ -12,28 +12,13 @@ import { SectionTitle } from "@/components/sections/section-title";
 import { TimelineBar, TimelineDot } from "@/components/ui/timeline/timeline";
 import { AccordionExperience } from "@/components/ui/accordion/accordion-experience";
 import Section from "@/components/sections/section";
-import { ProjectTabs } from "@/components/ui/tabs/project-tabs";
 import { Divider } from "@/components/ui/divider/divider";
 import { ProjectGridCard, ProjectListCard, HobbyCard, EducationCard } from "@/components/ui/card/cards";
 import { ResumeMainFooter } from "@/components/layout/resume/resume-main-footer";
 import { ResumeMainHeader } from "@/components/layout/resume/resume-main-header";
 import { Tabs } from "../ui/tabs/tabs";
 import { Icon } from "../ui/icon/icon";
-import { cn } from "@/lib/utils";
-
-export const skillColorMap: Record<string, ChipBaseColor> = {
-	react: "react",
-	typescript: "typescript",
-	tailwindcss: "tailwindcss",
-	nextjs: "nextjs",
-	nodejs: "nodejs",
-	postgresql: "postgresql",
-	redis: "redis",
-	graphql: "graphql",
-	docker: "docker",
-	aws: "aws",
-	gitlabci: "gitlabci",
-};
+import { skillColorMap } from "@/types/skill-type";
 
 const tabItems = [
 	{
