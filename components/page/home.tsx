@@ -100,19 +100,15 @@ export const Home = () => {
 									</CardContent>
 
 									<CardFooter className="pb-6">
-										<Button withIcon iconPosition="end" className="w-full py-6 rounded-lg">
-											<Icon variant="default" icon="arrow_forward" color="white" size="24px" />
-											<Typography
-												variant="small"
-												color="white"
-												fontSize="sm"
-												fontWeight="bold"
-												lineHeight="none"
-												textTransform="capitalize"
-												letterSpacing="wide"
-											>
-												Explorer la Vue Liste
-											</Typography>
+										<Button
+											variant="icon"
+											backgroundColor="primary"
+											color="white"
+											icon="arrow_forward"
+											iconSize="24px"
+											iconPosition="end"
+										>
+											Explorer la Vue Liste
 										</Button>
 									</CardFooter>
 								</div>
@@ -150,24 +146,16 @@ export const Home = () => {
 
 						<div className="flex flex-col sm:flex-row gap-4 w-full max-w-[400px]">
 							<Button
-								variant="outlined"
-								withIcon
-								iconPosition="start"
-								className="w-full py-6 rounded-lg hover:text-white"
+								variant="icon"
+								// color="surface-muted-foreground-secondary"
+								fontSize="base"
+								icon="mail"
+								iconSize="24px"
+								typographyClassName="hover:text-white"
+								border="base"
+								borderColor="warning"
 							>
-								<Icon variant="default" icon="mail" color="surface-muted-foreground-secondary" size="24px" />
-								<Typography
-									variant="small"
-									color="surface-muted-foreground-secondary"
-									fontSize="base"
-									fontWeight="bold"
-									lineHeight="none"
-									textTransform="capitalize"
-									letterSpacing="wide"
-									className="hover:text-white"
-								>
-									Me contacter
-								</Typography>
+								Me contacter
 							</Button>
 						</div>
 					</div>

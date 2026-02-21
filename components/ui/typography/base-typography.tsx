@@ -2,6 +2,15 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import {
+	fontSizeVariants,
+	fontStyleVariants,
+	fontWeightVariants,
+	letterSpacingVariants,
+	lineHeightVariants,
+	textAlignVariants,
+	textTransformVariants,
+} from "@/data/typography-variant";
 
 const baseTypographyVariants = cva("", {
 	variants: {
@@ -31,61 +40,13 @@ const baseTypographyVariants = cva("", {
 			"surface-muted-foreground-title": "text-surface-muted-foreground-title",
 			"link-surface-foreground": "text-link-surface-foreground",
 		},
-		fontSize: {
-			xs: "text-xs",
-			sm: "text-sm",
-			base: "text-base",
-			lg: "text-lg",
-			xl: "text-xl",
-			"2xl": "text-2xl",
-			"3xl": "text-3xl",
-			"4xl": "text-4xl",
-			"5xl": "text-5xl",
-			"6xl": "text-6xl",
-			"custom-10": "text-[10px]",
-			"custom-11": "text-[11px]",
-		},
-		fontWeight: {
-			thin: "font-thin",
-			light: "font-light",
-			normal: "font-normal",
-			medium: "font-medium",
-			semibold: "font-semibold",
-			bold: "font-bold",
-			extrabold: "font-extrabold",
-			black: "font-black",
-		},
-		fontStyle: {
-			normal: "not-italic",
-			italic: "italic",
-		},
-		textAlign: {
-			left: "text-left",
-			center: "text-center",
-			right: "text-right",
-			justify: "text-justify",
-		},
-		lineHeight: {
-			none: "leading-none",
-			tight: "leading-tight",
-			normal: "leading-normal",
-			relaxed: "leading-relaxed",
-		},
-		letterSpacing: {
-			tighter: "tracking-tighter",
-			tight: "tracking-tight",
-			normal: "tracking-normal",
-			wide: "tracking-wide",
-			wider: "tracking-wider",
-			widest: "tracking-widest",
-			"custom-0.03em": "tracking-[-0.03em]",
-		},
-		textTransform: {
-			uppercase: "uppercase",
-			lowercase: "lowercase",
-			capitalize: "capitalize",
-			normal: "normal-case",
-		},
+		fontSize: fontSizeVariants,
+		fontWeight: fontWeightVariants,
+		fontStyle: fontStyleVariants,
+		lineHeight: lineHeightVariants,
+		letterSpacing: letterSpacingVariants,
+		textTransform: textTransformVariants,
+		textAlign: textAlignVariants,
 	},
 	defaultVariants: {
 		variant: "p",
