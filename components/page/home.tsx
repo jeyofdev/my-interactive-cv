@@ -1,4 +1,4 @@
-import { Header } from "@/components/layout/home/header";
+import { Header } from "@/components/layout/header";
 import { Typography } from "@/components/ui/typography/typography";
 import { Chip } from "@/components/ui/chip/chip";
 import { DotIcon } from "@/components/ui/icon/dot";
@@ -6,15 +6,15 @@ import { ListRenderer } from "@/components/list/list-renderer";
 import { homeData } from "@/data/home-data";
 import { CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card-base";
 import { Button } from "@/components/ui/button/button";
-import { Icon } from "../ui/icon/icon";
+import { Icon } from "@/components/ui/icon/icon";
 import { getChipSkillColor } from "@/lib/utils";
 import { resumeData } from "@/data/resume-data";
-import { ResumeMainFooter } from "../layout/resume/resume-main-footer";
+import { Footer } from "@/components/layout/footer";
 
 export const Home = () => {
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
-			<Header />
+			<Header variant="default" />
 
 			<main className="flex-1 flex flex-col items-center bg-surface-muted">
 				{/* Hero Section */}
@@ -162,7 +162,7 @@ export const Home = () => {
 				</section>
 			</main>
 
-			<ResumeMainFooter socialLinks={resumeData.social} className="max-w-6xl mx-auto" />
+			<Footer socialLinks={resumeData.social} className="max-w-6xl mx-auto" />
 		</div>
 	);
 };

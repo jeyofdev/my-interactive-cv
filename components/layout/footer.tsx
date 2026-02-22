@@ -7,11 +7,12 @@ import { cn } from "@/lib/utils";
 type MainFooterProps = {
 	socialLinks: Social;
 	className?: string;
+	containerClassName?: string;
 };
 
-export const ResumeMainFooter: FC<MainFooterProps> = ({ socialLinks, className }) => {
+export const Footer: FC<MainFooterProps> = ({ socialLinks, className, containerClassName }) => {
 	return (
-		<footer className="p-6 border-t border-divider-horizontal-secondary">
+		<footer className={cn("p-6 border-t border-divider-horizontal-secondary", containerClassName)}>
 			<div className={cn("flex justify-between items-center gap-4", className)}>
 				<Typography
 					variant="muted"

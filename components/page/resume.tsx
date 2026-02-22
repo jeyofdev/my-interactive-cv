@@ -14,11 +14,11 @@ import { AccordionExperience } from "@/components/ui/accordion/accordion-experie
 import Section from "@/components/sections/section";
 import { Divider } from "@/components/ui/divider/divider";
 import { ProjectGridCard, ProjectListCard, HobbyCard, EducationCard } from "@/components/ui/card/cards";
-import { ResumeMainFooter } from "@/components/layout/resume/resume-main-footer";
-import { ResumeMainHeader } from "@/components/layout/resume/resume-main-header";
-import { Tabs } from "../ui/tabs/tabs";
-import { Icon } from "../ui/icon/icon";
+import { Footer } from "@/components/layout/footer";
+import { Tabs } from "@/components/ui/tabs/tabs";
+import { Icon } from "@/components/ui/icon/icon";
 import { skillColorMap } from "@/types/skill-type";
+import { Header } from "@/components/layout/header";
 
 const tabItems = [
 	{
@@ -187,7 +187,7 @@ export const Resume = () => {
 			</aside>
 
 			<main className="flex-1 flex flex-col bg-destructive">
-				<ResumeMainHeader />
+				<Header variant="resume" />
 
 				<div className="px-8 lg:px-12 py-12 max-w-4xl">
 					{/* Experience Section */}
@@ -267,7 +267,7 @@ export const Resume = () => {
 					</section>
 				</div>
 
-				<ResumeMainFooter socialLinks={resumeData.social} />
+				<Footer socialLinks={resumeData.social} containerClassName="px-12" />
 			</main>
 		</>
 	);
