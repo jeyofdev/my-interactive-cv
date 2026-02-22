@@ -7,7 +7,7 @@ import { borderRadiusVariants, borderWithVariants } from "@/data/variants/box-va
 import { chipBaseBackgroundColorVariants } from "@/data/variants/color-variants";
 
 export const chipBaseVariants = cva(
-	"inline-flex items-center gap-2 justify-center  shadow-sm transition-colors cursor-default whitespace-nowrap",
+	"inline-flex items-center gap-2 justify-center shadow-sm transition-colors cursor-default whitespace-nowrap",
 	{
 		variants: {
 			variant: {
@@ -19,6 +19,7 @@ export const chipBaseVariants = cva(
 				ghost: "",
 				link: "",
 				info: "",
+				basic: "",
 			},
 			color: {
 				default: "bg-chip text-chip-foreground border-chip-border hover:border-primary",

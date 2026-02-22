@@ -17,8 +17,9 @@ import { ProjectGridCard, ProjectListCard, HobbyCard, EducationCard } from "@/co
 import { Footer } from "@/components/layout/footer";
 import { Tabs } from "@/components/ui/tabs/tabs";
 import { Icon } from "@/components/ui/icon/icon";
-import { skillColorMap } from "@/types/skill-type";
 import { Header } from "@/components/layout/header";
+import { Chip } from "@/components/ui/chip/chip";
+import { getChipSkillColor } from "@/lib/utils";
 
 const tabItems = [
 	{
@@ -109,39 +110,17 @@ export const Resume = () => {
 							list={resumeData.skills}
 							keyExtractor={(item) => item.id}
 							renderItem={(skillGroup) => (
-								<>
-									<ProfileBlock
-										category={skillGroup.category}
-										list={skillGroup.items}
-										keyExtractor={(item) => item.id}
-										renderItem={(skill) => (
-											<ChipBase
-												variant="rounded"
-												color={
-													skillColorMap[
-														skill.label
-															.split(/[\s.]+/)
-															.join("")
-															.toLowerCase()
-													] ?? "default"
-												}
-												rounded="sm"
-											>
-												<Typography
-													variant="small"
-													color="text-current"
-													fontSize="xs"
-													fontWeight="semibold"
-													lineHeight="none"
-													asChild
-												>
-													<span>{skill.label}</span>
-												</Typography>
-											</ChipBase>
-										)}
-										titleClassName="m-0 mb-4"
-									/>
-								</>
+								<ProfileBlock
+									category={skillGroup.category}
+									list={skillGroup.items}
+									keyExtractor={(item) => item.id}
+									renderItem={(skill) => (
+										<Chip variant="basic" color={getChipSkillColor(skill)}>
+											{skill.label}
+										</Chip>
+									)}
+									titleClassName="m-0 mb-4"
+								/>
 							)}
 						/>
 
@@ -150,20 +129,9 @@ export const Resume = () => {
 							list={resumeData.languages}
 							keyExtractor={(item) => item.id}
 							renderItem={(lang) => (
-								<ChipBase variant="default" color="default">
-									<Typography
-										variant="small"
-										color="text-current"
-										fontSize="xs"
-										fontWeight="semibold"
-										lineHeight="none"
-										asChild
-									>
-										<span>
-											{lang.label} ({lang.level})
-										</span>
-									</Typography>
-								</ChipBase>
+								<Chip variant="outline" color="default" size="small">
+									{lang.label} ({lang.level})
+								</Chip>
 							)}
 							variantTitle="default"
 							titleClassName="m-0 mb-4"
