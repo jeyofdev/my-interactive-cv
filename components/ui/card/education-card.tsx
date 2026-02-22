@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Typography } from "@/components/ui/typography/typography";
 import { Icon } from "@/components/ui/icon/icon";
 import { Education } from "@/data/resume-data";

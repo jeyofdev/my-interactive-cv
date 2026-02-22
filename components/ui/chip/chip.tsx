@@ -39,7 +39,7 @@ const chipStyleMap = {
 		color: "white",
 		backgroundColor: "transparent",
 		rounded: "sm",
-		borderWidth: "thin",
+		borderWidth: "base",
 		size: "thin",
 		className: "shadow-sm",
 	},

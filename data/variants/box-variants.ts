@@ -1,5 +1,5 @@
 type BorderWidthVariant = "none" | "base" | "sm" | "md" | "lg" | "xl";
-type BorderRadiusVariant = BorderWidthVariant | "2xl" | "full";
+type BorderRadiusVariant = BorderWidthVariant | "2xl" | "3xl" | "4xl" | "full";
 
 export const borderWithVariants: Record<BorderWidthVariant, string> = {
 	none: "border-0",
@@ -18,6 +18,8 @@ export const borderRadiusVariants: Record<BorderRadiusVariant, string> = {
 	lg: "rounded-lg",
 	xl: "rounded-xl",
 	"2xl": "rounded-2xl",
+	"3xl": "rounded-3xl",
+	"4xl": "rounded-4xl",
 	full: "rounded-full",
 };
 

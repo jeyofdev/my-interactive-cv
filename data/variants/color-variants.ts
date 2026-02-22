@@ -39,6 +39,7 @@ type TypographyColorVariant =
 type TimelineColorVariant = Exclude<ColorVariant, "base">;
 type TimelineBackgroundColorVariant = Exclude<ColorVariant, "base"> | "transparent";
 type IconBackgroundColorVariant = ColorVariant | "primary/10" | "transparent";
+type ChipBaseBackgroundColorVariant = ColorVariant | "primary/10" | "transparent" | "secondary";
 
 export const colorVariants: Record<ColorVariant, string> = {
 	default: "text-foreground",
@@ -85,6 +86,13 @@ export const iconColorVariants: Record<IconColorVariant, string> = {
 export const iconBackgroundColorVariants: Record<IconBackgroundColorVariant, string> = {
 	...backgroundColorVariants,
 	transparent: "bg-transparent",
+	"primary/10": "bg-primary/10",
+};
+
+export const chipBaseBackgroundColorVariants: Record<ChipBaseBackgroundColorVariant, string> = {
+	...backgroundColorVariants,
+	transparent: "bg-transparent",
+	secondary: "bg-chip-secondary",
 	"primary/10": "bg-primary/10",
 };
 

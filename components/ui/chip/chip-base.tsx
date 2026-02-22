@@ -3,6 +3,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 
 import { cn } from "@/lib/utils";
+import { borderRadiusVariants, borderWithVariants } from "@/data/variants/box-variants";
+import { chipBaseBackgroundColorVariants } from "@/data/variants/color-variants";
 
 export const chipBaseVariants = cva(
 	"inline-flex items-center gap-2 justify-center  shadow-sm transition-colors cursor-default whitespace-nowrap",
@@ -42,30 +44,9 @@ export const chipBaseVariants = cva(
 				gitlabci: "bg-gitlab text-gitlab-foreground border-gitlab-border hover:border-gitlab-foreground",
 				angular: "bg-angular text-angular-foreground border-angular-border hover:border-angular-foreground",
 			},
-			backgroundColor: {
-				default: "bg-transparent",
-				transparent: "bg-transparent",
-				primary: "bg-primary",
-				secondary: "bg-chip-secondary",
-			},
-			rounded: {
-				none: "rounded-none",
-				xs: "rounded-xs",
-				sm: "rounded-sm",
-				md: "rounded-md",
-				lg: "rounded-lg",
-				xl: "rounded-xl",
-				"2xl": "rounded-2xl",
-				"3xl": "rounded-3xl",
-				"4xl": "rounded-4xl",
-				full: "rounded-full",
-			},
-			borderWidth: {
-				none: "border-0",
-				thin: "border",
-				medium: "border-2",
-				thick: "border-4",
-			},
+			backgroundColor: chipBaseBackgroundColorVariants,
+			rounded: borderRadiusVariants,
+			borderWidth: borderWithVariants,
 			size: {
 				thin: "px-2 py-1",
 				small: "px-3 py-2",
@@ -76,9 +57,9 @@ export const chipBaseVariants = cva(
 			variant: "default",
 			color: "default",
 			rounded: "sm",
-			borderWidth: "thin",
+			borderWidth: "base",
 			size: "small",
-			backgroundColor: "default",
+			backgroundColor: "transparent",
 		},
 	},
 );
