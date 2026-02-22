@@ -29,7 +29,7 @@ const chipStyleMap = {
 	},
 	basic: {
 		color: "white",
-		backgroundColor: "primary",
+		backgroundColor: "inherit",
 		rounded: "sm",
 		borderWidth: "none",
 		size: "thin",
