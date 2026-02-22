@@ -1,6 +1,8 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { timelineBackgroundColorVariants } from "@/data/variants/color-variants";
+import { opacityVariants } from "@/data/variants/box-variants";
 
 const timelineVariants = cva("absolute", {
 	variants: {
@@ -8,18 +10,12 @@ const timelineVariants = cva("absolute", {
 			vertical: "left-0 top-2 -bottom-11 w-0.5",
 			horizontal: "top-0 left-2 -right-11 h-0.5",
 		},
-		opacity: {
-			default: "",
-			muted: "opacity-40",
-		},
-		background: {
-			default: "bg-timeline-background",
-			primary: "bg-primary",
-		},
+		opacity: opacityVariants,
+		background: timelineBackgroundColorVariants,
 	},
 	defaultVariants: {
 		orientation: "vertical",
-		opacity: "default",
+		opacity: "100",
 		background: "default",
 	},
 });

@@ -47,7 +47,7 @@ export const SectionTitle = ({
 		<div ref={ref} className={cn(sectionTitleVariants({ size, justifyContent }), className)} {...props}>
 			<Icon
 				variant="rounded"
-				backgroundColor="primary-10"
+				backgroundColor="primary/10"
 				icon={icon}
 				size={iconSize}
 				containerSize={containerIconSize}

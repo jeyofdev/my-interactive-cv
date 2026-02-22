@@ -11,6 +11,7 @@ import {
 	textAlignVariants,
 	textTransformVariants,
 } from "@/data/variants/typography-variant";
+import { typographyColorVariants } from "@/data/variants/color-variants";
 
 const baseTypographyVariants = cva("", {
 	variants: {
@@ -27,19 +28,7 @@ const baseTypographyVariants = cva("", {
 			h6: "",
 			list: "",
 		},
-		color: {
-			default: "text-foreground",
-			primary: "text-primary",
-			white: "text-white",
-			"surface-muted-foreground": "text-surface-muted-foreground",
-			"surface-muted-foreground-secondary": "text-surface-muted-foreground-secondary",
-			"surface-muted-foreground-info": "text-surface-muted-foreground-info",
-			"surface-muted-foreground-info-title": "text-surface-muted-foreground-info-title",
-			"text-current": "text-current",
-			"accordion-muted-foreground-title": "text-accordion-muted-foreground-title",
-			"surface-muted-foreground-title": "text-surface-muted-foreground-title",
-			"link-surface-foreground": "text-link-surface-foreground",
-		},
+		color: typographyColorVariants,
 		fontSize: fontSizeVariants,
 		fontWeight: fontWeightVariants,
 		fontStyle: fontStyleVariants,

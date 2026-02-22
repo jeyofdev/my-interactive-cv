@@ -23,7 +23,7 @@ export const Header = () => {
 					color="white"
 					icon="account_circle"
 					size="24px"
-					rounded="lg"
+					borderRadius="lg"
 					containerSize="40px"
 				/>
 

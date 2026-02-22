@@ -4,7 +4,8 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { iconColorVariants } from "@/data/variants/color-variants";
+import { iconBackgroundColorVariants, iconColorVariants } from "@/data/variants/color-variants";
+import { borderRadiusVariants } from "@/data/variants/box-variants";
 
 const iconVariants = cva("material-symbols-outlined", {
 	variants: {
@@ -13,23 +14,14 @@ const iconVariants = cva("material-symbols-outlined", {
 			rounded: "items-center justify-center",
 		},
 		color: iconColorVariants,
-		backgroundColor: {
-			transparent: "bg-transparent",
-			primary: "bg-primary",
-			"primary/10": "bg-primary/10",
-		},
-		rounded: {
-			sm: "rounded-sm",
-			md: "rounded-md",
-			lg: "rounded-lg",
-			xl: "rounded-xl",
-		},
+		backgroundColor: iconBackgroundColorVariants,
+		borderRadius: borderRadiusVariants,
 	},
 	defaultVariants: {
 		variant: "default",
 		color: "primary",
 		backgroundColor: "transparent",
-		rounded: "xl",
+		borderRadius: "xl",
 	},
 });
 
@@ -49,7 +41,7 @@ export const Icon = ({
 	containerSize,
 	color,
 	backgroundColor,
-	rounded,
+	borderRadius,
 	fill = false,
 	asChild = false,
 	className,
@@ -72,7 +64,7 @@ export const Icon = ({
 	if (variant === "rounded") {
 		return (
 			<div
-				className={cn(iconVariants({ variant, color, backgroundColor, rounded }), className)}
+				className={cn(iconVariants({ variant, color, backgroundColor, borderRadius }), className)}
 				style={{ width: containerSize, height: containerSize, display: "flex" }}
 			>
 				{IconComponent}

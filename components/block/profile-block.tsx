@@ -6,6 +6,7 @@ import {
 	type ProfileBlockTitleBorder,
 	type ProfileBlockTitleVariant,
 	type ProfileBlockTitleColor,
+	ProfileBlockTitleBorderColor,
 } from "@/components/ui/title/block-title";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +20,7 @@ type ProfileBlockProps<T> = {
 	colorTitle?: ProfileBlockTitleColor;
 	fontSizeTitle?: ProfileBlockTitleFontSize;
 	borderTitle?: ProfileBlockTitleBorder;
+	borderColorTitle?: ProfileBlockTitleBorderColor;
 	containerClassName?: string;
 	titleClassName?: string;
 };
@@ -29,6 +31,7 @@ export const ProfileBlock = <T,>({
 	colorTitle,
 	fontSizeTitle,
 	borderTitle,
+	borderColorTitle,
 	titleClassName,
 	category,
 	list,
@@ -44,6 +47,7 @@ export const ProfileBlock = <T,>({
 				color={colorTitle ?? undefined}
 				fontSize={fontSizeTitle}
 				border={borderTitle}
+				borderColor={borderColorTitle}
 				className={titleClassName}
 			/>
 
