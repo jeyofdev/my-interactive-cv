@@ -10,7 +10,7 @@ import {
 	lineHeightVariants,
 	textAlignVariants,
 	textTransformVariants,
-} from "@/data/typography-variant";
+} from "@/data/variants/typography-variant";
 
 const baseTypographyVariants = cva("", {
 	variants: {

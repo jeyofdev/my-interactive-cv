@@ -144,16 +144,16 @@ export const Home = () => {
 							Contactez-moi directement pour discuter de vos projets.
 						</Typography>
 
-						<div className="flex flex-col sm:flex-row gap-4 w-full max-w-[400px]">
+						<div className="flex flex-col sm:flex-row gap-4 w-full max-w-100">
 							<Button
 								variant="icon"
-								// color="surface-muted-foreground-secondary"
+								color="primary"
+								backgroundColor="base"
 								fontSize="base"
 								icon="mail"
 								iconSize="24px"
-								typographyClassName="hover:text-white"
 								border="base"
-								borderColor="warning"
+								borderColor="primary/10"
 							>
 								Me contacter
 							</Button>
