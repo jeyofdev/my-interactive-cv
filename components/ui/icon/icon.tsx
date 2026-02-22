@@ -4,6 +4,8 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { iconBackgroundColorVariants, iconColorVariants } from "@/data/variants/color-variants";
+import { borderRadiusVariants } from "@/data/variants/box-variants";
 
 const iconVariants = cva("material-symbols-outlined", {
 	variants: {
@@ -11,34 +13,15 @@ const iconVariants = cva("material-symbols-outlined", {
 			default: "",
 			rounded: "items-center justify-center",
 		},
-		color: {
-			default: "text-foreground",
-			white: "text-white",
-			"primary/10": "text-primary/10",
-			primary: "text-primary",
-			secondary: "text-icon-muted-foreground",
-			link: "text-link-icon-foreground",
-			inherit: "text-inherit",
-			info: "text-surface-muted-foreground-info",
-			"surface-muted-foreground-secondary": "surface-muted-foreground-secondary",
-		},
-		backgroundColor: {
-			transparent: "bg-transparent",
-			primary: "bg-primary",
-			"primary/10": "bg-primary/10",
-		},
-		rounded: {
-			sm: "rounded-sm",
-			md: "rounded-md",
-			lg: "rounded-lg",
-			xl: "rounded-xl",
-		},
+		color: iconColorVariants,
+		backgroundColor: iconBackgroundColorVariants,
+		borderRadius: borderRadiusVariants,
 	},
 	defaultVariants: {
 		variant: "default",
 		color: "primary",
 		backgroundColor: "transparent",
-		rounded: "xl",
+		borderRadius: "xl",
 	},
 });
 
@@ -58,7 +41,7 @@ export const Icon = ({
 	containerSize,
 	color,
 	backgroundColor,
-	rounded,
+	borderRadius,
 	fill = false,
 	asChild = false,
 	className,
@@ -81,7 +64,7 @@ export const Icon = ({
 	if (variant === "rounded") {
 		return (
 			<div
-				className={cn(iconVariants({ variant, color, backgroundColor, rounded }), className)}
+				className={cn(iconVariants({ variant, color, backgroundColor, borderRadius }), className)}
 				style={{ width: containerSize, height: containerSize, display: "flex" }}
 			>
 				{IconComponent}

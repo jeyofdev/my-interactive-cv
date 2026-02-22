@@ -1,4 +1,4 @@
-import { Header } from "@/components/layout/home/header";
+import { Header } from "@/components/layout/header";
 import { Typography } from "@/components/ui/typography/typography";
 import { Chip } from "@/components/ui/chip/chip";
 import { DotIcon } from "@/components/ui/icon/dot";
@@ -6,15 +6,15 @@ import { ListRenderer } from "@/components/list/list-renderer";
 import { homeData } from "@/data/home-data";
 import { CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card-base";
 import { Button } from "@/components/ui/button/button";
-import { Icon } from "../ui/icon/icon";
+import { Icon } from "@/components/ui/icon/icon";
 import { getChipSkillColor } from "@/lib/utils";
 import { resumeData } from "@/data/resume-data";
-import { ResumeMainFooter } from "../layout/resume/resume-main-footer";
+import { Footer } from "@/components/layout/footer";
 
 export const Home = () => {
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
-			<Header />
+			<Header variant="default" />
 
 			<main className="flex-1 flex flex-col items-center bg-surface-muted">
 				{/* Hero Section */}
@@ -100,19 +100,15 @@ export const Home = () => {
 									</CardContent>
 
 									<CardFooter className="pb-6">
-										<Button withIcon iconPosition="end" className="w-full py-6 rounded-lg">
-											<Icon variant="default" icon="arrow_forward" color="white" size="24px" />
-											<Typography
-												variant="small"
-												color="white"
-												fontSize="sm"
-												fontWeight="bold"
-												lineHeight="none"
-												textTransform="capitalize"
-												letterSpacing="wide"
-											>
-												Explorer la Vue Liste
-											</Typography>
+										<Button
+											variant="icon"
+											backgroundColor="primary"
+											color="white"
+											icon="arrow_forward"
+											iconSize="24px"
+											iconPosition="end"
+										>
+											Explorer la Vue Liste
 										</Button>
 									</CardFooter>
 								</div>
@@ -148,33 +144,25 @@ export const Home = () => {
 							Contactez-moi directement pour discuter de vos projets.
 						</Typography>
 
-						<div className="flex flex-col sm:flex-row gap-4 w-full max-w-[400px]">
+						<div className="flex flex-col sm:flex-row gap-4 w-full max-w-100">
 							<Button
-								variant="outlined"
-								withIcon
-								iconPosition="start"
-								className="w-full py-6 rounded-lg hover:text-white"
+								variant="icon"
+								color="primary"
+								backgroundColor="base"
+								fontSize="base"
+								icon="mail"
+								iconSize="24px"
+								border="base"
+								borderColor="primary/10"
 							>
-								<Icon variant="default" icon="mail" color="surface-muted-foreground-secondary" size="24px" />
-								<Typography
-									variant="small"
-									color="surface-muted-foreground-secondary"
-									fontSize="base"
-									fontWeight="bold"
-									lineHeight="none"
-									textTransform="capitalize"
-									letterSpacing="wide"
-									className="hover:text-white"
-								>
-									Me contacter
-								</Typography>
+								Me contacter
 							</Button>
 						</div>
 					</div>
 				</section>
 			</main>
 
-			<ResumeMainFooter socialLinks={resumeData.social} className="max-w-6xl mx-auto" />
+			<Footer socialLinks={resumeData.social} className="max-w-6xl mx-auto" />
 		</div>
 	);
 };

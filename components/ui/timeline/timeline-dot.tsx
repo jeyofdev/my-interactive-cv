@@ -2,6 +2,7 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { timelineColorVariants } from "@/data/variants/color-variants";
 
 const timelineDotVariants = cva("absolute rounded-full border-4 shadow-sm z-10 transition-all", {
 	variants: {
@@ -18,10 +19,7 @@ const timelineDotVariants = cva("absolute rounded-full border-4 shadow-sm z-10 t
 			sm: "size-[12px]",
 			lg: "size-[20px]",
 		},
-		borderColor: {
-			default: "border-timeline-border",
-			primary: "border-primary",
-		},
+		borderColor: timelineColorVariants,
 	},
 	defaultVariants: {
 		state: "inactive",
