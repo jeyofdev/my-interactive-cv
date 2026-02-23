@@ -117,11 +117,11 @@ export const handlePrismaError = (error: unknown, resumeId?: string): ResumeErro
 };
 
 // Helper to throw an error
-export function throwResumeError(error: ResumeError): never {
+export const throwResumeError = (error: ResumeError): never => {
 	const errorObj = new Error(error.message);
 	errorObj.name = error.name;
 
 	Object.assign(errorObj, error);
 
 	throw errorObj;
-}
+};

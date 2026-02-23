@@ -5,18 +5,7 @@ import {
 	throwResumeError,
 } from "@/lib/error/resume-errors";
 import { prisma } from "@/lib/prisma";
-import { Prisma } from "@/prisma/generated/prisma/client";
-
-export type ResumeData = Prisma.ResumeGetPayload<{
-	include: {
-		education: true;
-		experiences: true;
-		hobbies: true;
-		languages: true;
-		projects: true;
-		skills: true;
-	};
-}>;
+import { ResumeData } from "@/types/resume-type";
 
 type getResumeByIdOptions = {
 	resumeId: string;
@@ -45,7 +34,7 @@ export const getResumeById = async ({ resumeId }: getResumeByIdOptions): Promise
 			throwResumeError(createResumeNotFoundError(resumeId));
 		}
 
-		return data;
+		return data as ResumeData;
 	} catch (error) {
 		// ResumeError
 		if (error instanceof Error && error.name === "ResumeNotFoundError") {
@@ -55,5 +44,6 @@ export const getResumeById = async ({ resumeId }: getResumeByIdOptions): Promise
 		// transform Prisma error
 		const resumeError = handlePrismaError(error, resumeId);
 		throwResumeError(resumeError);
+		throw resumeError;
 	}
 };
