@@ -1,3 +1,5 @@
+"use client";
+
 import { Header } from "@/components/layout/header";
 import { Typography } from "@/components/ui/typography/typography";
 import { Chip } from "@/components/ui/chip/chip";
@@ -151,7 +153,21 @@ export const Home: FC<HomeProps> = ({ data }) => {
 							Contactez-moi directement pour discuter de vos projets.
 						</Typography>
 
-						<div className="flex flex-col sm:flex-row gap-4 w-full max-w-100">
+						<div className="flex justify-center sm:flex-row gap-4 w-full">
+							<Button
+								variant="icon"
+								backgroundColor="primary"
+								color="white"
+								fontSize="base"
+								icon="download"
+								iconSize="24px"
+								border="base"
+								borderColor="primary"
+								className="px-7 min-w-auto shadow-lg shadow-primary/25 transition-all"
+							>
+								Download CV global
+							</Button>
+
 							<Button
 								variant="icon"
 								color="primary"
@@ -161,6 +177,8 @@ export const Home: FC<HomeProps> = ({ data }) => {
 								iconSize="24px"
 								border="base"
 								borderColor="primary/10"
+								className="px-7"
+								onClick={() => {}}
 							>
 								Me contacter
 							</Button>

@@ -8,6 +8,7 @@ import { DarkModeTheme } from "@/components/ui/button/dark-mode-theme";
 import { Tabs } from "@/components/ui/tabs/tabs";
 import { Typography } from "@/components/ui/typography/typography";
 import { Icon } from "@/components/ui/icon/icon";
+import { Button } from "@/components/ui/button/button";
 
 type Lang = "EN" | "FR";
 
@@ -68,6 +69,20 @@ export const Header = ({ className, variant, sticky, name, ...props }: HeaderPro
 					keyExtractor={(item) => item}
 					renderItem={(item) => item}
 				/>
+
+				<Button
+					variant="icon"
+					backgroundColor="primary"
+					color="white"
+					fontSize="sm"
+					borderRadius="lg"
+					icon="download"
+					iconSize="24px"
+					className="px-6 py-1.5 min-w-auto shadow-lg shadow-primary/25 transition-all active:scale-95"
+					onClick={() => {}}
+				>
+					Download CV
+				</Button>
 			</div>
 		</header>
 	);

@@ -28,7 +28,7 @@ const buttonVariants = cva(
 				outlined: "",
 				rounded: "rounded-full py-2 px-6 gap-3",
 				"full-size": "rounded-lg py-3 px-6 w-full gap-2",
-				icon: "rounded-lg gap-2 px-8 py-4 w-full min-w-[200px]",
+				icon: "rounded-lg gap-2 px-8 py-4 min-w-[200px]",
 				"icon-only": "rounded-full p-2",
 			},
 			backgroundColor: {
