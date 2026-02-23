@@ -1,28 +1,16 @@
 import { handlePrismaError, throwResumeError } from "@/lib/error/resume-errors";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@/prisma/generated/prisma/client";
+import { ResumePreviewData } from "@/types/resume-type";
 
-export type ResumeData = Prisma.ResumeGetPayload<{
-	include: {
-		education: true;
-		experiences: true;
-		hobbies: true;
-		languages: true;
-		projects: true;
-		skills: true;
-	};
-}>;
-
-export const getAllResumes = async (): Promise<ResumeData[]> => {
+export const getAllResumes = async (): Promise<ResumePreviewData[]> => {
 	try {
-		const datas: ResumeData[] = await prisma.resume.findMany({
-			include: {
-				education: true,
-				experiences: true,
-				hobbies: true,
-				languages: true,
+		const datas: ResumePreviewData[] = await prisma.resume.findMany({
+			select: {
+				id: true,
+				title: true,
+				summary: true,
 				projects: true,
-				skills: true,
 			},
 		});
 

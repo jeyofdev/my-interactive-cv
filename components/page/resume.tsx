@@ -18,7 +18,7 @@ import { Icon } from "@/components/ui/icon/icon";
 import { Header } from "@/components/layout/header";
 import { Chip } from "@/components/ui/chip/chip";
 import { getChipSkillColor } from "@/lib/utils";
-import { ResumeData } from "@/lib/fetch/getResumeById";
+import { ResumeData } from "@/types/resume-type";
 
 const tabItems = [
 	{

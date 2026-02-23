@@ -1,4 +1,4 @@
-type ResumeData = {
+export type ResumeData = {
 	name: string;
 	title: string;
 	summary: string;
@@ -82,7 +82,7 @@ type Skill = {
 
 export type Technology = Pick<SkillItem, "id" | "label">;
 type Formation = Pick<Technology, "id" | "label">;
-type Tag = Pick<Technology, "id" | "label">;
+export type Tag = Pick<Technology, "id" | "label">;
 
 export type SkillItem = {
 	id: string;

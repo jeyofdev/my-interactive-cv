@@ -3,24 +3,21 @@ import { Typography } from "@/components/ui/typography/typography";
 import { Chip } from "@/components/ui/chip/chip";
 import { DotIcon } from "@/components/ui/icon/dot";
 import { ListRenderer } from "@/components/list/list-renderer";
-import { homeData } from "@/data/home-data";
 import { CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card-base";
 import { Button } from "@/components/ui/button/button";
 import { Icon } from "@/components/ui/icon/icon";
-import { getChipSkillColor } from "@/lib/utils";
+import { extractRecurringSkills, getChipSkillColor } from "@/lib/utils";
 import { resumeData } from "@/data/resume-data";
 import { Footer } from "@/components/layout/footer";
-import { ResumeData } from "@/lib/fetch/getResumeById";
 import { FC } from "react";
 import { Link } from "@/components/ui/button/link";
+import { ResumePreviewData } from "@/types/resume-type";
 
 type HomeProps = {
-	data: ResumeData[];
+	data: ResumePreviewData[];
 };
 
 export const Home: FC<HomeProps> = ({ data }) => {
-	console.log(data);
-
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
 			<Header variant="default" name={resumeData.name} />
@@ -74,15 +71,15 @@ export const Home: FC<HomeProps> = ({ data }) => {
 										</div>
 
 										<div className="absolute top-4 right-4 flex gap-2">
-											{/* <ListRenderer
-												list={resume.skills}
+											<ListRenderer
+												list={extractRecurringSkills(resume, 4)}
 												keyExtractor={(item) => item.id}
 												renderItem={(skill) => (
 													<Chip variant="outline" color={getChipSkillColor(skill)}>
 														{skill.label}
 													</Chip>
 												)}
-											/> */}
+											/>
 										</div>
 									</div>
 
