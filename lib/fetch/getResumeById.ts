@@ -45,7 +45,7 @@ export const getResumeById = async ({ resumeId }: getResumeByIdOptions): Promise
 			throwResumeError(createResumeNotFoundError(resumeId));
 		}
 
-		return data;
+		return data as ResumeData;
 	} catch (error) {
 		// ResumeError
 		if (error instanceof Error && error.name === "ResumeNotFoundError") {
@@ -55,5 +55,6 @@ export const getResumeById = async ({ resumeId }: getResumeByIdOptions): Promise
 		// transform Prisma error
 		const resumeError = handlePrismaError(error, resumeId);
 		throwResumeError(resumeError);
+		throw resumeError;
 	}
 };

@@ -10,8 +10,17 @@ import { Icon } from "@/components/ui/icon/icon";
 import { getChipSkillColor } from "@/lib/utils";
 import { resumeData } from "@/data/resume-data";
 import { Footer } from "@/components/layout/footer";
+import { ResumeData } from "@/lib/fetch/getResumeById";
+import { FC } from "react";
+import { Link } from "@/components/ui/button/link";
 
-export const Home = () => {
+type HomeProps = {
+	data: ResumeData[];
+};
+
+export const Home: FC<HomeProps> = ({ data }) => {
+	console.log(data);
+
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
 			<Header variant="default" name={resumeData.name} />
@@ -54,7 +63,7 @@ export const Home = () => {
 				<section className="max-w-6xl w-full px-6 pb-24">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
 						<ListRenderer
-							list={homeData.resumeItems}
+							list={data}
 							keyExtractor={(item) => item.id}
 							renderItem={(resume) => (
 								<div className="group cursor-pointer relative flex flex-col overflow-hidden rounded-xl border border-primary/10 bg-card-home-background shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
@@ -65,7 +74,7 @@ export const Home = () => {
 										</div>
 
 										<div className="absolute top-4 right-4 flex gap-2">
-											<ListRenderer
+											{/* <ListRenderer
 												list={resume.skills}
 												keyExtractor={(item) => item.id}
 												renderItem={(skill) => (
@@ -73,7 +82,7 @@ export const Home = () => {
 														{skill.label}
 													</Chip>
 												)}
-											/>
+											/> */}
 										</div>
 									</div>
 
@@ -95,21 +104,22 @@ export const Home = () => {
 											textAlign="left"
 											className="line-clamp-2"
 										>
-											{resume.description}
+											{resume.summary}
 										</Typography>
 									</CardContent>
 
 									<CardFooter className="pb-6">
-										<Button
+										<Link
 											variant="icon"
 											backgroundColor="primary"
 											color="white"
 											icon="arrow_forward"
 											iconSize="24px"
 											iconPosition="end"
+											href={`/cv/${resume.id}`}
 										>
 											Explorer la Vue Liste
-										</Button>
+										</Link>
 									</CardFooter>
 								</div>
 							)}
