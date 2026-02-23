@@ -9,7 +9,6 @@ import { CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/
 import { Button } from "@/components/ui/button/button";
 import { Icon } from "@/components/ui/icon/icon";
 import { extractRecurringSkills, getChipSkillColor } from "@/lib/utils";
-import { resumeData } from "@/data/resume-data";
 import { Footer } from "@/components/layout/footer";
 import { FC } from "react";
 import { Link } from "@/components/ui/button/link";
@@ -20,9 +19,12 @@ type HomeProps = {
 };
 
 export const Home: FC<HomeProps> = ({ data }) => {
+	const name = data[0].profile.name;
+	const social = data[0].profile.social;
+
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
-			<Header variant="default" name={resumeData.name} />
+			<Header variant="default" name={name} />
 
 			<main className="flex-1 flex flex-col items-center bg-surface-muted">
 				{/* Hero Section */}
@@ -42,7 +44,7 @@ export const Home: FC<HomeProps> = ({ data }) => {
 						letterSpacing="custom-0.03em"
 						className="mb-6"
 					>
-						Bienvenue sur le portfolio de <span className="text-primary capitalize">{resumeData.name}</span>
+						Bienvenue sur le portfolio de <span className="text-primary capitalize">{name}</span>
 					</Typography>
 
 					<Typography
@@ -187,7 +189,7 @@ export const Home: FC<HomeProps> = ({ data }) => {
 				</section>
 			</main>
 
-			<Footer socialLinks={resumeData.social} className="max-w-6xl mx-auto" />
+			<Footer socialLinks={social} className="max-w-6xl mx-auto" />
 		</div>
 	);
 };

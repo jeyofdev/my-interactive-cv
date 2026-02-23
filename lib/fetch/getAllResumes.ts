@@ -11,6 +11,7 @@ export const getAllResumes = async (): Promise<ResumePreviewData[]> => {
 				title: true,
 				summary: true,
 				projects: true,
+				profile: true,
 			},
 		});
 
