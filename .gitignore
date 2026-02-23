@@ -47,3 +47,6 @@ next-env.d.ts
 
 eslint.config.js
 vite.config.ts
+/lib/generated/prisma
+
+/generated/prisma
