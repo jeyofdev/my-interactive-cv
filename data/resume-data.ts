@@ -23,7 +23,7 @@ export type Social = {
 };
 
 export type Education = {
-	id: number;
+	id: string;
 	school: string;
 	degree: string;
 	year: string;
@@ -31,7 +31,7 @@ export type Education = {
 };
 
 export type Project = {
-	id: number;
+	id: string;
 	title: string;
 	description: string;
 	links: ProjectLink[];
@@ -40,7 +40,7 @@ export type Project = {
 };
 
 export type Experience = {
-	id: number;
+	id: string;
 	company: string;
 	role: string;
 	period: string;
@@ -52,19 +52,19 @@ export type Experience = {
 };
 
 type ExperienceDetails = {
-	id: number;
+	id: string;
 	body: string;
 };
 
 export type Hobby = {
-	id: number;
+	id: string;
 	label: string;
-	detail?: string;
-	duration?: string;
+	detail?: string | null;
+	duration?: string | null;
 };
 
 type Language = {
-	id: number;
+	id: string;
 	label: string;
 	level: string;
 };
@@ -75,7 +75,7 @@ type Vehicle = {
 };
 
 type Skill = {
-	id: number;
+	id: string;
 	category: string;
 	items: SkillItem[];
 };
@@ -85,7 +85,7 @@ type Formation = Pick<Technology, "id" | "label">;
 type Tag = Pick<Technology, "id" | "label">;
 
 export type SkillItem = {
-	id: number;
+	id: string;
 	label: string;
 };
 
@@ -95,7 +95,7 @@ type Link = {
 };
 
 type ProjectLink = Pick<Link, "label" | "url"> & {
-	id: number;
+	id: string;
 };
 
 export const resumeData: ResumeData = {
@@ -127,49 +127,49 @@ export const resumeData: ResumeData = {
 	},
 	skills: [
 		{
-			id: 1,
+			id: "1",
 			category: "Frontend",
 			items: [
-				{ id: 1, label: "React" },
-				{ id: 2, label: "Typescript" },
-				{ id: 3, label: "Tailwind CSS" },
-				{ id: 4, label: "Next.js" },
+				{ id: "1", label: "React" },
+				{ id: "2", label: "Typescript" },
+				{ id: "3", label: "Tailwind CSS" },
+				{ id: "4", label: "Next.js" },
 			],
 		},
 		{
-			id: 2,
+			id: "2",
 			category: "Backend",
 			items: [
-				{ id: 1, label: "Node.js" },
-				{ id: 2, label: "PostgreSQL" },
-				{ id: 3, label: "Redis" },
-				{ id: 4, label: "GraphQL" },
+				{ id: "1", label: "Node.js" },
+				{ id: "2", label: "PostgreSQL" },
+				{ id: "3", label: "Redis" },
+				{ id: "4", label: "GraphQL" },
 			],
 		},
 		{
-			id: 3,
+			id: "3",
 			category: "Tools",
 			items: [
-				{ id: 1, label: "Docker" },
-				{ id: 2, label: "AWS" },
-				{ id: 3, label: "GitLab CI" },
+				{ id: "1", label: "Docker" },
+				{ id: "2", label: "AWS" },
+				{ id: "3", label: "GitLab CI" },
 			],
 		},
 	],
 	languages: [
-		{ id: 1, label: "Français", level: "Maternel" },
-		{ id: 2, label: "Anglais", level: "Professionnel" },
-		{ id: 3, label: "Espagnol", level: "Intermédiaire" },
+		{ id: "1", label: "Français", level: "Maternel" },
+		{ id: "2", label: "Anglais", level: "Professionnel" },
+		{ id: "3", label: "Espagnol", level: "Intermédiaire" },
 	],
 	hobbies: [
-		{ id: 1, label: "Photographie", detail: "Photo de rue", duration: "5 ans" },
-		{ id: 2, label: "Randonnée", detail: "Sentiers de montagne" },
-		{ id: 3, label: "Open Source" },
-		{ id: 4, label: "Guitare", duration: "3 ans" },
+		{ id: "1", label: "Photographie", detail: "Photo de rue", duration: "5 ans" },
+		{ id: "2", label: "Randonnée", detail: "Sentiers de montagne" },
+		{ id: "3", label: "Open Source" },
+		{ id: "4", label: "Guitare", duration: "3 ans" },
 	],
 	experiences: [
 		{
-			id: 1,
+			id: "1",
 			company: "TechCorp",
 			role: "Développeuse Fullstack Senior",
 			period: "2022 – Présent",
@@ -178,112 +178,112 @@ export const resumeData: ResumeData = {
 				"Direction du développement d'une plateforme SaaS utilisée par 10k+ utilisateurs. Architecture microservices et frontend React.",
 			details: [
 				{
-					id: 1,
+					id: "1",
 					body: "Conception et implémentation de l'architecture frontend (monorepo, bibliothèque de composants partagés)",
 				},
-				{ id: 2, body: "Création d'un système de notifications temps réel via WebSockets et Redis pub/sub" },
-				{ id: 3, body: "Migration du code legacy de JavaScript vers TypeScript (200+ fichiers)" },
-				{ id: 4, body: "Implémentation d'un contrôle d'accès basé sur les rôles (RBAC) sur toute la plateforme" },
-				{ id: 5, body: "Mise en place de tests automatisés avec 85% de couverture (unitaires, intégration, E2E)" },
-				{ id: 6, body: "Pilotage de la migration de REST vers GraphQL pour l'API principale" },
+				{ id: "2", body: "Création d'un système de notifications temps réel via WebSockets et Redis pub/sub" },
+				{ id: "3", body: "Migration du code legacy de JavaScript vers TypeScript (200+ fichiers)" },
+				{ id: "4", body: "Implémentation d'un contrôle d'accès basé sur les rôles (RBAC) sur toute la plateforme" },
+				{ id: "5", body: "Mise en place de tests automatisés avec 85% de couverture (unitaires, intégration, E2E)" },
+				{ id: "6", body: "Pilotage de la migration de REST vers GraphQL pour l'API principale" },
 			],
 			formations: [
-				{ id: 1, label: "Certifications AWS Solutions Architect & Docker Certified Associate" },
-				{ id: 2, label: "Conférencière régulière à React Europe et Node Summit" },
+				{ id: "1", label: "Certifications AWS Solutions Architect & Docker Certified Associate" },
+				{ id: "2", label: "Conférencière régulière à React Europe et Node Summit" },
 			],
 			technologies: [
-				{ id: 1, label: "React" },
-				{ id: 2, label: "TypeScript" },
-				{ id: 3, label: "Node.js" },
-				{ id: 4, label: "PostgreSQL" },
-				{ id: 5, label: "GraphQL" },
-				{ id: 6, label: "Redis" },
-				{ id: 7, label: "Docker" },
-				{ id: 8, label: "AWS" },
+				{ id: "1", label: "React" },
+				{ id: "2", label: "TypeScript" },
+				{ id: "3", label: "Node.js" },
+				{ id: "4", label: "PostgreSQL" },
+				{ id: "5", label: "GraphQL" },
+				{ id: "6", label: "Redis" },
+				{ id: "7", label: "Docker" },
+				{ id: "8", label: "AWS" },
 			],
 		},
 		{
-			id: 2,
+			id: "2",
 			company: "Global Web Agency",
 			role: "Fullstack Engineer",
 			period: "Aug 2018 – Dec 2020",
 			type: "CDI",
 			description: "Équipe de 8 développeurs au sein d'une société produit de 50 personnes. Méthodologie Agile/Scrum.",
 			details: [
-				{ id: 1, body: "Développement de fonctionnalités critiques pour des clients internationaux" },
-				{ id: 2, body: "Optimisation des performances de rendu côté client" },
-				{ id: 3, body: "Mise en place de pipelines CI/CD" },
-				{ id: 4, body: "Support technique et maintenance évolutive" },
+				{ id: "1", body: "Développement de fonctionnalités critiques pour des clients internationaux" },
+				{ id: "2", body: "Optimisation des performances de rendu côté client" },
+				{ id: "3", body: "Mise en place de pipelines CI/CD" },
+				{ id: "4", body: "Support technique et maintenance évolutive" },
 			],
 			formations: [],
 			technologies: [
-				{ id: 1, label: "React" },
-				{ id: 2, label: "TypeScript" },
-				{ id: 3, label: "Node.js" },
-				{ id: 4, label: "PostgreSQL" },
-				{ id: 5, label: "GraphQL" },
-				{ id: 6, label: "Docker" },
+				{ id: "1", label: "React" },
+				{ id: "2", label: "TypeScript" },
+				{ id: "3", label: "Node.js" },
+				{ id: "4", label: "PostgreSQL" },
+				{ id: "5", label: "GraphQL" },
+				{ id: "6", label: "Docker" },
 			],
 		},
 	],
 	projects: [
 		{
-			id: 1,
+			id: "1",
 			title: "OmniTask AI",
 			description:
 				"A comprehensive project management tool with AI-assisted task prioritization and automatic documentation generation.",
 			tags: [
-				{ id: 1, label: "Next.js" },
-				{ id: 2, label: "PostgreSQL" },
-				{ id: 3, label: "Tailwind CSS" },
+				{ id: "1", label: "Next.js" },
+				{ id: "2", label: "PostgreSQL" },
+				{ id: "3", label: "Tailwind CSS" },
 			],
 			image: "https://picsum.photos/seed/omnitask/600/400",
 			links: [
-				{ id: 1, label: "website", url: "https://omnitask.ai" },
-				{ id: 2, label: "gitHub", url: "https://github.com/jeyofdev/omnitask" },
+				{ id: "1", label: "website", url: "https://omnitask.ai" },
+				{ id: "2", label: "gitHub", url: "https://github.com/jeyofdev/omnitask" },
 			],
 		},
 		{
-			id: 2,
+			id: "2",
 			title: "PulseCommerce",
 			description:
 				"A high-performance headless e-commerce engine built for extreme scalability and 100ms response times.",
 			tags: [
-				{ id: 1, label: "React" },
-				{ id: 2, label: "Node.js" },
-				{ id: 3, label: "GraphQL" },
+				{ id: "1", label: "React" },
+				{ id: "2", label: "Node.js" },
+				{ id: "3", label: "GraphQL" },
 			],
 			image: "https://picsum.photos/seed/pulse/600/400",
 			links: [
-				{ id: 1, label: "website", url: "https://pulsecommerce.com" },
-				{ id: 2, label: "gitHub", url: "https://github.com/jeyofdev/pulsecommerce" },
+				{ id: "1", label: "website", url: "https://pulsecommerce.com" },
+				{ id: "2", label: "gitHub", url: "https://github.com/jeyofdev/pulsecommerce" },
 			],
 		},
 		{
-			id: 3,
+			id: "3",
 			title: "WeatherApp",
 			description: "Un tableau de bord météo en temps réel construit avec React et l'API OpenWeather.",
 			tags: [
-				{ id: 1, label: "React" },
-				{ id: 2, label: "TypeScript" },
+				{ id: "1", label: "React" },
+				{ id: "2", label: "TypeScript" },
 			],
 			image: "https://picsum.photos/seed/weather/600/400",
 			links: [
-				{ id: 1, label: "website", url: "https://weatherapp.com" },
-				{ id: 2, label: "gitHub", url: "https://github.com/jeyofdev/weatherapp" },
+				{ id: "1", label: "website", url: "https://weatherapp.com" },
+				{ id: "2", label: "gitHub", url: "https://github.com/jeyofdev/weatherapp" },
 			],
 		},
 	],
 	education: [
 		{
-			id: 1,
+			id: "1",
 			school: "EPITA - Graduate School of Computer Science",
 			degree: "Master's in Computer Science",
 			year: "2016 – 2018",
 			specialization: "Software Engineering",
 		},
 		{
-			id: 2,
+			id: "2",
 			school: "Professional Certification",
 			degree: "AWS Certified Solutions Architect",
 			year: "Earned 2022",

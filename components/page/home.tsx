@@ -14,7 +14,7 @@ import { Footer } from "@/components/layout/footer";
 export const Home = () => {
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
-			<Header variant="default" />
+			<Header variant="default" name={resumeData.name} />
 
 			<main className="flex-1 flex flex-col items-center bg-surface-muted">
 				{/* Hero Section */}

@@ -6,7 +6,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { DarkModeTheme } from "@/components/ui/button/dark-mode-theme";
 import { Tabs } from "@/components/ui/tabs/tabs";
-import { resumeData } from "@/data/resume-data";
 import { Typography } from "@/components/ui/typography/typography";
 import { Icon } from "@/components/ui/icon/icon";
 
@@ -30,9 +29,12 @@ const headerVariants = cva("", {
 	},
 });
 
-export type HeaderProps = React.HTMLAttributes<HTMLElement> & VariantProps<typeof headerVariants>;
+export type HeaderProps = React.HTMLAttributes<HTMLElement> &
+	VariantProps<typeof headerVariants> & {
+		name: string;
+	};
 
-export const Header = ({ className, variant, sticky, ...props }: HeaderProps) => {
+export const Header = ({ className, variant, sticky, name, ...props }: HeaderProps) => {
 	const [lang, setLang] = React.useState<Lang>("FR");
 	const langs: Lang[] = ["EN", "FR"];
 
@@ -51,7 +53,7 @@ export const Header = ({ className, variant, sticky, ...props }: HeaderProps) =>
 					/>
 
 					<Typography variant="h3" fontSize="lg" lineHeight="normal">
-						{resumeData.name}
+						{name}
 					</Typography>
 				</div>
 			)}
