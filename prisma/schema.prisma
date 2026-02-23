@@ -14,11 +14,10 @@ datasource db {
   url = env("DATABASE_URL")
 }
 
-model Resume {
+
+model Profile {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  title     String
-  summary   String
   email     String
   phone     String
   location  String
@@ -28,6 +27,21 @@ model Resume {
   social    Social
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // Relation
+  resumes    Resume[]
+}
+
+model Resume {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  summary   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+	// Relation to Profile
+	profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId String   @db.ObjectId
   
   // Relations
   skills      Skill[]

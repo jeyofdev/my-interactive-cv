@@ -27,6 +27,7 @@ export const getResumeById = async ({ resumeId }: getResumeByIdOptions): Promise
 				languages: true,
 				projects: true,
 				skills: true,
+				profile: true,
 			},
 		});
 

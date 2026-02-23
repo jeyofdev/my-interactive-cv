@@ -12,31 +12,39 @@ async function main() {
 	await prisma.language.deleteMany();
 	await prisma.skill.deleteMany();
 	await prisma.resume.deleteMany();
+	await prisma.profile.deleteMany();
+
+	console.log("👤 Creating Profile...");
+	const profile = await prisma.profile.create({
+		data: {
+			name: "jeyofdev",
+			email: "jeyofdev@tech.io",
+			phone: "+33 6 12 34 56 78",
+			location: "Paris, France",
+			birthDate: "15 May 1994",
+			vehicle: {
+				carLicense: true,
+				vehicule: true,
+			},
+			website: {
+				label: "jeyofdev.dev",
+				url: "http://jeyofdev.dev",
+			},
+			social: {
+				linkedin: {
+					label: "jeyofdev",
+					url: "linkedin.com/in/jeyofdev",
+				},
+				github: {
+					label: "jeyofdev",
+					url: "github.com/jeyofdev",
+				},
+			},
+		},
+	});
 
 	// Données communes pour tous les CV
-	const commonData = {
-		email: "jeyofdev@tech.io",
-		phone: "+33 6 12 34 56 78",
-		location: "Paris, France",
-		birthDate: "15 May 1994",
-		vehicle: {
-			carLicense: true,
-			vehicule: true,
-		},
-		website: {
-			label: "jeyofdev.dev",
-			url: "http://jeyofdev.dev",
-		},
-		social: {
-			linkedin: {
-				label: "jeyofdev",
-				url: "linkedin.com/in/jeyofdev",
-			},
-			github: {
-				label: "jeyofdev",
-				url: "github.com/jeyofdev",
-			},
-		},
+	const commonDatas = (resumeId: string) => ({
 		languages: {
 			create: [
 				{ label: "Français", level: "Maternel" },
@@ -68,17 +76,17 @@ async function main() {
 				},
 			],
 		},
-	};
+	});
 
 	// ========== RESUME 1: Fullstack Developer ==========
 	console.log("📝 Creating Resume 1: Fullstack Developer...");
 	const resume1 = await prisma.resume.create({
 		data: {
-			name: "jeyofdev",
 			title: "Fullstack Developer",
 			summary:
 				"Développeur Fullstack passionné avec 6+ ans d'expérience dans la création d'applications web modernes et scalables. Expertise en React, Node.js et architecture cloud. Spécialisé dans la transformation digitale et l'optimisation des performances.",
-			...commonData,
+			profile: { connect: { id: profile.id } },
+			...commonDatas(profile.id),
 			skills: {
 				create: [
 					{
@@ -217,25 +225,18 @@ async function main() {
 				],
 			},
 		},
-		include: {
-			skills: true,
-			languages: true,
-			hobbies: true,
-			experiences: true,
-			projects: true,
-			education: true,
-		},
+		include: { skills: true, languages: true, hobbies: true, experiences: true, projects: true, education: true },
 	});
 
 	// ========== RESUME 2: Frontend Specialist ==========
 	console.log("📝 Creating Resume 2: Frontend Specialist...");
 	const resume2 = await prisma.resume.create({
 		data: {
-			name: "jeyofdev",
 			title: "Frontend Specialist & UI/UX Developer",
 			summary:
 				"Spécialiste Frontend avec une forte sensibilité design et 5 ans d'expérience dans la création d'interfaces utilisateur modernes et accessibles. Expert en React, animations web et design systems. Passionné par l'expérience utilisateur et les performances frontend.",
-			...commonData,
+			profile: { connect: { id: profile.id } },
+			...commonDatas(profile.id),
 			skills: {
 				create: [
 					{
@@ -327,10 +328,7 @@ async function main() {
 								body: "Création de landing pages haute conversion avec animations sophistiquées",
 							},
 							{ id: new ObjectId().toString(), body: "Intégration pixel-perfect de maquettes Figma complexes" },
-							{
-								id: new ObjectId().toString(),
-								body: "Optimisation SEO et performances (score Lighthouse > 95)",
-							},
+							{ id: new ObjectId().toString(), body: "Optimisation SEO et performances (score Lighthouse > 95)" },
 						],
 						formations: [],
 						technologies: [
@@ -378,25 +376,18 @@ async function main() {
 				],
 			},
 		},
-		include: {
-			skills: true,
-			languages: true,
-			hobbies: true,
-			experiences: true,
-			projects: true,
-			education: true,
-		},
+		include: { skills: true, languages: true, hobbies: true, experiences: true, projects: true, education: true },
 	});
 
 	// ========== RESUME 3: Backend & DevOps Engineer ==========
 	console.log("📝 Creating Resume 3: Backend & DevOps Engineer...");
 	const resume3 = await prisma.resume.create({
 		data: {
-			name: "jeyofdev",
 			title: "Backend & DevOps Engineer",
 			summary:
 				"Ingénieur Backend et DevOps avec 7 ans d'expérience dans la conception d'architectures distribuées scalables et la mise en place d'infrastructures cloud. Expert en microservices, conteneurisation et automatisation. Spécialisé dans l'optimisation des performances et la fiabilité des systèmes.",
-			...commonData,
+			profile: { connect: { id: profile.id } },
+			...commonDatas(profile.id),
 			skills: {
 				create: [
 					{
@@ -548,25 +539,18 @@ async function main() {
 				],
 			},
 		},
-		include: {
-			skills: true,
-			languages: true,
-			hobbies: true,
-			experiences: true,
-			projects: true,
-			education: true,
-		},
+		include: { skills: true, languages: true, hobbies: true, experiences: true, projects: true, education: true },
 	});
 
 	// ========== RESUME 4: Mobile & Cross-Platform Developer ==========
 	console.log("📝 Creating Resume 4: Mobile & Cross-Platform Developer...");
 	const resume4 = await prisma.resume.create({
 		data: {
-			name: "jeyofdev",
 			title: "Mobile & Cross-Platform Developer",
 			summary:
 				"Développeur mobile passionné avec 5 ans d'expérience dans la création d'applications iOS et Android natives et cross-platform. Expert en React Native, Flutter et optimisation des performances mobile. Spécialisé dans la création d'expériences utilisateur fluides et l'intégration de fonctionnalités natives.",
-			...commonData,
+			profile: { connect: { id: profile.id } },
+			...commonDatas(profile.id),
 			skills: {
 				create: [
 					{
@@ -633,10 +617,7 @@ async function main() {
 							},
 						],
 						formations: [
-							{
-								id: new ObjectId().toString(),
-								label: "React Native Advanced Patterns & iOS/Android Native Modules",
-							},
+							{ id: new ObjectId().toString(), label: "React Native Advanced Patterns & iOS/Android Native Modules" },
 						],
 						technologies: [
 							{ id: new ObjectId().toString(), label: "React Native" },
@@ -714,17 +695,10 @@ async function main() {
 				],
 			},
 		},
-		include: {
-			skills: true,
-			languages: true,
-			hobbies: true,
-			experiences: true,
-			projects: true,
-			education: true,
-		},
+		include: { skills: true, languages: true, hobbies: true, experiences: true, projects: true, education: true },
 	});
 
-	console.log("✅ Successfully created 4 resumes!");
+	console.log("✅ Successfully created 1 profile and 4 resumes!");
 }
 
 main()

@@ -48,8 +48,8 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 	const formatVehiculeLabel = () => {
 		const output = "";
 
-		if (data.vehicle.carLicense && !data.vehicle.vehicule) return "Permis B";
-		else if (data.vehicle.carLicense && data.vehicle.vehicule) return "Permis B + véhicule";
+		if (data.profile.vehicle.carLicense && !data.profile.vehicle.vehicule) return "Permis B";
+		else if (data.profile.vehicle.carLicense && data.profile.vehicle.vehicule) return "Permis B + véhicule";
 
 		return output;
 	};
@@ -63,7 +63,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 						<div className="relative size-32 rounded-full border-4 border-border-image shadow-xl overflow-hidden bg-primary/10">
 							<Image
 								src="/images/profile.jpg"
-								alt={`${data.name} Profile`}
+								alt={`${data.profile.name} Profile`}
 								fill
 								sizes="128px"
 								className="object-cover"
@@ -75,7 +75,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 					</div>
 
 					{/* Profile name + job */}
-					<Typography variant="h1">{data.name}</Typography>
+					<Typography variant="h1">{data.profile.name}</Typography>
 
 					<Typography variant="h6" className="mt-1">
 						{data.title}
@@ -87,20 +87,26 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 					</Typography>
 
 					<div className="mt-8 w-full space-y-4">
-						<ProfileItem icon="mail" label={data.email} />
-						<ProfileItem icon="phone_iphone" label={data.phone} />
-						<ProfileItem icon="cake" label={data.birthDate} />
+						<ProfileItem icon="mail" label={data.profile.email} />
+						<ProfileItem icon="phone_iphone" label={data.profile.phone} />
+						<ProfileItem icon="cake" label={data.profile.birthDate} />
 						<ProfileItem icon="directions_car" label={formatVehiculeLabel()} />
-						<ProfileItem icon="location_on" label={data.location} />
+						<ProfileItem icon="location_on" label={data.profile.location} />
 						<ProfileItem
 							icon="link"
-							label={data.social.linkedin.label}
+							label={data.profile.social.linkedin.label}
 							hasLink
-							href={data.social.linkedin.url}
+							href={data.profile.social.linkedin.url}
 							isSocial
 						/>
-						<ProfileItem icon="code" label={data.social.github.label} hasLink href={data.social.github.url} isSocial />
-						<ProfileItem icon="language" label={data.website.label} hasLink href={data.website.url} />
+						<ProfileItem
+							icon="code"
+							label={data.profile.social.github.label}
+							hasLink
+							href={data.profile.social.github.url}
+							isSocial
+						/>
+						<ProfileItem icon="language" label={data.profile.website.label} hasLink href={data.profile.website.url} />
 					</div>
 
 					<div className="mt-12 w-full text-left space-y-8">
@@ -153,7 +159,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 			</aside>
 
 			<main className="flex-1 flex flex-col bg-destructive">
-				<Header variant="resume" name={data.name} />
+				<Header variant="resume" name={data.profile.name} />
 
 				<div className="px-8 lg:px-12 py-12 max-w-4xl">
 					{/* Experience Section */}
@@ -249,7 +255,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 					</Button>
 				</div>
 
-				<Footer socialLinks={data.social} containerClassName="px-12" />
+				<Footer socialLinks={data.profile.social} containerClassName="px-12" />
 			</main>
 		</>
 	);

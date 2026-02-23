@@ -8,6 +8,7 @@ export type ResumeData = Prisma.ResumeGetPayload<{
 		languages: true;
 		projects: true;
 		skills: true;
+		profile: true;
 	};
 }>;
 
@@ -17,5 +18,6 @@ export type ResumePreviewData = Prisma.ResumeGetPayload<{
 		title: true;
 		summary: true;
 		projects: true;
+		profile: true;
 	};
 }>;
