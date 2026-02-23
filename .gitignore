@@ -49,4 +49,4 @@ eslint.config.js
 vite.config.ts
 /lib/generated/prisma
 
-/generated/prisma
+/prisma/generated
