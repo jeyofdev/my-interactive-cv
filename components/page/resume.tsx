@@ -3,11 +3,9 @@
 import { ProfileBlock } from "@/components/block/profile-block";
 import { ProfileItem } from "@/components/items/profile-item";
 import { ListRenderer } from "@/components/list/list-renderer";
-import { ChipBase } from "@/components/ui/chip/chip-base";
 import { Typography } from "@/components/ui/typography/typography";
-import { resumeData } from "@/data/resume-data";
 import Image from "next/image";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { SectionTitle } from "@/components/sections/section-title";
 import { TimelineBar, TimelineDot } from "@/components/ui/timeline/timeline";
 import { AccordionExperience } from "@/components/ui/accordion/accordion-experience";
@@ -20,6 +18,7 @@ import { Icon } from "@/components/ui/icon/icon";
 import { Header } from "@/components/layout/header";
 import { Chip } from "@/components/ui/chip/chip";
 import { getChipSkillColor } from "@/lib/utils";
+import { ResumeData } from "@/app/(resume)/cv/[id]/page";
 
 const tabItems = [
 	{
@@ -38,14 +37,18 @@ const tabItems = [
 
 export type ProjectView = "grid" | "list";
 
-export const Resume = () => {
+type ResumeProps = {
+	data: ResumeData;
+};
+
+export const Resume: FC<ResumeProps> = ({ data }) => {
 	const [projectView, setProjectView] = useState<ProjectView>("grid");
 
 	const formatVehiculeLabel = () => {
 		const output = "";
 
-		if (resumeData.vehicle.carLicense && !resumeData.vehicle.vehicule) return "Permis B";
-		else if (resumeData.vehicle.carLicense && resumeData.vehicle.vehicule) return "Permis B + véhicule";
+		if (data.vehicle.carLicense && !data.vehicle.vehicule) return "Permis B";
+		else if (data.vehicle.carLicense && data.vehicle.vehicule) return "Permis B + véhicule";
 
 		return output;
 	};
@@ -59,7 +62,7 @@ export const Resume = () => {
 						<div className="relative size-32 rounded-full border-4 border-border-image shadow-xl overflow-hidden bg-primary/10">
 							<Image
 								src="/images/profile.jpg"
-								alt={`${resumeData.name} Profile`}
+								alt={`${data.name} Profile`}
 								fill
 								sizes="128px"
 								className="object-cover"
@@ -71,43 +74,37 @@ export const Resume = () => {
 					</div>
 
 					{/* Profile name + job */}
-					<Typography variant="h1">{resumeData.name}</Typography>
+					<Typography variant="h1">{data.name}</Typography>
 
 					<Typography variant="h6" className="mt-1">
-						{resumeData.title}
+						{data.title}
 					</Typography>
 
 					{/* description summary */}
 					<Typography variant="lead" className="mt-4 px-2">
-						{resumeData.summary}
+						{data.summary}
 					</Typography>
 
 					<div className="mt-8 w-full space-y-4">
-						<ProfileItem icon="mail" label={resumeData.email} />
-						<ProfileItem icon="phone_iphone" label={resumeData.phone} />
-						<ProfileItem icon="cake" label={resumeData.birthDate} />
+						<ProfileItem icon="mail" label={data.email} />
+						<ProfileItem icon="phone_iphone" label={data.phone} />
+						<ProfileItem icon="cake" label={data.birthDate} />
 						<ProfileItem icon="directions_car" label={formatVehiculeLabel()} />
-						<ProfileItem icon="location_on" label={resumeData.location} />
+						<ProfileItem icon="location_on" label={data.location} />
 						<ProfileItem
 							icon="link"
-							label={resumeData.social.linkedin.label}
+							label={data.social.linkedin.label}
 							hasLink
-							href={resumeData.social.linkedin.url}
+							href={data.social.linkedin.url}
 							isSocial
 						/>
-						<ProfileItem
-							icon="code"
-							label={resumeData.social.github.label}
-							hasLink
-							href={resumeData.social.github.url}
-							isSocial
-						/>
-						<ProfileItem icon="language" label={resumeData.website.label} hasLink href={resumeData.website.url} />
+						<ProfileItem icon="code" label={data.social.github.label} hasLink href={data.social.github.url} isSocial />
+						<ProfileItem icon="language" label={data.website.label} hasLink href={data.website.url} />
 					</div>
 
 					<div className="mt-12 w-full text-left space-y-8">
 						<ListRenderer
-							list={resumeData.skills}
+							list={data.skills}
 							keyExtractor={(item) => item.id}
 							renderItem={(skillGroup) => (
 								<ProfileBlock
@@ -126,7 +123,7 @@ export const Resume = () => {
 
 						<ProfileBlock
 							category="Langues"
-							list={resumeData.languages}
+							list={data.languages}
 							keyExtractor={(item) => item.id}
 							renderItem={(lang) => (
 								<Chip variant="outline" color="default" size="small">
@@ -140,7 +137,7 @@ export const Resume = () => {
 						<ProfileBlock
 							variant="grid"
 							category="Loisirs"
-							list={resumeData.hobbies}
+							list={data.hobbies}
 							keyExtractor={(item) => item.id}
 							renderItem={(hobby) => <HobbyCard hobby={hobby} />}
 							variantTitle="hobby"
@@ -155,7 +152,7 @@ export const Resume = () => {
 			</aside>
 
 			<main className="flex-1 flex flex-col bg-destructive">
-				<Header variant="resume" />
+				<Header variant="resume" name={data.name} />
 
 				<div className="px-8 lg:px-12 py-12 max-w-4xl">
 					{/* Experience Section */}
@@ -167,11 +164,11 @@ export const Resume = () => {
 							<TimelineBar orientation="vertical" />
 
 							<ListRenderer
-								list={resumeData.experiences}
+								list={data.experiences}
 								keyExtractor={(item) => item.id}
-								renderItem={(experience) => (
+								renderItem={(experience, index) => (
 									<div className="relative pl-8">
-										<TimelineDot state={experience.id === 1 ? "active" : "inactive"} />
+										<TimelineDot state={index === 0 ? "active" : "inactive"} />
 										<AccordionExperience data={experience} />
 									</div>
 								)}
@@ -200,7 +197,7 @@ export const Resume = () => {
 						{projectView === "grid" ? (
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 								<ListRenderer
-									list={resumeData.projects}
+									list={data.projects}
 									keyExtractor={(item) => item.id}
 									renderItem={(project) => <ProjectGridCard project={project} />}
 								/>
@@ -208,12 +205,12 @@ export const Resume = () => {
 						) : (
 							<div className="grid grid-cols-1 gap-1">
 								<ListRenderer
-									list={resumeData.projects}
+									list={data.projects}
 									keyExtractor={(item) => item.id}
 									renderItem={(project, index) => (
 										<>
 											<ProjectListCard project={project} />
-											{index < resumeData.projects.length - 1 && <Divider variant="horizontal" className="mt-3" />}
+											{index < data.projects.length - 1 && <Divider variant="horizontal" className="mt-3" />}
 										</>
 									)}
 								/>
@@ -227,7 +224,7 @@ export const Resume = () => {
 
 						<div className="space-y-6">
 							<ListRenderer
-								list={resumeData.education}
+								list={data.education}
 								keyExtractor={(item) => item.id}
 								renderItem={(formation) => <EducationCard education={formation} />}
 							/>
@@ -235,7 +232,7 @@ export const Resume = () => {
 					</section>
 				</div>
 
-				<Footer socialLinks={resumeData.social} containerClassName="px-12" />
+				<Footer socialLinks={data.social} containerClassName="px-12" />
 			</main>
 		</>
 	);
