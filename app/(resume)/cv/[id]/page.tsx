@@ -1,4 +1,5 @@
 import { Resume } from "@/components/page/resume";
+import { useFetchDataResume } from "@/hook/useFetchDataResume";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@/prisma/generated/prisma/client";
 import { ResumeModel } from "@/prisma/generated/prisma/models";
@@ -9,31 +10,10 @@ type ResumePageProps = {
 	params: Promise<{ id: string }>;
 };
 
-export type ResumeData = Prisma.ResumeGetPayload<{
-	include: {
-		education: true;
-		experiences: true;
-		hobbies: true;
-		languages: true;
-		projects: true;
-		skills: true;
-	};
-}>;
-
 const ResumePage: FC<ResumePageProps> = async ({ params }) => {
 	const { id } = await params;
 
-	const data: ResumeData | null = await prisma.resume.findUnique({
-		where: { id },
-		include: {
-			education: true,
-			experiences: true,
-			hobbies: true,
-			languages: true,
-			projects: true,
-			skills: true,
-		},
-	});
+	const { data } = await useFetchDataResume({ resumedId: id });
 
 	if (!data) {
 		notFound();
