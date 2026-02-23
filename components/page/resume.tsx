@@ -19,6 +19,7 @@ import { Header } from "@/components/layout/header";
 import { Chip } from "@/components/ui/chip/chip";
 import { getChipSkillColor } from "@/lib/utils";
 import { ResumeData } from "@/types/resume-type";
+import { Button } from "@/components/ui/button/button";
 
 const tabItems = [
 	{
@@ -230,6 +231,22 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 							/>
 						</div>
 					</section>
+				</div>
+
+				<div className="flex justify-center pb-12">
+					<Button
+						variant="icon"
+						backgroundColor="primary"
+						color="white"
+						fontSize="lg"
+						borderRadius="xl"
+						icon="download"
+						iconSize="24px"
+						className="px-10 py-4 gap-3 shadow-2xl shadow-primary/30 transition-all hover:-translate-y-1 active:scale-95"
+						onClick={() => {}}
+					>
+						Download CV
+					</Button>
 				</div>
 
 				<Footer socialLinks={data.social} containerClassName="px-12" />
