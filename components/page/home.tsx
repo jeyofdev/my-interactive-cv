@@ -8,16 +8,17 @@ import { CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/
 import { Button } from "@/components/ui/button/button";
 import { Icon } from "@/components/ui/icon/icon";
 import { getChipSkillColor } from "@/lib/utils";
+import { resumeData } from "@/data/resume-data";
 import { Footer } from "@/components/layout/footer";
 
 export const Home = () => {
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
-			{/* <Header variant="default" /> */}
+			<Header variant="default" name={resumeData.name} />
 
-			{/* <main className="flex-1 flex flex-col items-center bg-surface-muted"> */}
-			{/* Hero Section */}
-			{/* <section className="max-w-5xl w-full px-6 py-16 lg:py-24 text-center">
+			<main className="flex-1 flex flex-col items-center bg-surface-muted">
+				{/* Hero Section */}
+				<section className="max-w-5xl w-full px-6 py-16 lg:py-24 text-center">
 					<div className="flex flex-col items-center">
 						<Chip variant="rounded" icon={<DotIcon />} className="mb-6">
 							Disponible pour de nouveaux projets
@@ -114,10 +115,10 @@ export const Home = () => {
 							)}
 						/>
 					</div>
-				</section> */}
+				</section>
 
-			{/* Call to Action Section */}
-			{/* <section className="w-full bg-white dark:bg-slate-900 border-t border-primary/10 px-6 py-20">
+				{/* Call to Action Section */}
+				<section className="w-full bg-white dark:bg-slate-900 border-t border-primary/10 px-6 py-20">
 					<div className="max-w-4xl mx-auto flex flex-col items-center text-center">
 						<Typography
 							variant="h2"
@@ -161,7 +162,7 @@ export const Home = () => {
 				</section>
 			</main>
 
-			<Footer socialLinks={resumeData.social} className="max-w-6xl mx-auto" /> */}
+			<Footer socialLinks={resumeData.social} className="max-w-6xl mx-auto" />
 		</div>
 	);
 };
