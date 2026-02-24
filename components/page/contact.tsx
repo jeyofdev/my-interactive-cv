@@ -11,6 +11,9 @@ import { Card, CardContent } from "@/components/ui/card/card-base";
 import { Icon } from "@/components/ui/icon/icon";
 import { GithubIcon } from "@/components/ui/icon/github-icon";
 import { LinkedinIcon } from "@/components/ui/icon/linkedin-icon";
+import { TextField } from "@/components/ui/form/text-field";
+import { Button } from "@/components/ui/button/button";
+import { TextareaField } from "@/components/ui/form/textarea-field";
 
 const socialIcons: Record<string, JSX.Element> = {
 	linkedin: <LinkedinIcon width="w-5" height="h-5" />,
@@ -18,9 +21,9 @@ const socialIcons: Record<string, JSX.Element> = {
 	portfolio: <span className="material-symbols-outlined">language</span>,
 };
 
-type ContactProps = { profile: ProfileData };
+type ContactProps = { profile: ProfileData; isDark?: boolean };
 
-export const Contact: FC<ContactProps> = ({ profile }) => {
+export const Contact: FC<ContactProps> = ({ profile, isDark = false }) => {
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
 			<Header variant="default" name={profile.name} />
@@ -129,6 +132,68 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 									{socialIcons["portfolio"]}
 								</a>
 							</div>
+						</div>
+					</div>
+
+					<div className="lg:col-span-3">
+						<div className="backdrop-blur-xl p-8 lg:p-12 rounded-2xl shadow-xl relative overflow-hidden bg-form-background border border-form-border transition-colors">
+							<div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
+							<div className="absolute bottom-0 left-0 w-64 h-64 bg-info/10 blur-[100px] rounded-full -ml-32 -mb-32"></div>
+
+							<form className="relative z-10 space-y-6">
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+									<TextField type="text" id="name" label="Your Name" name="name" placeholder="John Smith" required />
+
+									<TextField
+										type="email"
+										id="email"
+										label="Email Address"
+										name="email"
+										placeholder="john@company.com"
+										required
+									/>
+								</div>
+
+								<TextField type="text" id="subject" label="Subject" name="subject" placeholder="Subject" required />
+
+								<TextareaField
+									id="message"
+									label="Message"
+									name="message"
+									placeholder="Tell me more about your project goals..."
+									rows={5}
+									required
+								/>
+
+								<Button
+									variant="icon"
+									backgroundColor="primary"
+									color="white"
+									fontSize="lg"
+									icon="send"
+									iconSize="24px"
+									iconPosition="end"
+									border="base"
+									borderColor="primary"
+									borderRadius="xl"
+									className="w-full py-5 px-7 shadow-lg shadow-primary/25 transition-all"
+								>
+									Send Message
+								</Button>
+
+								<div className="flex justify-center pt-4 w-full">
+									<Typography
+										variant="small"
+										color="surface-muted-foreground-small"
+										fontSize="xs"
+										fontWeight="thin"
+										lineHeight="none"
+										textAlign="center"
+									>
+										Average response time: <span className="text-primary font-medium">Within 24 hours</span>
+									</Typography>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
