@@ -1,10 +1,10 @@
 import {
-	createInvalidResumeIdError,
+	createResumeInvalidIdError,
 	createResumeNotFoundError,
-	handlePrismaError,
-	throwResumeError,
+	handleResumePrismaError,
 } from "@/lib/error/resume-errors";
 import { prisma } from "@/lib/prisma";
+import { isAppError, throwAppError } from "@/types/error-type";
 import { ResumeData } from "@/types/resume-type";
 
 type getResumeByIdOptions = {
@@ -14,7 +14,7 @@ type getResumeByIdOptions = {
 export const getResumeById = async ({ resumeId }: getResumeByIdOptions): Promise<ResumeData> => {
 	// Check format ID
 	if (!resumeId || !/^[0-9a-fA-F]{24}$/.test(resumeId)) {
-		throwResumeError(createInvalidResumeIdError(resumeId));
+		throwAppError(createResumeInvalidIdError(resumeId));
 	}
 
 	try {
@@ -32,19 +32,15 @@ export const getResumeById = async ({ resumeId }: getResumeByIdOptions): Promise
 		});
 
 		if (!data) {
-			throwResumeError(createResumeNotFoundError(resumeId));
+			throwAppError(createResumeNotFoundError(resumeId));
 		}
 
 		return data as ResumeData;
 	} catch (error) {
 		// ResumeError
-		if (error instanceof Error && error.name === "ResumeNotFoundError") {
-			throw error;
-		}
+		if (isAppError(error)) throw error;
 
 		// transform Prisma error
-		const resumeError = handlePrismaError(error, resumeId);
-		throwResumeError(resumeError);
-		throw resumeError;
+		throw throwAppError(handleResumePrismaError(error, resumeId));
 	}
 };
