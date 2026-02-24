@@ -12,19 +12,17 @@ import { extractRecurringSkills, getChipSkillColor } from "@/lib/utils";
 import { Footer } from "@/components/layout/footer";
 import { FC } from "react";
 import { Link } from "@/components/ui/button/link";
-import { ResumePreviewData } from "@/types/resume-type";
+import { ProfileData, ResumePreviewData } from "@/types/resume-type";
 
 type HomeProps = {
 	data: ResumePreviewData[];
+	profile: ProfileData;
 };
 
-export const Home: FC<HomeProps> = ({ data }) => {
-	const name = data[0].profile.name;
-	const social = data[0].profile.social;
-
+export const Home: FC<HomeProps> = ({ data, profile }) => {
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
-			<Header variant="default" name={name} />
+			<Header variant="default" name={profile.name} />
 
 			<main className="flex-1 flex flex-col items-center bg-surface-muted">
 				{/* Hero Section */}
@@ -44,7 +42,7 @@ export const Home: FC<HomeProps> = ({ data }) => {
 						letterSpacing="custom-0.03em"
 						className="mb-6"
 					>
-						Bienvenue sur le portfolio de <span className="text-primary capitalize">{name}</span>
+						Bienvenue sur le portfolio de <span className="text-primary capitalize">{profile.name}</span>
 					</Typography>
 
 					<Typography
@@ -189,7 +187,7 @@ export const Home: FC<HomeProps> = ({ data }) => {
 				</section>
 			</main>
 
-			<Footer socialLinks={social} className="max-w-6xl mx-auto" />
+			<Footer socialLinks={profile.social} className="max-w-6xl mx-auto" />
 		</div>
 	);
 };
