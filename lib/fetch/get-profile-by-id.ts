@@ -24,6 +24,7 @@ export const getProfileById = async ({ profileId }: getProfileByIdOptions): Prom
 				id: true,
 				name: true,
 				social: true,
+				website: true,
 			},
 		});
 

@@ -27,5 +27,6 @@ export type ProfileData = Prisma.ProfileGetPayload<{
 		id: true;
 		name: true;
 		social: true;
+		website: true;
 	};
 }>;

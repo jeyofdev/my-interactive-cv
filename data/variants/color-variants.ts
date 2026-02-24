@@ -7,7 +7,8 @@ export type IconColorVariant =
 	| "link"
 	| "inherit"
 	| "info"
-	| "surface-muted-foreground-secondary";
+	| "surface-muted-foreground-secondary"
+	| "text-surface-muted-foreground-info";
 
 type ColorVariant =
 	| "default"
@@ -79,7 +80,8 @@ export const iconColorVariants: Record<IconColorVariant, string> = {
 	secondary: "text-icon-muted-foreground",
 	link: "text-link-icon-foreground",
 	inherit: "text-inherit",
-	info: "text-surface-muted-foreground-info",
+	"text-surface-muted-foreground-info": "text-surface-muted-foreground-info",
+	info: "text-info",
 	"surface-muted-foreground-secondary": "surface-muted-foreground-secondary",
 };
 
