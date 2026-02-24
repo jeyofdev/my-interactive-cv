@@ -1,11 +1,11 @@
-import {
-	createInvalidResumeIdError,
-	createResumeNotFoundError,
-	handlePrismaError,
-	throwResumeError,
-} from "@/lib/error/resume-errors";
 import { prisma } from "@/lib/prisma";
+import { isAppError, throwAppError } from "@/types/error-type";
 import { ProfileData } from "@/types/resume-type";
+import {
+	createProfileInvalidIdError,
+	createProfileNotFoundError,
+	handleProfilePrismaError,
+} from "../error/profile-errors";
 
 type getProfileByIdOptions = {
 	profileId: string;
@@ -14,7 +14,7 @@ type getProfileByIdOptions = {
 export const getProfileById = async ({ profileId }: getProfileByIdOptions): Promise<ProfileData> => {
 	// Check format ID
 	if (!profileId || !/^[0-9a-fA-F]{24}$/.test(profileId)) {
-		throwResumeError(createInvalidResumeIdError(profileId));
+		throwAppError(createProfileInvalidIdError(profileId));
 	}
 
 	try {
@@ -28,19 +28,15 @@ export const getProfileById = async ({ profileId }: getProfileByIdOptions): Prom
 		});
 
 		if (!data) {
-			throwResumeError(createResumeNotFoundError(profileId));
+			throwAppError(createProfileNotFoundError(profileId));
 		}
 
 		return data as ProfileData;
 	} catch (error) {
-		// ResumeError
-		if (error instanceof Error && error.name === "ResumeNotFoundError") {
-			throw error;
-		}
+		// ProfileError
+		if (isAppError(error)) throw error;
 
 		// transform Prisma error
-		const resumeError = handlePrismaError(error, profileId);
-		throwResumeError(resumeError);
-		throw resumeError;
+		throw throwAppError(handleProfilePrismaError(error, profileId));
 	}
 };

@@ -1,5 +1,5 @@
 import { Resume } from "@/components/page/resume";
-import { getResumeById } from "@/lib/fetch/getResumeById";
+import { getResumeById } from "@/lib/fetch/get-resume-by-id";
 import { notFound } from "next/navigation";
 import { FC } from "react";
 

@@ -1,4 +1,14 @@
-import { Prisma } from "@/prisma/generated/prisma/client";
+import { AppError, BaseErrorCode, hasErrorCode } from "@/types/error-type";
+import { createError, createInvalidIdError, createNotFoundError, handlePrismaError } from "./handle-error";
+
+export type ResumeErrorCode =
+	| BaseErrorCode
+	| "RESUME_NOT_FOUND"
+	| "RESUME_INVALID_ID"
+	| "RESUME_LOCKED"
+	| "RESUME_PARSE_ERROR";
+
+export type ResumeError = AppError<ResumeErrorCode>;
 
 export type ResumeErrorType =
 	| "RESUME_NOT_FOUND"
@@ -9,119 +19,29 @@ export type ResumeErrorType =
 	| "TIMEOUT_ERROR"
 	| "UNKNOWN_ERROR";
 
-export type ResumeError = {
-	name: string;
-	message: string;
-	statusCode: number;
-	code: ResumeErrorType;
-	cause?: unknown;
-};
+export const createResumeNotFoundError = (id: string): ResumeError =>
+	createNotFoundError("Resume", id, "RESUME_NOT_FOUND");
 
-/**
- * Functions to create errors
- *
- * @param id
- * @returns
- */
-export const createResumeNotFoundError = (id: string): ResumeError => {
-	return {
-		name: "ResumeNotFoundError",
-		message: `Resume with ID ${id} not found`,
-		statusCode: 404,
-		code: "RESUME_NOT_FOUND",
-	};
-};
+export const createResumeInvalidIdError = (id: string): ResumeError =>
+	createInvalidIdError("Resume", id, "RESUME_INVALID_ID");
 
-/**
- * Error if the ID is not an object ID
- * @param id
- * @returns
- */
-export const createInvalidResumeIdError = (id: string): ResumeError => {
-	return {
-		name: "InvalidResumeIdError",
-		message: `Invalid resume ID format: ${id}`,
-		statusCode: 400,
-		code: "INVALID_RESUME_ID",
-	};
-};
+export const createResumeLockedError = (id: string): ResumeError =>
+	createError("ResumeLockedError", `Resume "${id}" is locked`, 423, "RESUME_LOCKED");
 
-/**
- * Database error
- *
- * @param message
- * @param originalError
- * @param code
- * @returns
- */
-export const createDatabaseError = (
-	message: string,
-	originalError?: unknown,
-	code: ResumeErrorType = "DATABASE_ERROR",
-): ResumeError => {
-	return {
-		name: "DatabaseError",
-		message,
-		statusCode: 500,
-		code,
-		cause: originalError,
-	};
-};
+export const handleResumePrismaError = (error: unknown, resumeId?: string): ResumeError =>
+	handlePrismaError(error, {
+		entityId: resumeId,
+		entityName: "Resume",
+		codes: {
+			notFound: "RESUME_NOT_FOUND",
+			invalidId: "RESUME_INVALID_ID",
+			timeout: "TIMEOUT_ERROR",
+			database: "DATABASE_ERROR",
+			validation: "VALIDATION_ERROR",
+			connection: "CONNECTION_ERROR",
+			unknown: "UNKNOWN_ERROR",
+		},
+	});
 
-// Type checkers
-export const isResumeNotFoundError = (error: ResumeError): boolean => {
-	return error.code === "RESUME_NOT_FOUND";
-};
-
-export const isInvalidResumeIdError = (error: ResumeError): boolean => {
-	return error.code === "INVALID_RESUME_ID";
-};
-
-export const isDatabaseError = (error: ResumeError): boolean => {
-	return error.code === "DATABASE_ERROR";
-};
-
-// Prisma error handler
-export const handlePrismaError = (error: unknown, resumeId?: string): ResumeError => {
-	console.error("Prisma error:", error);
-
-	// Specific Prisma errors
-	if (error instanceof Prisma.PrismaClientKnownRequestError) {
-		switch (error.code) {
-			case "P2025": // Record not found
-				return createResumeNotFoundError(resumeId || "unknown");
-
-			case "P2023": // Inconsistent column data (invalid ObjectId format)
-				return createInvalidResumeIdError(resumeId || "unknown");
-
-			case "P2024": // Timed out
-				return createDatabaseError("Database timeout", error, "TIMEOUT_ERROR");
-
-			default:
-				return createDatabaseError(`Database error: ${error.code}`, error);
-		}
-	}
-
-	// Prisma validation error
-	if (error instanceof Prisma.PrismaClientValidationError) {
-		return createDatabaseError("Database validation error", error, "VALIDATION_ERROR");
-	}
-
-	// Database connection error
-	if (error instanceof Prisma.PrismaClientInitializationError) {
-		return createDatabaseError("Database connection failed", error, "CONNECTION_ERROR");
-	}
-
-	// Unknown error
-	return createDatabaseError(error instanceof Error ? error.message : "Unknown error", error, "UNKNOWN_ERROR");
-};
-
-// Helper to throw an error
-export const throwResumeError = (error: ResumeError): never => {
-	const errorObj = new Error(error.message);
-	errorObj.name = error.name;
-
-	Object.assign(errorObj, error);
-
-	throw errorObj;
-};
+export const isResumeNotFoundError = (e: ResumeError) => hasErrorCode(e, "RESUME_NOT_FOUND");
+export const isResumeInvalidIdError = (e: ResumeError) => hasErrorCode(e, "RESUME_INVALID_ID");

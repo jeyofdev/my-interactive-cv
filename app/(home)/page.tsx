@@ -1,6 +1,6 @@
 import { Home } from "@/components/page/home";
-import { getAllResumes } from "@/lib/fetch/getAllResumes";
-import { getProfileById } from "@/lib/fetch/getProfileById";
+import { getAllResumes } from "@/lib/fetch/get-all-resumes";
+import { getProfileById } from "@/lib/fetch/get-profile-by-id";
 
 const HomePage = async () => {
 	try {
