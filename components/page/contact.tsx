@@ -7,14 +7,12 @@ import { Footer } from "@/components/layout/footer";
 import { Typography } from "@/components/ui/typography/typography";
 import { ListRenderer } from "@/components/list/list-renderer";
 import { contactData } from "@/data/contact-data";
-import { Card, CardContent } from "@/components/ui/card/card-base";
-import { Icon } from "@/components/ui/icon/icon";
 import { GithubIcon } from "@/components/ui/icon/github-icon";
 import { LinkedinIcon } from "@/components/ui/icon/linkedin-icon";
-import { TextField } from "@/components/ui/form/text-field";
-import { TextareaField } from "@/components/ui/form/textarea-field";
-import { Alert } from "@/components/ui/alert/alert";
-import { FormButton } from "@/components/ui/button/form-button";
+import { SocialLink } from "@/components/ui/button/link/social-link";
+import { ContactCard } from "@/components/ui/card/cards";
+import { ContactForm } from "@/components/form/contact-form";
+import { ConfirmFormSuccess } from "@/components/form/confirm-form-success";
 
 const socialIcons: Record<string, JSX.Element> = {
 	linkedin: <LinkedinIcon width="w-5" height="h-5" />,
@@ -96,34 +94,7 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 							<ListRenderer
 								list={contactData}
 								keyExtractor={(item) => item.id}
-								renderItem={(contact, index) => (
-									<Card className="group relative flex-row items-center gap-6 p-5 border-border-card-education bg-card-education-background rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all">
-										<Icon
-											variant="rounded"
-											icon="mail"
-											size="26px"
-											color={index % 2 === 0 ? "primary" : "info"}
-											backgroundColor={index % 2 === 0 ? "primary/10" : "info/10"}
-											containerSize="48px"
-										/>
-
-										<CardContent className="flex flex-col items-start flex-wrap gap-2 px-0">
-											<Typography variant="small" fontSize="xs" fontWeight="semibold" textTransform="uppercase">
-												{contact.label}
-											</Typography>
-
-											<Typography
-												variant="small"
-												color="surface-muted-foreground-secondary"
-												fontSize="sm"
-												fontWeight="medium"
-												lineHeight="none"
-											>
-												{contact.value}
-											</Typography>
-										</CardContent>
-									</Card>
-								)}
+								renderItem={(contact, index) => <ContactCard contact={contact} index={index} />}
 							/>
 						</div>
 						<div className="pt-6">
@@ -146,113 +117,39 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 									list={Object.entries(profile.social).map(([key, value]) => ({ id: key, ...value }))}
 									keyExtractor={(item) => item.id}
 									renderItem={(link, index) => (
-										<a
-											href={link.url}
-											target="_blank"
-											className="flex items-center justify-center w-12 h-12 rounded-full bg-[#0f172a]/60 backdrop-blur-xl border border-white/10 text-slate-300 hover:text-[#10b981] hover:border-[#10b981]/50 transition-all transform hover:-translate-y-1"
-										>
-											{socialIcons[Object.keys(profile.social)[index]]}
-										</a>
+										<SocialLink href={link.url} icon={socialIcons[Object.keys(profile.social)[index]]} />
 									)}
 								/>
 
-								<a
-									href={profile.website.url}
-									target="_blank"
-									className="flex items-center justify-center w-12 h-12 rounded-full bg-[#0f172a]/60 backdrop-blur-xl border border-white/10 text-slate-300 hover:text-[#10b981] hover:border-[#10b981]/50 transition-all transform hover:-translate-y-1"
-								>
-									{socialIcons["portfolio"]}
-								</a>
+								<SocialLink href={profile.website.url} icon={socialIcons["portfolio"]} />
 							</div>
 						</div>
 					</div>
 
+					{/* Right column */}
 					<div className="lg:col-span-3">
 						<div className="backdrop-blur-xl p-8 lg:p-12 rounded-2xl shadow-xl relative overflow-hidden bg-form-background border border-form-border transition-colors">
 							<div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
 							<div className="absolute bottom-0 left-0 w-64 h-64 bg-info/10 blur-[100px] rounded-full -ml-32 -mb-32"></div>
 
 							{!pending && formState.status === "success" ? (
-								<div className="relative z-10 flex flex-col items-center justify-center py-12 text-center">
-									<div className="size-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
-										<Icon icon="check_circle" size="35px" />
-									</div>
-
-									<Typography variant="h3" fontSize="2xl" letterSpacing="normal" className="mb-2">
-										Message Sent!
-									</Typography>
-
-									<Typography
-										variant="lead"
-										color="form-confirm-foreground"
-										fontSize="base"
-										lineHeight="relaxed"
-										fontWeight="normal"
-										letterSpacing="normal"
-										textAlign="center"
-									>
-										Thank you for your message. I'll get back to you within 24 hours.
-									</Typography>
-								</div>
+								<ConfirmFormSuccess
+									title="Message Sent !"
+									content="Thank you for your message. I'll get back to you within 24 hours."
+								/>
 							) : (
-								<>
-									{formState.status && formState.status === "error" && (
-										<Alert
-											variant="danger"
-											title="Your subscription will expire in 3 days."
-											description="Renew now to avoid service interruption or upgrade to a paid plan to continue using the service."
-											className="mb-8"
-										/>
-									)}
-
-									<form action={formAction} className="relative z-10 space-y-6">
-										<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-											<TextField
-												type="text"
-												id="name"
-												label="Your Name"
-												name="name"
-												placeholder="John Smith"
-												required
-											/>
-
-											<TextField
-												type="email"
-												id="email"
-												label="Email Address"
-												name="email"
-												placeholder="john@company.com"
-												required
-											/>
-										</div>
-
-										<TextField type="text" id="subject" label="Subject" name="subject" placeholder="Subject" required />
-
-										<TextareaField
-											id="message"
-											label="Message"
-											name="message"
-											placeholder="Tell me more about your project goals..."
-											rows={5}
-											required
-										/>
-
-										<FormButton>Send Message</FormButton>
-
-										<div className="flex justify-center pt-4 w-full">
-											<Typography
-												variant="small"
-												color="surface-muted-foreground-small"
-												fontSize="xs"
-												fontWeight="thin"
-												lineHeight="none"
-												textAlign="center"
-											>
-												Average response time: <span className="text-primary font-medium">Within 24 hours</span>
-											</Typography>
-										</div>
-									</form>
-								</>
+								<ContactForm
+									action={formAction}
+									status={formState.status}
+									buttonLabel="Send Message"
+									subtitle={
+										<>
+											Average response time: <span className="text-primary font-medium">Within 24 hours</span>
+										</>
+									}
+									alertTitle="Your subscription will expire in 3 days."
+									alertDescription="Renew now to avoid service interruption or upgrade to a paid plan to continue using the service."
+								/>
 							)}
 						</div>
 					</div>
