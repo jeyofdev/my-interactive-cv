@@ -1,6 +1,7 @@
 "use client";
 
-import { ProfileData, ResumePreviewData } from "@/types/resume-type";
+import { ProfileData } from "@/types/profile-type";
+import { ResumePreviewData } from "@/types/resume-type";
 import { createContext, FC, ReactNode, useState, Dispatch, SetStateAction } from "react";
 
 type ProfileContextType = {

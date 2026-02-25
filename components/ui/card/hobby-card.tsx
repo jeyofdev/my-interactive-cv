@@ -1,10 +1,10 @@
-import { Hobby } from "@/data/resume-data";
 import { FC } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card/card-base";
 import { Typography } from "@/components/ui/typography/typography";
+import { Hobby } from "@/prisma/generated/prisma/client";
 
 type HobbyCard = {
-	hobby: Hobby;
+	hobby: Omit<Hobby, "resumeId">;
 };
 
 export const HobbyCard: FC<HobbyCard> = ({ hobby }) => {

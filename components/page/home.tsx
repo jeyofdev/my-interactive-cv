@@ -10,7 +10,8 @@ import { Icon } from "@/components/ui/icon/icon";
 import { extractRecurringSkills, getChipSkillColor } from "@/lib/utils";
 import { FC } from "react";
 import { Link } from "@/components/ui/button/link";
-import { ProfileData, ResumePreviewData } from "@/types/resume-type";
+import { ResumePreviewData } from "@/types/resume-type";
+import { ProfileData } from "@/types/profile-type";
 
 type HomeProps = {
 	data: ResumePreviewData[];

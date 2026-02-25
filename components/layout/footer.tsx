@@ -1,8 +1,17 @@
 import { FC } from "react";
 import { Typography } from "@/components/ui/typography/typography";
 import { ListRenderer } from "@/components/list/list-renderer";
-import { Social } from "@/data/resume-data";
 import { cn } from "@/lib/utils";
+
+export type Link = {
+	label: string;
+	url: string;
+};
+
+export type Social = {
+	linkedin: Link;
+	github: Link;
+};
 
 type MainFooterProps = {
 	socialLinks: Social;

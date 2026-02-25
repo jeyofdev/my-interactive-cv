@@ -21,12 +21,3 @@ export type ResumePreviewData = Prisma.ResumeGetPayload<{
 		profile: true;
 	};
 }>;
-
-export type ProfileData = Prisma.ProfileGetPayload<{
-	select: {
-		id: true;
-		name: true;
-		social: true;
-		website: true;
-	};
-}>;

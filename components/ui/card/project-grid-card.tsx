@@ -3,14 +3,14 @@ import { Typography } from "@/components/ui/typography/typography";
 import { Icon } from "@/components/ui/icon/icon";
 import { ListRenderer } from "@/components/list/list-renderer";
 import { Chip } from "@/components/ui/chip/chip";
-import { Project } from "@/data/resume-data";
 import { FC } from "react";
 import { getChipSkillColor } from "@/lib/utils";
 import { GithubIcon } from "@/components/ui/icon/github-icon";
 import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card-base";
+import { Project } from "@/prisma/generated/prisma/client";
 
 export type ProjectGridCardProps = {
-	project: Project;
+	project: Omit<Project, "resumeId">;
 };
 
 export const ProjectGridCard: FC<ProjectGridCardProps> = ({ project }) => {
