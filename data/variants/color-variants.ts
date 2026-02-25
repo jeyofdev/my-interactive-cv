@@ -37,7 +37,9 @@ type TypographyColorVariant =
 	| "accordion-muted-foreground-title"
 	| "surface-muted-foreground-title"
 	| "link-surface-foreground"
-	| "surface-muted-foreground-small";
+	| "surface-muted-foreground-small"
+	| "form-confirm-foreground"
+	| "inherit";
 type TimelineColorVariant = Exclude<ColorVariant, "base">;
 type TimelineBackgroundColorVariant = Exclude<ColorVariant, "base"> | "transparent";
 type IconBackgroundColorVariant = ColorVariant | "primary/10" | "transparent";
@@ -131,6 +133,8 @@ export const typographyColorVariants: Record<TypographyColorVariant, string> = {
 	"surface-muted-foreground-title": "text-surface-muted-foreground-title",
 	"link-surface-foreground": "text-link-surface-foreground",
 	"surface-muted-foreground-small": "text-surface-muted-foreground-small",
+	"form-confirm-foreground": "text-form-confirm-foreground",
+	inherit: "text-inherit",
 };
 
 export const blockTitleBorderColorVariants: Record<BlockTitleBorderColorVariant, string> = {

@@ -145,6 +145,7 @@
 	/* form */
 	--color-form-background: var(--form-background);
 	--color-form-border: var(--form-border);
+	--color-form-confirm-foreground: var(--form-confirm-foreground);
 
 	--color-input-focus-within: var(--input-focus-within);
 	--color-label-focus-within: var(--label-focus-within);
@@ -156,6 +157,10 @@
 	--color-input-focus-shadow: var(--input-focus-shadow);
 
 	--color-placeholder-foreground: var(--placeholder-foreground);
+
+	--color-alert-danger-background: var(--alert-danger-background);
+	--color-alert-danger-border: var(--alert-danger-border);
+	--color-alert-danger-foreground: var(--alert-danger-foreground);
 
 	/* Fonts */
 	--font-display: 'Inter', 'sans-serif';
@@ -283,6 +288,7 @@
 
 	--form-background: theme(--color-white);
 	--form-border: theme(--color-white / 10%);
+	--form-confirm-foreground: theme(--color-slate-400);
 
 	--input-focus-within: oklch(69.588% 0.14907 162.508);
 	--label-focus-within: theme(--color-info);
@@ -293,6 +299,10 @@
 	--input-focus-shadow: '0_0_15px_rgba(25,127,230,0.3)';
 
 	--placeholder-foreground: theme(--color-slate-400);
+
+	--alert-danger-background: theme(--color-danger / 10%);
+	--alert-danger-border: theme(--color-danger / 15%);
+	--alert-danger-foreground: theme(--color-amber-900 / 90%);
 }
 
 .dark {
@@ -382,6 +392,7 @@
 
 	--form-background: oklch(21.009% 0.03179 264.678);
 	--form-border: theme(--color-white / 10%);
+	--form-confirm-foreground: theme(--color-slate-500);
 
 	--label-focus-within: theme(--color-info);
 	--input-focus-within: theme(--color-info);
@@ -392,6 +403,10 @@
 	--input-focus-shadow: '0_0_15px_rgba(25,127,230,0.1)';
 
 	--placeholder-foreground: theme(--color-slate-600);
+
+	--alert-danger-background: theme(--color-danger / 15%);
+	--alert-danger-border: theme(--color-danger / 18%);
+	--alert-danger-foreground: theme(--color-red-200 / 80%);
 }
 
 @layer base {

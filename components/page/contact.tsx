@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, JSX } from "react";
+import { FC, JSX, useActionState, useState } from "react";
 import { Header } from "@/components/layout/header";
 import { ProfileData } from "@/types/resume-type";
 import { Footer } from "@/components/layout/footer";
@@ -12,8 +12,9 @@ import { Icon } from "@/components/ui/icon/icon";
 import { GithubIcon } from "@/components/ui/icon/github-icon";
 import { LinkedinIcon } from "@/components/ui/icon/linkedin-icon";
 import { TextField } from "@/components/ui/form/text-field";
-import { Button } from "@/components/ui/button/button";
 import { TextareaField } from "@/components/ui/form/textarea-field";
+import { Alert } from "@/components/ui/alert/alert";
+import { FormButton } from "@/components/ui/button/form-button";
 
 const socialIcons: Record<string, JSX.Element> = {
 	linkedin: <LinkedinIcon width="w-5" height="h-5" />,
@@ -22,8 +23,39 @@ const socialIcons: Record<string, JSX.Element> = {
 };
 
 type ContactProps = { profile: ProfileData; isDark?: boolean };
+type FormState = { message: string; status: string };
 
-export const Contact: FC<ContactProps> = ({ profile, isDark = false }) => {
+export const Contact: FC<ContactProps> = ({ profile }) => {
+	const [formState, formAction, pending] = useActionState(
+		async (prevState: FormState, formData: FormData) => {
+			// simule delay to test pending
+			await new Promise((resolve) => {
+				setTimeout(resolve, 5000);
+			});
+
+			try {
+				const name = formData.get("name");
+				const email = formData.get("email");
+				const subject = formData.get("subject");
+				const message = formData.get("message");
+
+				console.log({ name, email, subject, message });
+
+				return {
+					status: "success",
+					message: "Message sent successfully",
+				};
+			} catch (e) {
+				const errorMessage = e instanceof Error ? e.message : "Unknown error";
+				return {
+					status: "error",
+					message: "Something went wrong, " + errorMessage,
+				};
+			}
+		},
+		{ status: "idle", message: "" },
+	);
+
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
 			<Header variant="default" name={profile.name} />
@@ -140,60 +172,88 @@ export const Contact: FC<ContactProps> = ({ profile, isDark = false }) => {
 							<div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
 							<div className="absolute bottom-0 left-0 w-64 h-64 bg-info/10 blur-[100px] rounded-full -ml-32 -mb-32"></div>
 
-							<form className="relative z-10 space-y-6">
-								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-									<TextField type="text" id="name" label="Your Name" name="name" placeholder="John Smith" required />
+							{!pending && formState.status === "success" ? (
+								<div className="relative z-10 flex flex-col items-center justify-center py-12 text-center">
+									<div className="size-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+										<Icon icon="check_circle" size="35px" />
+									</div>
 
-									<TextField
-										type="email"
-										id="email"
-										label="Email Address"
-										name="email"
-										placeholder="john@company.com"
-										required
-									/>
-								</div>
+									<Typography variant="h3" fontSize="2xl" letterSpacing="normal" className="mb-2">
+										Message Sent!
+									</Typography>
 
-								<TextField type="text" id="subject" label="Subject" name="subject" placeholder="Subject" required />
-
-								<TextareaField
-									id="message"
-									label="Message"
-									name="message"
-									placeholder="Tell me more about your project goals..."
-									rows={5}
-									required
-								/>
-
-								<Button
-									variant="icon"
-									backgroundColor="primary"
-									color="white"
-									fontSize="lg"
-									icon="send"
-									iconSize="24px"
-									iconPosition="end"
-									border="base"
-									borderColor="primary"
-									borderRadius="xl"
-									className="w-full py-5 px-7 shadow-lg shadow-primary/25 transition-all"
-								>
-									Send Message
-								</Button>
-
-								<div className="flex justify-center pt-4 w-full">
 									<Typography
-										variant="small"
-										color="surface-muted-foreground-small"
-										fontSize="xs"
-										fontWeight="thin"
-										lineHeight="none"
+										variant="lead"
+										color="form-confirm-foreground"
+										fontSize="base"
+										lineHeight="relaxed"
+										fontWeight="normal"
+										letterSpacing="normal"
 										textAlign="center"
 									>
-										Average response time: <span className="text-primary font-medium">Within 24 hours</span>
+										Thank you for your message. I'll get back to you within 24 hours.
 									</Typography>
 								</div>
-							</form>
+							) : (
+								<>
+									{formState.status && formState.status === "error" && (
+										<Alert
+											variant="danger"
+											title="Your subscription will expire in 3 days."
+											description="Renew now to avoid service interruption or upgrade to a paid plan to continue using the service."
+											className="mb-8"
+										/>
+									)}
+
+									<form action={formAction} className="relative z-10 space-y-6">
+										<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+											<TextField
+												type="text"
+												id="name"
+												label="Your Name"
+												name="name"
+												placeholder="John Smith"
+												required
+											/>
+
+											<TextField
+												type="email"
+												id="email"
+												label="Email Address"
+												name="email"
+												placeholder="john@company.com"
+												required
+											/>
+										</div>
+
+										<TextField type="text" id="subject" label="Subject" name="subject" placeholder="Subject" required />
+
+										<TextareaField
+											id="message"
+											label="Message"
+											name="message"
+											placeholder="Tell me more about your project goals..."
+											rows={5}
+											required
+										/>
+
+										<FormButton>Send Message</FormButton>
+
+										<div className="flex justify-center pt-4 w-full">
+											<Typography
+												variant="small"
+												color="surface-muted-foreground-small"
+												fontSize="xs"
+												fontWeight="thin"
+												lineHeight="none"
+												textAlign="center"
+											>
+												Average response time: <span className="text-primary font-medium">Within 24 hours</span>
+											</Typography>
+										</div>
+									</form>
+								</>
+							)}
 						</div>
 					</div>
 				</div>
