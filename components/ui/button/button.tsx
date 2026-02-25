@@ -103,6 +103,7 @@ type ButtonProps = React.ComponentProps<"button"> &
 		colorHover?: string;
 		borderColor?: VariantProps<typeof buttonVariants>["borderColor"] | string;
 		borderColorHover?: string;
+		isPending?: boolean;
 	};
 
 export const Button = ({
@@ -128,6 +129,7 @@ export const Button = ({
 	borderColorHover,
 	typographyClassName,
 	iconClassName,
+	isPending,
 	children,
 	onMouseEnter,
 	onMouseLeave,
@@ -192,7 +194,7 @@ export const Button = ({
 			onMouseLeave={handleMouseLeave}
 			{...props}
 		>
-			{icon ? (
+			{icon && !isPending ? (
 				<Icon
 					variant="default"
 					icon={icon}

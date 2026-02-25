@@ -14,7 +14,10 @@ const iconVariants = cva("material-symbols-outlined", {
 			rounded: "items-center justify-center",
 		},
 		color: iconColorVariants,
-		backgroundColor: iconBackgroundColorVariants,
+		backgroundColor: {
+			...iconBackgroundColorVariants,
+			"info/10": "bg-info/10",
+		},
 		borderRadius: borderRadiusVariants,
 	},
 	defaultVariants: {
@@ -31,6 +34,7 @@ export type IconProps = React.HTMLAttributes<HTMLElement> &
 		size: string;
 		containerSize?: string;
 		fill?: boolean;
+		containerClassName?: string;
 		asChild?: boolean;
 	};
 
@@ -45,6 +49,7 @@ export const Icon = ({
 	fill = false,
 	asChild = false,
 	className,
+	containerClassName,
 	...props
 }: IconProps) => {
 	const IconComponent = (
@@ -64,7 +69,7 @@ export const Icon = ({
 	if (variant === "rounded") {
 		return (
 			<div
-				className={cn(iconVariants({ variant, color, backgroundColor, borderRadius }), className)}
+				className={cn(iconVariants({ variant, color, backgroundColor, borderRadius }), containerClassName)}
 				style={{ width: containerSize, height: containerSize, display: "flex" }}
 			>
 				{IconComponent}

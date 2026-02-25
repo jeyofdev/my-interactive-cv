@@ -7,7 +7,8 @@ export type IconColorVariant =
 	| "link"
 	| "inherit"
 	| "info"
-	| "surface-muted-foreground-secondary";
+	| "surface-muted-foreground-secondary"
+	| "text-surface-muted-foreground-info";
 
 type ColorVariant =
 	| "default"
@@ -35,7 +36,10 @@ type TypographyColorVariant =
 	| "text-current"
 	| "accordion-muted-foreground-title"
 	| "surface-muted-foreground-title"
-	| "link-surface-foreground";
+	| "link-surface-foreground"
+	| "surface-muted-foreground-small"
+	| "form-confirm-foreground"
+	| "inherit";
 type TimelineColorVariant = Exclude<ColorVariant, "base">;
 type TimelineBackgroundColorVariant = Exclude<ColorVariant, "base"> | "transparent";
 type IconBackgroundColorVariant = ColorVariant | "primary/10" | "transparent";
@@ -79,7 +83,8 @@ export const iconColorVariants: Record<IconColorVariant, string> = {
 	secondary: "text-icon-muted-foreground",
 	link: "text-link-icon-foreground",
 	inherit: "text-inherit",
-	info: "text-surface-muted-foreground-info",
+	"text-surface-muted-foreground-info": "text-surface-muted-foreground-info",
+	info: "text-info",
 	"surface-muted-foreground-secondary": "surface-muted-foreground-secondary",
 };
 
@@ -127,6 +132,9 @@ export const typographyColorVariants: Record<TypographyColorVariant, string> = {
 	"accordion-muted-foreground-title": "text-accordion-muted-foreground-title",
 	"surface-muted-foreground-title": "text-surface-muted-foreground-title",
 	"link-surface-foreground": "text-link-surface-foreground",
+	"surface-muted-foreground-small": "text-surface-muted-foreground-small",
+	"form-confirm-foreground": "text-form-confirm-foreground",
+	inherit: "text-inherit",
 };
 
 export const blockTitleBorderColorVariants: Record<BlockTitleBorderColorVariant, string> = {

@@ -1,13 +1,16 @@
+import { cn } from "@/lib/utils";
 import { FC } from "react";
 
 type GithubIconProps = {
+	width?: string;
+	height?: string;
 	className?: string;
 };
 
-export const GithubIcon: FC<GithubIconProps> = ({ className }) => {
+export const GithubIcon: FC<GithubIconProps> = ({ className, width = "w-4.5", height = "w-4.5" }) => {
 	return (
 		<svg
-			className={`w-4.5 h-4.5 fill-current ${className ?? ""}`}
+			className={cn("fill-current", width, height, className)}
 			viewBox="0 0 24 24"
 			xmlns="http://www.w3.org/2000/svg"
 		>
