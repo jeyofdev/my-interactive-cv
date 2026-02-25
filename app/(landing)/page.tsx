@@ -1,16 +1,12 @@
+"use client";
+
 import { Home } from "@/components/page/home";
-import { getAllResumes } from "@/lib/fetch/get-all-resumes";
-import { getProfileById } from "@/lib/fetch/get-profile-by-id";
+import { useProfileContext } from "@/hook/use-profile-context";
 
-const HomePage = async () => {
-	try {
-		const resumes = await getAllResumes();
-		const profile = await getProfileById({ profileId: resumes[0].profile.id });
+const HomePage = () => {
+	const { profile, resumes } = useProfileContext();
 
-		return <Home data={resumes} profile={profile} />;
-	} catch (error) {
-		throw error;
-	}
+	return <Home data={resumes} profile={profile} />;
 };
 
 export default HomePage;

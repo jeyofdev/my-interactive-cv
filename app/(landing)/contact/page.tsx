@@ -1,16 +1,12 @@
+"use client";
+
 import { Contact } from "@/components/page/contact";
-import { getAllResumes } from "@/lib/fetch/get-all-resumes";
-import { getProfileById } from "@/lib/fetch/get-profile-by-id";
+import { useProfileContext } from "@/hook/use-profile-context";
 
-const ContactPage = async () => {
-	try {
-		const resumes = await getAllResumes();
-		const profile = await getProfileById({ profileId: resumes[0].profile.id });
+const ContactPage = () => {
+	const { profile } = useProfileContext();
 
-		return <Contact profile={profile} />;
-	} catch (error) {
-		throw error;
-	}
+	return <Contact profile={profile} />;
 };
 
 export default ContactPage;
