@@ -1,6 +1,7 @@
 "use server";
 
 import { Resend } from "resend";
+import { contactEmailTemplate } from "../emails/contact-email-template";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -27,12 +28,7 @@ export const sendContactEmail = async (_: FormState, formData: FormData): Promis
 			to: ["jgregoire.dev@gmail.com"],
 			replyTo: email,
 			subject: `[Contact] ${subject}`,
-			html: `
-				<h2>Nouveau message</h2>
-				<p><strong>Nom:</strong> ${name}</p>
-				<p><strong>Email:</strong> ${email}</p>
-				<p><strong>Message:</strong><br/>${message}</p>
-			`,
+			html: contactEmailTemplate({ name, email, subject, message }),
 		});
 
 		return {
