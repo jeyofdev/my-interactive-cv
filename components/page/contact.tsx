@@ -11,6 +11,7 @@ import { ContactCard } from "@/components/ui/card/cards";
 import { ContactForm } from "@/components/form/contact-form";
 import { ConfirmFormSuccess } from "@/components/form/confirm-form-success";
 import { ProfileData } from "@/types/profile-type";
+import { FormStatus, sendContactEmail } from "@/app/actions/send-contact-email";
 
 const socialIcons: Record<string, JSX.Element> = {
 	linkedin: <LinkedinIcon width="w-5" height="h-5" />,
@@ -22,41 +23,11 @@ type ContactProps = {
 	profile: ProfileData;
 };
 
-type FormState = {
-	message: string;
-	status: string;
-};
-
 export const Contact: FC<ContactProps> = ({ profile }) => {
-	const [formState, formAction, pending] = useActionState(
-		async (prevState: FormState, formData: FormData) => {
-			// simule delay to test pending
-			await new Promise((resolve) => {
-				setTimeout(resolve, 5000);
-			});
-
-			try {
-				const name = formData.get("name");
-				const email = formData.get("email");
-				const subject = formData.get("subject");
-				const message = formData.get("message");
-
-				console.log({ name, email, subject, message });
-
-				return {
-					status: "success",
-					message: "Message sent successfully",
-				};
-			} catch (e) {
-				const errorMessage = e instanceof Error ? e.message : "Unknown error";
-				return {
-					status: "error",
-					message: "Something went wrong, " + errorMessage,
-				};
-			}
-		},
-		{ status: "idle", message: "" },
-	);
+	const [formState, formAction, pending] = useActionState(sendContactEmail, {
+		status: "idle" as FormStatus,
+		message: "",
+	});
 
 	return (
 		<main className="min-h-screen flex-1 flex flex-col items-center bg-surface-muted">
