@@ -1,11 +1,11 @@
 import { Typography } from "@/components/ui/typography/typography";
 import { Icon } from "@/components/ui/icon/icon";
-import { Education } from "@/data/resume-data";
 import { FC } from "react";
 import { Card, CardContent } from "@/components/ui/card/card-base";
+import { Education } from "@/prisma/generated/prisma/client";
 
 export type EducationCardProps = {
-	education: Education;
+	education: Omit<Education, "resumeId">;
 };
 
 export const EducationCard: FC<EducationCardProps> = ({ education }) => {

@@ -1,7 +1,8 @@
 import { FC, ReactNode } from "react";
 import { Header } from "@/components/layout/header";
-import { ProfileData, ResumePreviewData } from "@/types/resume-type";
+import { ResumePreviewData } from "@/types/resume-type";
 import { Footer } from "@/components/layout/footer";
+import { ProfileData } from "@/types/profile-type";
 
 type LandingLayoutProps = {
 	profile: ProfileData;

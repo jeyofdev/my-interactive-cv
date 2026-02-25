@@ -1,5 +1,5 @@
 import { ChipBaseColor } from "@/components/ui/chip/chip-base";
-import { SkillItem, Tag } from "@/data/resume-data";
+import { SkillItem } from "@/prisma/generated/prisma/client";
 import { ResumePreviewData } from "@/types/resume-type";
 import { skillColorMap } from "@/types/skill-type";
 import { clsx, type ClassValue } from "clsx";

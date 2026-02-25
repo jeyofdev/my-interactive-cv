@@ -1,7 +1,6 @@
 "use client";
 
-import { FC, JSX, useActionState, useState } from "react";
-import { ProfileData } from "@/types/resume-type";
+import { FC, JSX, useActionState } from "react";
 import { Typography } from "@/components/ui/typography/typography";
 import { ListRenderer } from "@/components/list/list-renderer";
 import { contactData } from "@/data/contact-data";
@@ -11,6 +10,7 @@ import { SocialLink } from "@/components/ui/button/link/social-link";
 import { ContactCard } from "@/components/ui/card/cards";
 import { ContactForm } from "@/components/form/contact-form";
 import { ConfirmFormSuccess } from "@/components/form/confirm-form-success";
+import { ProfileData } from "@/types/profile-type";
 
 const socialIcons: Record<string, JSX.Element> = {
 	linkedin: <LinkedinIcon width="w-5" height="h-5" />,

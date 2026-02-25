@@ -3,12 +3,12 @@ import { Chip } from "../chip/chip";
 import { Typography } from "../typography/typography";
 import { Divider } from "../divider/divider";
 import { getChipSkillColor } from "@/lib/utils";
-import { Experience } from "@/data/resume-data";
 import { FC } from "react";
 import { CardContent, CardFooter } from "@/components/ui/card/card-base";
+import { Experience } from "@/prisma/generated/prisma/client";
 
 type AccordionExperienceContentProps = {
-	data: Experience;
+	data: Omit<Experience, "resumeId">;
 };
 
 const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data }) => {
@@ -50,7 +50,7 @@ const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data 
 							)}
 						/>
 
-						{data.id === 1 && (
+						{data.id === "1" && (
 							<Typography
 								variant="muted"
 								color="surface-muted-foreground-title"
@@ -65,7 +65,7 @@ const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data 
 					</ul>
 				</div>
 
-				{data.id === 1 && (
+				{data.id === "1" && (
 					<div>
 						<Typography
 							variant="muted"

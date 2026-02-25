@@ -1,11 +1,11 @@
 import { Chip } from "@/components/ui/chip/chip";
 import { Typography } from "@/components/ui/typography/typography";
 import { Divider } from "../divider/divider";
-import { Experience } from "@/data/resume-data";
 import { FC } from "react";
+import { Experience } from "@/prisma/generated/prisma/client";
 
 type AccordionExperienceTriggerProps = {
-	data: Experience;
+	data: Omit<Experience, "resumeId">;
 };
 
 export const AccordionExperienceTrigger: FC<AccordionExperienceTriggerProps> = ({ data }) => {
@@ -14,7 +14,7 @@ export const AccordionExperienceTrigger: FC<AccordionExperienceTriggerProps> = (
 			<div className="flex items-center gap-2.5 flex-wrap">
 				<Typography variant="h3">{data.role}</Typography>
 
-				{data.id === 1 && <Chip variant="info">Latest</Chip>}
+				{data.id === "1" && <Chip variant="info">Latest</Chip>}
 			</div>
 
 			<div className="flex justify-start items-center gap-1">

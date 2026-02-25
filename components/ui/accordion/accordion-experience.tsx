@@ -5,13 +5,13 @@ import {
 	AccordionTrigger,
 } from "@/components/ui/accordion/accordion-base";
 import { FC } from "react";
-import { Experience } from "@/data/resume-data";
 import { Divider } from "@/components/ui/divider/divider";
 import AccordionExperienceContent from "@/components/ui/accordion/accordion-experience-content";
 import { AccordionExperienceTrigger } from "./accordion-experience-trigger";
+import { Experience } from "@/prisma/generated/prisma/client";
 
 type AccordionExperienceProps = {
-	data: Experience;
+	data: Omit<Experience, "resumeId">;
 };
 
 export const AccordionExperience: FC<AccordionExperienceProps> = ({ data }) => {

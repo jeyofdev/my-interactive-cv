@@ -3,7 +3,8 @@ import { ProfileContextProvider } from "@/context/profile-context";
 import { getAllResumes } from "@/lib/fetch/get-all-resumes";
 import { getProfileById } from "@/lib/fetch/get-profile-by-id";
 import { cn } from "@/lib/utils";
-import { ProfileData, ResumePreviewData } from "@/types/resume-type";
+import { ProfileData } from "@/types/profile-type";
+import { ResumePreviewData } from "@/types/resume-type";
 import { ReactNode } from "react";
 
 const RootLayout = async ({

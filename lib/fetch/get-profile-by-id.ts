@@ -1,11 +1,11 @@
 import { prisma } from "@/lib/prisma";
 import { isAppError, throwAppError } from "@/types/error-type";
-import { ProfileData } from "@/types/resume-type";
 import {
 	createProfileInvalidIdError,
 	createProfileNotFoundError,
 	handleProfilePrismaError,
 } from "../error/profile-errors";
+import { ProfileData } from "@/types/profile-type";
 
 type getProfileByIdOptions = {
 	profileId: string;
