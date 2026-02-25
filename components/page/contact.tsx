@@ -1,9 +1,7 @@
 "use client";
 
 import { FC, JSX, useActionState, useState } from "react";
-import { Header } from "@/components/layout/header";
 import { ProfileData } from "@/types/resume-type";
-import { Footer } from "@/components/layout/footer";
 import { Typography } from "@/components/ui/typography/typography";
 import { ListRenderer } from "@/components/list/list-renderer";
 import { contactData } from "@/data/contact-data";
@@ -20,8 +18,14 @@ const socialIcons: Record<string, JSX.Element> = {
 	portfolio: <span className="material-symbols-outlined">language</span>,
 };
 
-type ContactProps = { profile: ProfileData; isDark?: boolean };
-type FormState = { message: string; status: string };
+type ContactProps = {
+	profile: ProfileData;
+};
+
+type FormState = {
+	message: string;
+	status: string;
+};
 
 export const Contact: FC<ContactProps> = ({ profile }) => {
 	const [formState, formAction, pending] = useActionState(
@@ -55,108 +59,102 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 	);
 
 	return (
-		<div className="relative flex min-h-screen w-full flex-col">
-			<Header variant="default" name={profile.name} />
+		<main className="min-h-screen flex-1 flex flex-col items-center bg-surface-muted">
+			<div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-5 gap-12 px-6 py-16 lg:py-24">
+				{/* Left Column */}
+				<div className="lg:col-span-2 space-y-12">
+					<div>
+						<Typography
+							variant="h1"
+							fontSize="5xl"
+							fontWeight="black"
+							textTransform="normal"
+							lineHeight="tight"
+							letterSpacing="custom-0.03em"
+							textAlign="left"
+							className="mb-6"
+						>
+							Let's <span className="text-primary capitalize">Connect</span>
+						</Typography>
 
-			<main className="min-h-screen flex-1 flex flex-col items-center bg-surface-muted">
-				<div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-5 gap-12 px-6 py-16 lg:py-24">
-					{/* Left Column */}
-					<div className="lg:col-span-2 space-y-12">
-						<div>
-							<Typography
-								variant="h1"
-								fontSize="5xl"
-								fontWeight="black"
-								textTransform="normal"
-								lineHeight="tight"
-								letterSpacing="custom-0.03em"
-								textAlign="left"
-								className="mb-6"
-							>
-								Let's <span className="text-primary capitalize">Connect</span>
-							</Typography>
-
-							<Typography
-								variant="lead"
-								fontSize="xl"
-								lineHeight="relaxed"
-								fontWeight="normal"
-								letterSpacing="normal"
-								textAlign="left"
-								className="max-w-2xl mx-auto"
-							>
-								Have a project in mind or just want to say hi? I'm always open to discussing new opportunities and
-								creative ideas.
-							</Typography>
-						</div>
-
-						<div className="space-y-6">
-							<ListRenderer
-								list={contactData}
-								keyExtractor={(item) => item.id}
-								renderItem={(contact, index) => <ContactCard contact={contact} index={index} />}
-							/>
-						</div>
-						<div className="pt-6">
-							<Typography
-								variant="h6"
-								color="surface-muted-foreground"
-								fontSize="sm"
-								lineHeight="relaxed"
-								fontWeight="semibold"
-								letterSpacing="widest"
-								textAlign="left"
-								textTransform="uppercase"
-								className="mb-6"
-							>
-								Social Networks
-							</Typography>
-
-							<div className="flex gap-4">
-								<ListRenderer
-									list={Object.entries(profile.social).map(([key, value]) => ({ id: key, ...value }))}
-									keyExtractor={(item) => item.id}
-									renderItem={(link, index) => (
-										<SocialLink href={link.url} icon={socialIcons[Object.keys(profile.social)[index]]} />
-									)}
-								/>
-
-								<SocialLink href={profile.website.url} icon={socialIcons["portfolio"]} />
-							</div>
-						</div>
+						<Typography
+							variant="lead"
+							fontSize="xl"
+							lineHeight="relaxed"
+							fontWeight="normal"
+							letterSpacing="normal"
+							textAlign="left"
+							className="max-w-2xl mx-auto"
+						>
+							Have a project in mind or just want to say hi? I'm always open to discussing new opportunities and
+							creative ideas.
+						</Typography>
 					</div>
 
-					{/* Right column */}
-					<div className="lg:col-span-3">
-						<div className="backdrop-blur-xl p-8 lg:p-12 rounded-2xl shadow-xl relative overflow-hidden bg-form-background border border-form-border transition-colors">
-							<div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
-							<div className="absolute bottom-0 left-0 w-64 h-64 bg-info/10 blur-[100px] rounded-full -ml-32 -mb-32"></div>
+					<div className="space-y-6">
+						<ListRenderer
+							list={contactData}
+							keyExtractor={(item) => item.id}
+							renderItem={(contact, index) => <ContactCard contact={contact} index={index} />}
+						/>
+					</div>
+					<div className="pt-6">
+						<Typography
+							variant="h6"
+							color="surface-muted-foreground"
+							fontSize="sm"
+							lineHeight="relaxed"
+							fontWeight="semibold"
+							letterSpacing="widest"
+							textAlign="left"
+							textTransform="uppercase"
+							className="mb-6"
+						>
+							Social Networks
+						</Typography>
 
-							{!pending && formState.status === "success" ? (
-								<ConfirmFormSuccess
-									title="Message Sent !"
-									content="Thank you for your message. I'll get back to you within 24 hours."
-								/>
-							) : (
-								<ContactForm
-									action={formAction}
-									status={formState.status}
-									buttonLabel="Send Message"
-									subtitle={
-										<>
-											Average response time: <span className="text-primary font-medium">Within 24 hours</span>
-										</>
-									}
-									alertTitle="Your subscription will expire in 3 days."
-									alertDescription="Renew now to avoid service interruption or upgrade to a paid plan to continue using the service."
-								/>
-							)}
+						<div className="flex gap-4">
+							<ListRenderer
+								list={Object.entries(profile.social).map(([key, value]) => ({ id: key, ...value }))}
+								keyExtractor={(item) => item.id}
+								renderItem={(link, index) => (
+									<SocialLink href={link.url} icon={socialIcons[Object.keys(profile.social)[index]]} />
+								)}
+							/>
+
+							<SocialLink href={profile.website.url} icon={socialIcons["portfolio"]} />
 						</div>
 					</div>
 				</div>
-			</main>
 
-			<Footer socialLinks={profile.social} className="max-w-6xl mx-auto" />
-		</div>
+				{/* Right column */}
+				<div className="lg:col-span-3">
+					<div className="backdrop-blur-xl p-8 lg:p-12 rounded-2xl shadow-xl relative overflow-hidden bg-form-background border border-form-border transition-colors">
+						<div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
+						<div className="absolute bottom-0 left-0 w-64 h-64 bg-info/10 blur-[100px] rounded-full -ml-32 -mb-32"></div>
+
+						{!pending && formState.status === "success" ? (
+							<ConfirmFormSuccess
+								title="Message Sent !"
+								content="Thank you for your message. I'll get back to you within 24 hours."
+							/>
+						) : (
+							<ContactForm
+								action={formAction}
+								status={formState.status}
+								buttonLabel="Send Message"
+								subtitle={
+									<>
+										Average response time: <span className="text-primary font-medium">Within 24 hours</span>
+									</>
+								}
+								alertTitle="Your subscription will expire in 3 days."
+								alertDescription="Renew now to avoid service interruption or upgrade to a paid plan to continue using the service."
+							/>
+						)}
+					</div>
+				</div>
+			</div>
+		</main>
 	);
 };
