@@ -11,7 +11,7 @@ import { ContactCard } from "@/components/ui/card/cards";
 import { ContactForm } from "@/components/form/contact-form";
 import { ConfirmFormSuccess } from "@/components/form/confirm-form-success";
 import { ProfileData } from "@/types/profile-type";
-import { FormStatus, sendContactEmail } from "@/app/actions/send-contact-email";
+import { FormStatus, sendContactEmail } from "@/app/[locale]/actions/send-contact-email";
 
 const socialIcons: Record<string, JSX.Element> = {
 	linkedin: <LinkedinIcon width="w-5" height="h-5" />,

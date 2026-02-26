@@ -12,6 +12,8 @@ import { FC } from "react";
 import { Link } from "@/components/ui/button/link";
 import { ResumePreviewData } from "@/types/resume-type";
 import { ProfileData } from "@/types/profile-type";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 type HomeProps = {
 	data: ResumePreviewData[];
@@ -19,13 +21,15 @@ type HomeProps = {
 };
 
 export const Home: FC<HomeProps> = ({ data, profile }) => {
+	const t = useTranslations("home");
+
 	return (
 		<main className="flex-1 flex flex-col items-center bg-surface-muted">
 			{/* Hero Section */}
 			<section className="max-w-5xl w-full px-6 py-10 sm:py-14 md:py-20 lg:py-24 text-center">
 				<div className="flex flex-col items-center">
 					<Chip variant="rounded" icon={<DotIcon />} className="mb-6">
-						Disponible pour de nouveaux projets
+						{t("subtitle")}
 					</Chip>
 				</div>
 

@@ -27,9 +27,18 @@ type TabsProps<T> = {
 	keyExtractor: (item: T) => string | number;
 	renderItem: (item: T, isActive: boolean) => React.ReactNode;
 	className?: string;
+	tabClassName?: string;
 };
 
-export const Tabs = <T,>({ items, value, onChange, keyExtractor, renderItem, className }: TabsProps<T>) => {
+export const Tabs = <T,>({
+	items,
+	value,
+	onChange,
+	keyExtractor,
+	renderItem,
+	className,
+	tabClassName,
+}: TabsProps<T>) => {
 	return (
 		<BaseTabs value={value}>
 			<TabsList className={cn("flex gap-2 bg-tabs-background rounded-lg w-fit p-1", className)}>
@@ -42,7 +51,7 @@ export const Tabs = <T,>({ items, value, onChange, keyExtractor, renderItem, cla
 							key={itemValue}
 							value={itemValue}
 							onClick={() => onChange(itemValue)}
-							className={cn(tabTriggerVariants({ intent: isActive ? "active" : "default" }))}
+							className={cn(tabTriggerVariants({ intent: isActive ? "active" : "default" }), tabClassName)}
 						>
 							{renderItem(item, isActive)}
 						</TabsTrigger>
