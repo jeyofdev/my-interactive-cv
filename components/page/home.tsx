@@ -22,7 +22,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 	return (
 		<main className="flex-1 flex flex-col items-center bg-surface-muted">
 			{/* Hero Section */}
-			<section className="max-w-5xl w-full px-6 py-16 lg:py-24 text-center">
+			<section className="max-w-5xl w-full px-6 py-10 sm:py-14 md:py-20 lg:py-24 text-center">
 				<div className="flex flex-col items-center">
 					<Chip variant="rounded" icon={<DotIcon />} className="mb-6">
 						Disponible pour de nouveaux projets
@@ -36,7 +36,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 					textTransform="normal"
 					lineHeight="tight"
 					letterSpacing="custom-0.03em"
-					className="mb-6"
+					className="mb-6 max-w-[500px] mx-auto"
 				>
 					Bienvenue sur le portfolio de <span className="text-primary capitalize">{profile.name}</span>
 				</Typography>
@@ -55,13 +55,13 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 				</Typography>
 			</section>
 
-			<section className="max-w-6xl w-full px-6 pb-24">
+			<section className="max-w-6xl w-full px-6 pb-10 sm:pb-14 md:pb-18 lg:pb-20 xl:pb-24">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
 					<ListRenderer
 						list={data}
 						keyExtractor={(item) => item.id}
 						renderItem={(resume) => (
-							<div className="group cursor-pointer relative flex flex-col overflow-hidden rounded-xl border border-primary/10 bg-card-home-background shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+							<div className="group max-w-[500px] mx-auto cursor-pointer relative flex flex-col overflow-hidden rounded-xl border border-primary/10 bg-card-home-background shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
 								<div className="aspect-video w-full bg-card-home-image-background overflow-hidden relative border-b border-border-light">
 									<div className="absolute inset-0 bg-gradient-to-bl from-primary/5 to-white opacity-60" />
 									<div className="absolute inset-0 flex items-center justify-center">
@@ -113,7 +113,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 										iconPosition="end"
 										href={`/cv/${resume.id}`}
 									>
-										Explorer la Vue Liste
+										Explorer
 									</Link>
 								</CardFooter>
 							</div>
@@ -123,7 +123,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 			</section>
 
 			{/* Call to Action Section */}
-			<section className="w-full bg-white dark:bg-slate-900 border-t border-primary/10 px-6 py-20">
+			<section className="w-full bg-white dark:bg-slate-900 border-t border-primary/10 px-6 py-10 sm:py-14 md:py-18 lg:py-20 xl:py-24">
 				<div className="max-w-4xl mx-auto flex flex-col items-center text-center">
 					<Typography
 						variant="h2"
@@ -132,6 +132,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 						textTransform="normal"
 						lineHeight="tight"
 						letterSpacing="normal"
+						textAlign="center"
 						className="mb-6"
 					>
 						Vous souhaitez collaborer ?
@@ -149,7 +150,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 						Contactez-moi directement pour discuter de vos projets.
 					</Typography>
 
-					<div className="flex justify-center sm:flex-row gap-4 w-full">
+					<div className="flex flex-col md:flex-row justify-center sm:flex-row gap-4 max-w-[300px] w-full">
 						<Button
 							variant="icon"
 							backgroundColor="primary"
@@ -164,20 +165,20 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 							Download CV global
 						</Button>
 
-						<Button
+						<Link
 							variant="icon"
-							color="primary"
 							backgroundColor="base"
+							color="primary"
 							fontSize="base"
 							icon="mail"
 							iconSize="24px"
 							border="base"
 							borderColor="primary/10"
 							className="px-7"
-							onClick={() => {}}
+							href="/contact"
 						>
 							Me contacter
-						</Button>
+						</Link>
 					</div>
 				</div>
 			</section>

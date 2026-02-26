@@ -31,10 +31,10 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 
 	return (
 		<main className="min-h-screen flex-1 flex flex-col items-center bg-surface-muted">
-			<div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-5 gap-12 px-6 py-16 lg:py-24">
+			<div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-5 gap-12 px-6 py-10 sm:py-14 md:py-18 lg:py-20 xl:py-24">
 				{/* Left Column */}
 				<div className="lg:col-span-2 space-y-12">
-					<div>
+					<div className="text-center lg:text-left">
 						<Typography
 							variant="h1"
 							fontSize="5xl"
@@ -42,8 +42,7 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 							textTransform="normal"
 							lineHeight="tight"
 							letterSpacing="custom-0.03em"
-							textAlign="left"
-							className="mb-6"
+							className="mb-6 text-center lg:text-left"
 						>
 							Let's <span className="text-primary capitalize">Connect</span>
 						</Typography>
@@ -54,22 +53,22 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 							lineHeight="relaxed"
 							fontWeight="normal"
 							letterSpacing="normal"
-							textAlign="left"
-							className="max-w-2xl mx-auto"
+							className="max-w-[500px] mx-auto text-center lg:text-left"
 						>
 							Have a project in mind or just want to say hi? I'm always open to discussing new opportunities and
 							creative ideas.
 						</Typography>
 					</div>
 
-					<div className="space-y-6">
+					<div className="space-y-6 max-w-[500px] mx-auto">
 						<ListRenderer
 							list={contactData}
 							keyExtractor={(item) => item.id}
 							renderItem={(contact, index) => <ContactCard contact={contact} index={index} />}
 						/>
 					</div>
-					<div className="pt-6">
+
+					<div className="flex flex-col items-center lg:items-start">
 						<Typography
 							variant="h6"
 							color="surface-muted-foreground"
@@ -100,7 +99,7 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 
 				{/* Right column */}
 				<div className="lg:col-span-3">
-					<div className="backdrop-blur-xl p-8 lg:p-12 rounded-2xl shadow-xl relative overflow-hidden bg-form-background border border-form-border transition-colors">
+					<div className="backdrop-blur-xl p-8 lg:p-12 py-10 sm:py-14 md:py-18 lg:py-20 xl:py-24 max-w-[700px] mx-auto rounded-2xl shadow-xl relative overflow-hidden bg-form-background border border-form-border transition-colors">
 						<div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
 						<div className="absolute bottom-0 left-0 w-64 h-64 bg-info/10 blur-[100px] rounded-full -ml-32 -mb-32"></div>
 

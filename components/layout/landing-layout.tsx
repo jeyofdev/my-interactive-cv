@@ -13,7 +13,7 @@ type LandingLayoutProps = {
 export const LandingLayout: FC<LandingLayoutProps> = ({ profile, resumes, children }) => {
 	return (
 		<div className="relative flex min-h-screen w-full flex-col">
-			<Header variant="default" name={profile.name} />
+			<Header variant="default" name={profile.name} showDownload />
 
 			{children}
 

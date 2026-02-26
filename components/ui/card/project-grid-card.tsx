@@ -15,7 +15,7 @@ export type ProjectGridCardProps = {
 
 export const ProjectGridCard: FC<ProjectGridCardProps> = ({ project }) => {
 	return (
-		<Card className="group relative p-0 pb-6 gap-4 bg-card-background border-card-border rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-1 transition-all">
+		<Card className="group relative p-0 pb-6 gap-4 bg-card-background border-card-border rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-1 transition-all max-w-[500px] mx-auto">
 			<div className="absolute inset-0 z-30 bg-black/20 group-hover:bg-transparent h-40 transition-all" />
 
 			<div className="relative h-40 overflow-hidden mb-0">

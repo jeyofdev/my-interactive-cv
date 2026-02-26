@@ -56,8 +56,10 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 
 	return (
 		<>
-			<aside className="flex flex-col w-full lg:w-80 xl:w-96 lg:min-h-screen bg-surface-muted border-r border-border overflow-y-auto">
-				<div className="p-8 flex flex-col items-center text-center">
+			<Header variant="resume" name={data.profile.name} showDownload className="md:hidden" />
+
+			<aside className="flex flex-col w-full md:w-70 lg:w-80 xl:w-96 lg:min-h-screen bg-surface-muted border-r border-border overflow-y-auto">
+				<div className="p-4 sm:p-6 md:p-8 flex flex-col items-center text-center">
 					{/* Profile Picture */}
 					<div className="relative mb-6">
 						<div className="relative size-32 rounded-full border-4 border-border-image shadow-xl overflow-hidden bg-primary/10">
@@ -82,7 +84,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 					</Typography>
 
 					{/* description summary */}
-					<Typography variant="lead" className="mt-4 px-2">
+					<Typography variant="lead" textAlign="left" className="mt-4 px-2">
 						{data.summary}
 					</Typography>
 
@@ -159,15 +161,15 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 			</aside>
 
 			<main className="flex-1 flex flex-col bg-destructive">
-				<Header variant="resume" name={data.profile.name} />
+				<Header variant="resume" name={data.profile.name} showDownload className="hidden md:flex" />
 
-				<div className="px-8 lg:px-12 py-12 max-w-4xl">
+				<div className="px-8 lg:px-12 pt-10 sm:pt-14 md:pt-18 lg:pt-20 xl:pt-24">
 					{/* Experience Section */}
 					<Section>
-						<SectionTitle label="Expériences Professionnelles" icon="work" className="mb-10" />
+						<SectionTitle label="Expériences Professionnelles" icon="work" className="mb-6 md:mb-8 lg:mb-10" />
 
 						{/* Timeline Wrapper */}
-						<div className="relative space-y-12">
+						<div className="relative space-y-6 md:space-y-8 lg:space-y-10 xl-space-y-12">
 							<TimelineBar orientation="vertical" />
 
 							<ListRenderer
@@ -184,8 +186,8 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 					</Section>
 
 					{/* Projects Section */}
-					<section className="mb-16">
-						<SectionTitle label="Projets" icon="rocket_launch" className="mb-10" />
+					<section className="mb-10 md:mb-12 lg:mb-16">
+						<SectionTitle label="Projets" icon="rocket_launch" className="mb-6 md:mb-8 lg:mb-10" />
 
 						<Tabs
 							items={tabItems}
@@ -227,7 +229,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 
 					{/* Education Section */}
 					<section>
-						<SectionTitle label="Formation" icon="school" className="mb-10" />
+						<SectionTitle label="Formation" icon="school" className="mb-6 md:mb-8 lg:mb-10" />
 
 						<div className="space-y-6">
 							<ListRenderer
@@ -239,7 +241,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 					</section>
 				</div>
 
-				<div className="flex justify-center pb-12">
+				<div className="flex justify-center mb-12 mt-10 sm:pm-14 md:mt-18 lg:mt-20 xl:mt-24">
 					<Button
 						variant="icon"
 						backgroundColor="primary"

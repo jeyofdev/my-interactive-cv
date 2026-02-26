@@ -9,6 +9,7 @@ import { Tabs } from "@/components/ui/tabs/tabs";
 import { Typography } from "@/components/ui/typography/typography";
 import { Icon } from "@/components/ui/icon/icon";
 import { Button } from "@/components/ui/button/button";
+import Link from "next/link";
 
 type Lang = "EN" | "FR";
 
@@ -33,9 +34,10 @@ const headerVariants = cva("", {
 export type HeaderProps = React.HTMLAttributes<HTMLElement> &
 	VariantProps<typeof headerVariants> & {
 		name: string;
+		showDownload?: boolean;
 	};
 
-export const Header = ({ className, variant, sticky, name, ...props }: HeaderProps) => {
+export const Header = ({ className, variant, sticky, name, showDownload, ...props }: HeaderProps) => {
 	const [lang, setLang] = React.useState<Lang>("FR");
 	const langs: Lang[] = ["EN", "FR"];
 
@@ -53,9 +55,19 @@ export const Header = ({ className, variant, sticky, name, ...props }: HeaderPro
 						containerSize="40px"
 					/>
 
-					<Typography variant="h3" fontSize="lg" lineHeight="normal">
-						{name}
-					</Typography>
+					<Link href="/">
+						<Typography
+							variant="small"
+							color="surface-muted-foreground-secondary"
+							fontSize="lg"
+							fontWeight="bold"
+							lineHeight="normal"
+							letterSpacing="normal"
+							textTransform="capitalize"
+						>
+							{name}
+						</Typography>
+					</Link>
 				</div>
 			)}
 
@@ -70,19 +82,21 @@ export const Header = ({ className, variant, sticky, name, ...props }: HeaderPro
 					renderItem={(item) => item}
 				/>
 
-				<Button
-					variant="icon"
-					backgroundColor="primary"
-					color="white"
-					fontSize="sm"
-					borderRadius="lg"
-					icon="download"
-					iconSize="24px"
-					className="px-6 py-1.5 min-w-auto shadow-lg shadow-primary/25 transition-all active:scale-95"
-					onClick={() => {}}
-				>
-					Download CV
-				</Button>
+				{showDownload && (
+					<Button
+						variant="icon"
+						backgroundColor="primary"
+						color="white"
+						fontSize="sm"
+						borderRadius="lg"
+						icon="download"
+						iconSize="24px"
+						className="hidden sm:inline-flex px-6 py-1.5 min-w-auto shadow-lg shadow-primary/25 transition-all active:scale-95"
+						onClick={() => {}}
+					>
+						Download CV
+					</Button>
+				)}
 			</div>
 		</header>
 	);

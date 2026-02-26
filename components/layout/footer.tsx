@@ -22,7 +22,7 @@ type MainFooterProps = {
 export const Footer: FC<MainFooterProps> = ({ socialLinks, className, containerClassName }) => {
 	return (
 		<footer className={cn("p-6 border-t border-divider-horizontal-secondary", containerClassName)}>
-			<div className={cn("flex justify-between items-center gap-4", className)}>
+			<div className={cn("flex flex-col sm:flex-row justify-between items-center gap-4", className)}>
 				<Typography
 					variant="muted"
 					color="surface-muted-foreground-title"
