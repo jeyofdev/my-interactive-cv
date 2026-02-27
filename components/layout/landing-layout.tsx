@@ -17,7 +17,7 @@ export const LandingLayout: FC<LandingLayoutProps> = ({ profile, resumes, childr
 
 			{children}
 
-			<Footer socialLinks={profile.social} className="max-w-6xl mx-auto" />
+			<Footer name={profile.name} socialLinks={profile.social} className="max-w-6xl mx-auto" />
 		</div>
 	);
 };

@@ -1,5 +1,58 @@
 {
+	"header": {
+		"download": "Download CV global",
+		"en": "EN",
+		"fr": "FR"
+	},
+	"footer": {
+		"copyright": "All rights reserved."
+	},
 	"home": {
-		"subtitle": "Available for new projects"
+		"hero": {
+			"subtitle": "Available for new projects",
+			"title": "Welcome to the portfolio of",
+			"description": "Select a version to explore my professional background and discover my skills and experience."
+		},
+		"card": {
+			"button": "See more"
+		},
+		"contact": {
+			"title": "Would you like to collaborate?",
+			"description": "Please contact me directly to discuss your projects.",
+			"download": "Download CV global",
+			"contact": "Contact me"
+		}
+	},
+	"contact": {
+		"content": {
+			"titleP1": "Let's",
+			"titleP2": "Connect",
+			"description": "Have a project in mind or just want to say hi? I'm always open to discussing new opportunities and creative ideas.",
+			"social": "Social Networks"
+		},
+		"item": {
+			"email": "Email",
+			"phone": "Phone",
+			"address": "Address"
+		},
+		"form": {
+			"labelName": "Your name",
+			"labelEmail": "Your email address",
+			"labelSubject": "Subject",
+			"labelMessage": "Your message",
+			"placeholderSubject": "Subject",
+			"placeholderMessage": "Tell me more about your project goals...",
+			"labelFormButton": "Send message",
+			"subcontentP1": "Average response time:",
+			"subcontentP2": "Within 24 hours"
+		},
+		"alert": {
+			"title": "Your subscription will expire in 3 days.",
+			"description": "Renew now to avoid service interruption or upgrade to a paid plan to continue using the service."
+		},
+		"confirm": {
+			"title": "Message Sent !",
+			"description": "Thank you for your message. I'll get back to you within 24 hours."
+		}
 	}
 }

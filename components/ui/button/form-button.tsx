@@ -22,6 +22,7 @@ export const FormButton: FC<FormButtonProps> = ({ children }) => {
 			border="base"
 			borderColor="primary"
 			borderRadius="xl"
+			textTransform="normal"
 			disabled={pending}
 			isPending={pending}
 			className="w-full py-5 px-7 shadow-lg shadow-primary/25 transition-all"

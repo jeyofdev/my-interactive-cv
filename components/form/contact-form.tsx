@@ -4,6 +4,7 @@ import { TextareaField } from "@/components/ui/form/textarea-field";
 import { FormButton } from "@/components/ui/button/form-button";
 import { Typography } from "@/components/ui/typography/typography";
 import { Alert } from "@/components/ui/alert/alert";
+import { useTranslations } from "next-intl";
 
 type ContactFormProps = {
 	action: (payload: FormData) => void;
@@ -22,6 +23,8 @@ export const ContactForm: FC<ContactFormProps> = ({
 	alertTitle,
 	alertDescription,
 }) => {
+	const t = useTranslations("contact.form");
+
 	return (
 		<>
 			{status && status === "error" && (
@@ -30,25 +33,32 @@ export const ContactForm: FC<ContactFormProps> = ({
 
 			<form action={action} className="relative z-10 space-y-6">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<TextField type="text" id="name" label="Your Name" name="name" placeholder="John Smith" required />
+					<TextField type="text" id="name" label={t("labelName")} name="name" placeholder="John Smith" required />
 
 					<TextField
 						type="email"
 						id="email"
-						label="Email Address"
+						label={t("labelEmail")}
 						name="email"
 						placeholder="john@company.com"
 						required
 					/>
 				</div>
 
-				<TextField type="text" id="subject" label="Subject" name="subject" placeholder="Subject" required />
+				<TextField
+					type="text"
+					id="subject"
+					label={t("labelSubject")}
+					name="subject"
+					placeholder={t("placeholderSubject")}
+					required
+				/>
 
 				<TextareaField
 					id="message"
-					label="Message"
-					name="message"
-					placeholder="Tell me more about your project goals..."
+					label={t("labelMessage")}
+					name="Message"
+					placeholder={t("placeholderMessage")}
 					rows={5}
 					required
 				/>

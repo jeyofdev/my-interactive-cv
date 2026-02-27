@@ -10,7 +10,7 @@ import { Icon } from "@/components/ui/icon/icon";
 import { Button } from "@/components/ui/button/button";
 import Link from "next/link";
 import { LangSwitcherTabs } from "../ui/tabs/lang-switcher-tabs";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const headerVariants = cva("", {
 	variants: {
@@ -38,6 +38,7 @@ export type HeaderProps = React.HTMLAttributes<HTMLElement> &
 
 export const Header = ({ className, variant, sticky, name, showDownload, ...props }: HeaderProps) => {
 	const locale = useLocale();
+	const t = useTranslations("header");
 
 	return (
 		<header className={cn(headerVariants({ variant, sticky }), className)} {...props}>
@@ -86,7 +87,7 @@ export const Header = ({ className, variant, sticky, name, showDownload, ...prop
 						className="hidden sm:inline-flex px-6 py-1.5 min-w-auto shadow-lg shadow-primary/25 transition-all active:scale-95"
 						onClick={() => {}}
 					>
-						Download CV
+						{t("download")}
 					</Button>
 				)}
 			</div>

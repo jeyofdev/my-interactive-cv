@@ -257,7 +257,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 					</Button>
 				</div>
 
-				<Footer socialLinks={data.profile.social} containerClassName="px-12" />
+				<Footer name={data.profile.name} socialLinks={data.profile.social} containerClassName="px-12" />
 			</main>
 		</>
 	);
