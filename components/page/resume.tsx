@@ -6,10 +6,10 @@ import { ListRenderer } from "@/components/list/list-renderer";
 import { Typography } from "@/components/ui/typography/typography";
 import Image from "next/image";
 import { FC, useState } from "react";
-import { SectionTitle } from "@/components/sections/section-title";
+import { SectionTitle } from "@/components/ui/sections/section-title";
 import { TimelineBar, TimelineDot } from "@/components/ui/timeline/timeline";
 import { AccordionExperience } from "@/components/ui/accordion/accordion-experience";
-import Section from "@/components/sections/section";
+import Section from "@/components/ui/sections/section";
 import { Divider } from "@/components/ui/divider/divider";
 import { ProjectGridCard, ProjectListCard, HobbyCard, EducationCard } from "@/components/ui/card/cards";
 import { Footer } from "@/components/layout/footer";
@@ -101,15 +101,15 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 						<ProfileItem icon="directions_car" label={formatVehiculeLabel()} />
 						<ProfileItem icon="location_on" label={data.profile.location} />
 						<ProfileItem
-							icon="link"
-							label={data.profile.social.linkedin.label}
+							icon="linkedin"
+							label={data.profile.social.linkedin.pseudo}
 							hasLink
 							href={data.profile.social.linkedin.url}
 							isSocial
 						/>
 						<ProfileItem
-							icon="code"
-							label={data.profile.social.github.label}
+							icon="github"
+							label={data.profile.social.github.pseudo}
 							hasLink
 							href={data.profile.social.github.url}
 							isSocial

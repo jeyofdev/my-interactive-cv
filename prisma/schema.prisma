@@ -164,6 +164,6 @@ type Social {
 }
 
 type SocialLink {
-  label String
+  pseudo String
   url   String
 }

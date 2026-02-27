@@ -30,8 +30,8 @@ async function main() {
 			vehicle: { carLicense: true, vehicule: true },
 			website: { label: "jeyofdev.dev", url: "http://jeyofdev.dev" },
 			social: {
-				linkedin: { label: "jeyofdev", url: "linkedin.com/in/jeyofdev" },
-				github: { label: "jeyofdev", url: "github.com/jeyofdev" },
+				linkedin: { pseudo: "jeyofdev", url: "https://www.linkedin.com/in/jeyofdev" },
+				github: { pseudo: "jeyofdev", url: "https://github.com/jeyofdev" },
 			},
 		},
 	});
