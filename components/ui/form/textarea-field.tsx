@@ -6,6 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Field, FieldLabel } from "@/components/ui/form/base/field";
 import { Textarea } from "@/components/ui/form/base/textarea";
+import { ErrorMessage } from "@/components/ui/form/error-message";
 
 const textareaFieldVariants = cva("flex flex-col gap-0", {
 	variants: {
@@ -45,10 +46,11 @@ export type TextareaFieldProps = Omit<React.ComponentProps<"textarea">, "size"> 
 	VariantProps<typeof textareaFieldVariants> & {
 		id: string;
 		label?: string;
+		error?: string;
 		ref?: React.Ref<HTMLInputElement>;
 	};
 
-export const TextareaField = ({ label, variant, className, id, ref, ...props }: TextareaFieldProps) => {
+export const TextareaField = ({ label, variant, className, id, error, ref, ...props }: TextareaFieldProps) => {
 	return (
 		<Field className={cn("space-y-2 group", textareaFieldVariants({ variant }), className)}>
 			{label && (
@@ -57,7 +59,16 @@ export const TextareaField = ({ label, variant, className, id, ref, ...props }: 
 				</FieldLabel>
 			)}
 
-			<Textarea id={id} ref={ref} className={cn(inputVariants({ variant }))} {...props} />
+			<Textarea
+				id={id}
+				ref={ref}
+				aria-invalid={!!error}
+				aria-describedby={error ? `${id}-error` : undefined}
+				className={cn(inputVariants({ variant }), error && "border-danger focus:border-danger focus:shadow-none")}
+				{...props}
+			/>
+
+			{error && <ErrorMessage id={`${id}-error`} message={error} />}
 		</Field>
 	);
 };
