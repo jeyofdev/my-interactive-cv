@@ -44,7 +44,12 @@
 			"placeholderMessage": "Parlez-moi davantage des objectifs de votre projet...",
 			"labelFormButton": "Envoyer un message",
 			"subcontentP1": "Temps de réponse moyen:",
-			"subcontentP2": "Dans les 24 heures"
+			"subcontentP2": "Dans les 24 heures",
+			"errorRequired": "Ce champ est obligatoire",
+			"errorNameMin": "Le nom doit contenir au moins 2 caractères",
+			"errorEmailInvalid": "Adresse email invalide",
+			"errorSubjectMin": "Le sujet doit contenir au moins 5 caractères",
+			"errorMessageMin": "Le message doit contenir au moins 10 caractères"
 		},
 		"alert": {
 			"title": "Votre abonnement expirera dans 3 jours.",
