@@ -54,5 +54,26 @@
 			"title": "Message Sent !",
 			"description": "Thank you for your message. I'll get back to you within 24 hours."
 		}
+	},
+	"resume": {
+		"profile": {
+			"vehicleLicense": "B licence",
+			"car": "car",
+			"frontend": "Frontend",
+			"backend": "Backend",
+			"tools": "Tools",
+			"languages": "Languages",
+			"hobbies": "Hobbies"
+		},
+		"main": {
+			"projects": "Projects",
+			"formations": "Formations",
+			"experiences": "Professional Experiences",
+			"download": "Download CV",
+			"list": "List",
+			"card": "Card",
+			"tasks": "Primary tasks :",
+			"techEnvironment": "Environment technique :"
+		}
 	}
 }

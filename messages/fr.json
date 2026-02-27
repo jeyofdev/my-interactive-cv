@@ -54,5 +54,26 @@
 			"title": "Message envoyé !",
 			"description": "Merci pour votre message. Je vous répondrai dans les 24 heures."
 		}
+	},
+	"resume": {
+		"profile": {
+			"vehicleLicense": "permis B",
+			"car": "Voiture",
+			"frontend": "Frontend",
+			"backend": "Backend",
+			"tools": "Outils",
+			"languages": "Langues",
+			"hobbies": "Loisirs"
+		},
+		"main": {
+			"experiences": "Expériences Professionnelles",
+			"projects": "Projets",
+			"formations": "Formations",
+			"download": "Télécharger le CV",
+			"list": "Liste",
+			"card": "Carte",
+			"tasks": "Tâches principales :",
+			"techEnvironment": "Env. technique :"
+		}
 	}
 }
