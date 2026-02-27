@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
 export type Link = {
-	label: string;
+	pseudo: string;
 	url: string;
 };
 

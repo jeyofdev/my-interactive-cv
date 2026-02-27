@@ -7,16 +7,19 @@ import { getChipSkillColor } from "@/lib/utils";
 import { FC } from "react";
 import { GithubIcon } from "@/components/ui/icon/github-icon";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card-base";
+import { useLocale } from "next-intl";
 
 type ProjectListCard = ProjectGridCardProps;
 
 export const ProjectListCard: FC<ProjectListCard> = ({ project }) => {
+	const locale = useLocale();
+
 	return (
 		<Card className="group relative px-2 py-3 gap-2 bg-card-background border-none shadow-none hover:shadow-xs hover:-translate-y-1 transition-all">
 			<CardHeader className="flex gap-3 px-0">
 				<div className="flex items-center gap-3">
 					<Typography variant="h3" fontSize="xl" lineHeight="none">
-						{project.title}
+						{project.title[locale as keyof typeof project.title]}
 					</Typography>
 
 					<div className="flex gap-1.25">
@@ -58,7 +61,7 @@ export const ProjectListCard: FC<ProjectListCard> = ({ project }) => {
 					textAlign="left"
 					className="line-clamp-2"
 				>
-					{project.description}
+					{project.description[locale as keyof typeof project.description]}
 				</Typography>
 			</CardContent>
 
