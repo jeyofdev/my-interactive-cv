@@ -11,7 +11,8 @@ import { ContactCard } from "@/components/ui/card/cards";
 import { ContactForm } from "@/components/form/contact-form";
 import { ConfirmFormSuccess } from "@/components/form/confirm-form-success";
 import { ProfileData } from "@/types/profile-type";
-import { FormStatus, sendContactEmail } from "@/app/actions/send-contact-email";
+import { FormStatus, sendContactEmail } from "@/app/[locale]/actions/send-contact-email";
+import { useTranslations } from "next-intl";
 
 const socialIcons: Record<string, JSX.Element> = {
 	linkedin: <LinkedinIcon width="w-5" height="h-5" />,
@@ -24,6 +25,12 @@ type ContactProps = {
 };
 
 export const Contact: FC<ContactProps> = ({ profile }) => {
+	const translateContent = useTranslations("contact.content");
+	const translateForm = useTranslations("contact.form");
+	const translateAlert = useTranslations("contact.alert");
+	const translateConfirm = useTranslations("contact.confirm");
+	const translateItem = useTranslations("contact.item");
+
 	const [formState, formAction, pending] = useActionState(sendContactEmail, {
 		status: "idle" as FormStatus,
 		message: "",
@@ -44,7 +51,8 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 							letterSpacing="custom-0.03em"
 							className="mb-6 text-center lg:text-left"
 						>
-							Let's <span className="text-primary capitalize">Connect</span>
+							{translateContent("titleP1")}{" "}
+							<span className="text-primary capitalize">{translateContent("titleP2")}</span>
 						</Typography>
 
 						<Typography
@@ -55,8 +63,7 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 							letterSpacing="normal"
 							className="max-w-[500px] mx-auto text-center lg:text-left"
 						>
-							Have a project in mind or just want to say hi? I'm always open to discussing new opportunities and
-							creative ideas.
+							{translateContent("description")}
 						</Typography>
 					</div>
 
@@ -64,7 +71,10 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 						<ListRenderer
 							list={contactData}
 							keyExtractor={(item) => item.id}
-							renderItem={(contact, index) => <ContactCard contact={contact} index={index} />}
+							renderItem={(contact, index) => {
+								const formatContact = { ...contact, label: translateItem(contact.label.toLowerCase()) };
+								return <ContactCard contact={formatContact} index={index} />;
+							}}
 						/>
 					</div>
 
@@ -80,7 +90,7 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 							textTransform="uppercase"
 							className="mb-6"
 						>
-							Social Networks
+							{translateContent("social")}
 						</Typography>
 
 						<div className="flex gap-4">
@@ -104,22 +114,20 @@ export const Contact: FC<ContactProps> = ({ profile }) => {
 						<div className="absolute bottom-0 left-0 w-64 h-64 bg-info/10 blur-[100px] rounded-full -ml-32 -mb-32"></div>
 
 						{!pending && formState.status === "success" ? (
-							<ConfirmFormSuccess
-								title="Message Sent !"
-								content="Thank you for your message. I'll get back to you within 24 hours."
-							/>
+							<ConfirmFormSuccess title={translateConfirm("title")} description={translateConfirm("description")} />
 						) : (
 							<ContactForm
 								action={formAction}
 								status={formState.status}
-								buttonLabel="Send Message"
+								buttonLabel={translateForm("labelFormButton")}
 								subtitle={
 									<>
-										Average response time: <span className="text-primary font-medium">Within 24 hours</span>
+										{translateForm("subcontentP1")}{" "}
+										<span className="text-primary font-medium">{translateForm("subcontentP2")}</span>
 									</>
 								}
-								alertTitle="Your subscription will expire in 3 days."
-								alertDescription="Renew now to avoid service interruption or upgrade to a paid plan to continue using the service."
+								alertTitle={translateAlert("title")}
+								alertDescription={translateAlert("description")}
 							/>
 						)}
 					</div>

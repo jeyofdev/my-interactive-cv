@@ -5,13 +5,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 import { DarkModeTheme } from "@/components/ui/button/dark-mode-theme";
-import { Tabs } from "@/components/ui/tabs/tabs";
 import { Typography } from "@/components/ui/typography/typography";
 import { Icon } from "@/components/ui/icon/icon";
 import { Button } from "@/components/ui/button/button";
 import Link from "next/link";
-
-type Lang = "EN" | "FR";
+import { LangSwitcherTabs } from "../ui/tabs/lang-switcher-tabs";
+import { useLocale, useTranslations } from "next-intl";
 
 const headerVariants = cva("", {
 	variants: {
@@ -38,8 +37,8 @@ export type HeaderProps = React.HTMLAttributes<HTMLElement> &
 	};
 
 export const Header = ({ className, variant, sticky, name, showDownload, ...props }: HeaderProps) => {
-	const [lang, setLang] = React.useState<Lang>("FR");
-	const langs: Lang[] = ["EN", "FR"];
+	const locale = useLocale();
+	const t = useTranslations("header");
 
 	return (
 		<header className={cn(headerVariants({ variant, sticky }), className)} {...props}>
@@ -74,13 +73,7 @@ export const Header = ({ className, variant, sticky, name, showDownload, ...prop
 			<div className="flex items-center gap-4">
 				<DarkModeTheme size="sm" />
 
-				<Tabs
-					items={langs}
-					value={lang}
-					onChange={(v) => setLang(v as Lang)}
-					keyExtractor={(item) => item}
-					renderItem={(item) => item}
-				/>
+				<LangSwitcherTabs currentLocale={locale} />
 
 				{showDownload && (
 					<Button
@@ -94,7 +87,7 @@ export const Header = ({ className, variant, sticky, name, showDownload, ...prop
 						className="hidden sm:inline-flex px-6 py-1.5 min-w-auto shadow-lg shadow-primary/25 transition-all active:scale-95"
 						onClick={() => {}}
 					>
-						Download CV
+						{t("download")}
 					</Button>
 				)}
 			</div>

@@ -17,7 +17,7 @@ export const contactData: ContactItem[] = [
 	},
 	{
 		id: "3",
-		label: "Location",
+		label: "Address",
 		value: "San Francisco, CA",
 	},
 ];

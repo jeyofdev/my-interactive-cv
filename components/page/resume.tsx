@@ -20,21 +20,7 @@ import { Chip } from "@/components/ui/chip/chip";
 import { getChipSkillColor } from "@/lib/utils";
 import { ResumeData } from "@/types/resume-type";
 import { Button } from "@/components/ui/button/button";
-
-const tabItems = [
-	{
-		id: 1,
-		value: "grid",
-		label: "Card",
-		icon: "grid_view",
-	},
-	{
-		id: 2,
-		value: "list",
-		label: "List",
-		icon: "list",
-	},
-];
+import { useTranslations } from "next-intl";
 
 export type ProjectView = "grid" | "list";
 
@@ -43,13 +29,31 @@ type ResumeProps = {
 };
 
 export const Resume: FC<ResumeProps> = ({ data }) => {
+	const translateProfile = useTranslations("resume.profile");
+	const translateMain = useTranslations("resume.main");
 	const [projectView, setProjectView] = useState<ProjectView>("grid");
+
+	const tabItems = [
+		{
+			id: 1,
+			value: "grid",
+			label: translateMain("card"),
+			icon: "grid_view",
+		},
+		{
+			id: 2,
+			value: "list",
+			label: translateMain("list"),
+			icon: "list",
+		},
+	];
 
 	const formatVehiculeLabel = () => {
 		const output = "";
 
-		if (data.profile.vehicle.carLicense && !data.profile.vehicle.vehicule) return "Permis B";
-		else if (data.profile.vehicle.carLicense && data.profile.vehicle.vehicule) return "Permis B + véhicule";
+		if (data.profile.vehicle.carLicense && !data.profile.vehicle.vehicule) return translateProfile("vehicleLicense");
+		else if (data.profile.vehicle.carLicense && data.profile.vehicle.vehicule)
+			return translateProfile("vehicleLicense") + " + " + translateProfile("car");
 
 		return output;
 	};
@@ -131,7 +135,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 						/>
 
 						<ProfileBlock
-							category="Langues"
+							category={translateProfile("languages")}
 							list={data.languages}
 							keyExtractor={(item) => item.id}
 							renderItem={(lang) => (
@@ -145,7 +149,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 
 						<ProfileBlock
 							variant="grid"
-							category="Loisirs"
+							category={translateProfile("hobbies")}
 							list={data.hobbies}
 							keyExtractor={(item) => item.id}
 							renderItem={(hobby) => <HobbyCard hobby={hobby} />}
@@ -166,7 +170,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 				<div className="px-8 lg:px-12 pt-10 sm:pt-14 md:pt-18 lg:pt-20 xl:pt-24">
 					{/* Experience Section */}
 					<Section>
-						<SectionTitle label="Expériences Professionnelles" icon="work" className="mb-6 md:mb-8 lg:mb-10" />
+						<SectionTitle label={translateMain("experiences")} icon="work" className="mb-6 md:mb-8 lg:mb-10" />
 
 						{/* Timeline Wrapper */}
 						<div className="relative space-y-6 md:space-y-8 lg:space-y-10 xl-space-y-12">
@@ -187,7 +191,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 
 					{/* Projects Section */}
 					<section className="mb-10 md:mb-12 lg:mb-16">
-						<SectionTitle label="Projets" icon="rocket_launch" className="mb-6 md:mb-8 lg:mb-10" />
+						<SectionTitle label={translateMain("projects")} icon="rocket_launch" className="mb-6 md:mb-8 lg:mb-10" />
 
 						<Tabs
 							items={tabItems}
@@ -229,7 +233,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 
 					{/* Education Section */}
 					<section>
-						<SectionTitle label="Formation" icon="school" className="mb-6 md:mb-8 lg:mb-10" />
+						<SectionTitle label={translateMain("formations")} icon="school" className="mb-6 md:mb-8 lg:mb-10" />
 
 						<div className="space-y-6">
 							<ListRenderer
@@ -253,11 +257,11 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 						className="px-10 py-4 gap-3 shadow-2xl shadow-primary/30 transition-all hover:-translate-y-1 active:scale-95"
 						onClick={() => {}}
 					>
-						Download CV
+						{translateMain("download")}
 					</Button>
 				</div>
 
-				<Footer socialLinks={data.profile.social} containerClassName="px-12" />
+				<Footer name={data.profile.name} socialLinks={data.profile.social} containerClassName="px-12" />
 			</main>
 		</>
 	);

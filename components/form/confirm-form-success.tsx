@@ -4,10 +4,10 @@ import { Typography } from "../ui/typography/typography";
 
 type ConfirmFormSuccessProps = {
 	title: string;
-	content: string;
+	description: string;
 };
 
-export const ConfirmFormSuccess: FC<ConfirmFormSuccessProps> = ({ title, content }) => {
+export const ConfirmFormSuccess: FC<ConfirmFormSuccessProps> = ({ title, description }) => {
 	return (
 		<div className="relative z-10 flex flex-col items-center justify-center text-center">
 			<div className="size-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
@@ -27,7 +27,7 @@ export const ConfirmFormSuccess: FC<ConfirmFormSuccessProps> = ({ title, content
 				letterSpacing="normal"
 				textAlign="center"
 			>
-				{content}
+				{description}
 			</Typography>
 		</div>
 	);

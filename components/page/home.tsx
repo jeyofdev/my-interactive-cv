@@ -12,6 +12,7 @@ import { FC } from "react";
 import { Link } from "@/components/ui/button/link";
 import { ResumePreviewData } from "@/types/resume-type";
 import { ProfileData } from "@/types/profile-type";
+import { useTranslations } from "next-intl";
 
 type HomeProps = {
 	data: ResumePreviewData[];
@@ -19,13 +20,17 @@ type HomeProps = {
 };
 
 export const Home: FC<HomeProps> = ({ data, profile }) => {
+	const translateHero = useTranslations("home.hero");
+	const translateCard = useTranslations("home.card");
+	const translateContact = useTranslations("home.contact");
+
 	return (
 		<main className="flex-1 flex flex-col items-center bg-surface-muted">
 			{/* Hero Section */}
 			<section className="max-w-5xl w-full px-6 py-10 sm:py-14 md:py-20 lg:py-24 text-center">
 				<div className="flex flex-col items-center">
 					<Chip variant="rounded" icon={<DotIcon />} className="mb-6">
-						Disponible pour de nouveaux projets
+						{translateHero("subtitle")}
 					</Chip>
 				</div>
 
@@ -36,9 +41,9 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 					textTransform="normal"
 					lineHeight="tight"
 					letterSpacing="custom-0.03em"
-					className="mb-6 max-w-[500px] mx-auto"
+					className="mb-6 max-w-125 mx-auto"
 				>
-					Bienvenue sur le portfolio de <span className="text-primary capitalize">{profile.name}</span>
+					{translateHero("title")} <span className="text-primary capitalize">{profile.name}</span>
 				</Typography>
 
 				<Typography
@@ -50,8 +55,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 					textAlign="center"
 					className="max-w-2xl mx-auto"
 				>
-					Choisissez une version pour explorer mon parcours professionnel pour découvrir mes compétences et mon
-					expérience.
+					{translateHero("description")}
 				</Typography>
 			</section>
 
@@ -113,7 +117,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 										iconPosition="end"
 										href={`/cv/${resume.id}`}
 									>
-										Explorer
+										{translateCard("button")}
 									</Link>
 								</CardFooter>
 							</div>
@@ -135,7 +139,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 						textAlign="center"
 						className="mb-6"
 					>
-						Vous souhaitez collaborer ?
+						{translateContact("title")}
 					</Typography>
 
 					<Typography
@@ -147,7 +151,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 						textAlign="center"
 						className="max-w-2xl mx-auto mb-10"
 					>
-						Contactez-moi directement pour discuter de vos projets.
+						{translateContact("description")}
 					</Typography>
 
 					<div className="flex flex-col md:flex-row justify-center sm:flex-row gap-4 max-w-[300px] w-full">
@@ -162,7 +166,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 							borderColor="primary"
 							className="px-7 min-w-auto shadow-lg shadow-primary/25 transition-all"
 						>
-							Download CV global
+							{translateContact("download")}
 						</Button>
 
 						<Link
@@ -177,7 +181,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 							className="px-7"
 							href="/contact"
 						>
-							Me contacter
+							{translateContact("contact")}
 						</Link>
 					</div>
 				</div>

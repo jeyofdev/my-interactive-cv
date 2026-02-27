@@ -1,0 +1,79 @@
+{
+	"header": {
+		"download": "Télécharger le CV global",
+		"en": "EN",
+		"fr": "FR"
+	},
+	"footer": {
+		"copyright": "Tous droits réservés."
+	},
+	"home": {
+		"hero": {
+			"subtitle": "Disponible pour de nouveaux projets",
+			"title": "Bienvenue sur le portfolio de",
+			"description": "Choisissez une version pour explorer mon parcours professionnel pour découvrir mes compétences et mon expérience."
+		},
+		"card": {
+			"button": "Explorer"
+		},
+		"contact": {
+			"title": "Vous souhaitez collaborer ?",
+			"description": "Contactez-moi directement pour discuter de vos projets.",
+			"download": "Télécharger le CV global",
+			"contact": "Me contacter"
+		}
+	},
+	"contact": {
+		"content": {
+			"titleP1": "Restons en",
+			"titleP2": "contact",
+			"description": "Vous avez un projet en tête ou vous souhaitez simplement me dire bonjour ? Je suis toujours ouvert à discuter de nouvelles opportunités et d'idées créatives.",
+			"social": "Réseaux sociaux"
+		},
+		"item": {
+			"email": "Email",
+			"phone": "Téléphone",
+			"address": "Adresse"
+		},
+		"form": {
+			"labelName": "Votre nom",
+			"labelEmail": "Votre adresse e-mail",
+			"labelSubject": "Sujet",
+			"labelMessage": "Votre message",
+			"placeholderSubject": "Sujet",
+			"placeholderMessage": "Parlez-moi davantage des objectifs de votre projet...",
+			"labelFormButton": "Envoyer un message",
+			"subcontentP1": "Temps de réponse moyen:",
+			"subcontentP2": "Dans les 24 heures"
+		},
+		"alert": {
+			"title": "Votre abonnement expirera dans 3 jours.",
+			"description": "Renouvelez dès maintenant pour éviter toute interruption du service ou passez à un forfait payant pour continuer à utiliser le service."
+		},
+		"confirm": {
+			"title": "Message envoyé !",
+			"description": "Merci pour votre message. Je vous répondrai dans les 24 heures."
+		}
+	},
+	"resume": {
+		"profile": {
+			"vehicleLicense": "permis B",
+			"car": "Voiture",
+			"frontend": "Frontend",
+			"backend": "Backend",
+			"tools": "Outils",
+			"languages": "Langues",
+			"hobbies": "Loisirs"
+		},
+		"main": {
+			"experiences": "Expériences Professionnelles",
+			"projects": "Projets",
+			"formations": "Formations",
+			"download": "Télécharger le CV",
+			"list": "Liste",
+			"card": "Carte",
+			"tasks": "Tâches principales :",
+			"techEnvironment": "Env. technique :"
+		}
+	}
+}

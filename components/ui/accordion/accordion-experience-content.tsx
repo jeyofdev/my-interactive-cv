@@ -6,12 +6,15 @@ import { getChipSkillColor } from "@/lib/utils";
 import { FC } from "react";
 import { CardContent, CardFooter } from "@/components/ui/card/card-base";
 import { Experience } from "@/prisma/generated/prisma/client";
+import { useTranslations } from "next-intl";
 
 type AccordionExperienceContentProps = {
 	data: Omit<Experience, "resumeId">;
 };
 
 const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data }) => {
+	const translateMain = useTranslations("resume.main");
+
 	return (
 		<div className="space-y-4">
 			<CardContent className="flex flex-col gap-5 px-0">
@@ -35,7 +38,7 @@ const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data 
 						fontWeight="bold"
 						className="mb-1"
 					>
-						Tâches principales :
+						{translateMain("tasks")}
 					</Typography>
 
 					<ul className="space-y-1">
@@ -49,23 +52,10 @@ const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data 
 								</Typography>
 							)}
 						/>
-
-						{data.id === "1" && (
-							<Typography
-								variant="muted"
-								color="surface-muted-foreground-title"
-								fontSize="xs"
-								fontWeight="normal"
-								fontStyle="italic"
-								className="mt-1 ml-4"
-							>
-								+2 autres tâches...
-							</Typography>
-						)}
 					</ul>
 				</div>
 
-				{data.id === "1" && (
+				{data.formations.length ? (
 					<div>
 						<Typography
 							variant="muted"
@@ -74,7 +64,7 @@ const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data 
 							fontWeight="bold"
 							className="mb-1"
 						>
-							Formations :
+							{translateMain("formations")} :
 						</Typography>
 
 						<ul className="space-y-1">
@@ -90,7 +80,7 @@ const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data 
 							/>
 						</ul>
 					</div>
-				)}
+				) : null}
 			</CardContent>
 
 			<Divider variant="horizontal" className="mt-4" />
@@ -104,7 +94,7 @@ const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data 
 					textTransform="uppercase"
 					letterSpacing="wider"
 				>
-					Env. technique :
+					{translateMain("techEnvironment")}
 				</Typography>
 
 				<Typography variant="muted" color="surface-muted-foreground" fontSize="custom-11" fontWeight="normal">
