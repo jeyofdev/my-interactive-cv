@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Typography } from "@/components/ui/typography/typography";
 import { Icon } from "@/components/ui/icon/icon";
@@ -8,12 +10,15 @@ import { getChipSkillColor } from "@/lib/utils";
 import { GithubIcon } from "@/components/ui/icon/github-icon";
 import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card-base";
 import { Project } from "@/prisma/generated/prisma/client";
+import { useLocale } from "next-intl";
 
 export type ProjectGridCardProps = {
 	project: Omit<Project, "resumeId">;
 };
 
 export const ProjectGridCard: FC<ProjectGridCardProps> = ({ project }) => {
+	const locale = useLocale();
+
 	return (
 		<Card className="group relative p-0 pb-6 gap-4 bg-card-background border-card-border rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-1 transition-all max-w-[500px] mx-auto">
 			<div className="absolute inset-0 z-30 bg-black/20 group-hover:bg-transparent h-40 transition-all" />
@@ -21,7 +26,7 @@ export const ProjectGridCard: FC<ProjectGridCardProps> = ({ project }) => {
 			<div className="relative h-40 overflow-hidden mb-0">
 				<Image
 					src={project.image}
-					alt={project.title}
+					alt={project.title[locale as keyof typeof project.title]}
 					fill
 					sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
 					className="object-cover transition-transform duration-500 opacity-80 group-hover:opacity-100 group-hover:scale-105"
@@ -31,7 +36,7 @@ export const ProjectGridCard: FC<ProjectGridCardProps> = ({ project }) => {
 			<CardHeader className="flex gap-3 mt-4 mb-0">
 				<CardTitle>
 					<Typography variant="h3" fontSize="xl" lineHeight="none">
-						{project.title}
+						{project.title[locale as keyof typeof project.title]}
 					</Typography>
 				</CardTitle>
 
@@ -72,7 +77,7 @@ export const ProjectGridCard: FC<ProjectGridCardProps> = ({ project }) => {
 					textAlign="left"
 					className="line-clamp-2"
 				>
-					{project.description}
+					{project.description[locale as keyof typeof project.description]}
 				</Typography>
 			</CardContent>
 

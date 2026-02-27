@@ -3,6 +3,11 @@ import { ObjectId } from "bson";
 
 const prisma = new PrismaClient();
 
+const i18n = (fr: string, en?: string) => ({
+	fr,
+	en: en ?? fr,
+});
+
 async function main() {
 	console.log("🧹 clean database...");
 	await prisma.education.deleteMany();
@@ -22,75 +27,69 @@ async function main() {
 			phone: "+33 6 12 34 56 78",
 			location: "Paris, France",
 			birthDate: "15 May 1994",
-			vehicle: {
-				carLicense: true,
-				vehicule: true,
-			},
-			website: {
-				label: "jeyofdev.dev",
-				url: "http://jeyofdev.dev",
-			},
+			vehicle: { carLicense: true, vehicule: true },
+			website: { label: "jeyofdev.dev", url: "http://jeyofdev.dev" },
 			social: {
-				linkedin: {
-					label: "jeyofdev",
-					url: "linkedin.com/in/jeyofdev",
-				},
-				github: {
-					label: "jeyofdev",
-					url: "github.com/jeyofdev",
-				},
+				linkedin: { label: "jeyofdev", url: "linkedin.com/in/jeyofdev" },
+				github: { label: "jeyofdev", url: "github.com/jeyofdev" },
 			},
 		},
 	});
 
-	// Données communes pour tous les CV
-	const commonDatas = (resumeId: string) => ({
+	// Common data for all resumes
+	const commonDatas = () => ({
 		languages: {
 			create: [
-				{ label: "Français", level: "Maternel" },
-				{ label: "Anglais", level: "Professionnel" },
-				{ label: "Espagnol", level: "Intermédiaire" },
+				{ label: i18n("Français", "French"), level: i18n("Maternel", "Native") },
+				{ label: i18n("Anglais", "English"), level: i18n("Professionnel", "Professional") },
+				{ label: i18n("Espagnol", "Spanish"), level: i18n("Intermédiaire", "Intermediate") },
 			],
 		},
 		hobbies: {
 			create: [
-				{ label: "Photographie", detail: "Photo de rue", duration: "5 ans" },
-				{ label: "Randonnée", detail: "Sentiers de montagne" },
-				{ label: "Open Source" },
-				{ label: "Guitare", duration: "3 ans" },
+				{
+					label: i18n("Photographie", "Photography"),
+					detail: i18n("Photo de rue", "Street Photography"),
+					duration: i18n("5 ans", "5 years"),
+				},
+				{ label: i18n("Randonnée", "Hiking"), detail: i18n("Sentiers de montagne", "Mountain Trails") },
+				{ label: i18n("Open Source", "Open Source") },
+				{ label: i18n("Guitare", "Guitar"), duration: i18n("5 ans", "5 years") },
 			],
 		},
 		education: {
 			create: [
 				{
-					school: "EPITA - Graduate School of Computer Science",
-					degree: "Master's in Computer Science",
+					school: i18n("EPITA - École d'ingénieurs en informatique", "EPITA - Graduate School of Computer Science"),
+					degree: i18n("Master en informatique", "Master's in Computer Science"),
 					year: "2016 – 2018",
-					specialization: "Software Engineering",
+					specialization: i18n("Génie logiciel", "Software Engineering"),
 				},
 				{
-					school: "Professional Certification",
-					degree: "AWS Certified Solutions Architect",
+					school: i18n("Certification Professionnelle", "Professional Certification"),
+					degree: i18n("Architecte Solutions AWS certifié", "AWS Certified Solutions Architect"),
 					year: "Earned 2022",
-					specialization: "Cloud Architecture",
+					specialization: i18n("Architecture Cloud", "Cloud Architecture"),
 				},
 			],
 		},
 	});
 
-	// ========== RESUME 1: Fullstack Developer ==========
+	// ========== RESUME 1 ==========
 	console.log("📝 Creating Resume 1: Fullstack Developer...");
-	const resume1 = await prisma.resume.create({
+	await prisma.resume.create({
 		data: {
-			title: "Fullstack Developer",
-			summary:
-				"Développeur Fullstack passionné avec 6+ ans d'expérience dans la création d'applications web modernes et scalables. Expertise en React, Node.js et architecture cloud. Spécialisé dans la transformation digitale et l'optimisation des performances.",
-			profile: { connect: { id: profile.id } },
-			...commonDatas(profile.id),
+			title: i18n("Développeur Fullstack", "Fullstack Developer"),
+			summary: i18n(
+				"Développeur Fullstack passionné avec 6+ ans d'expérience dans la création d'applications web modernes et scalables.",
+				"Passionate Fullstack Developer with 6+ years of experience building modern and scalable web applications.",
+			),
+			profileId: profile.id,
+			...commonDatas(),
 			skills: {
 				create: [
 					{
-						category: "Frontend",
+						category: i18n("Frontend", "Frontend"),
 						items: [
 							{ id: new ObjectId().toString(), label: "React" },
 							{ id: new ObjectId().toString(), label: "Typescript" },
@@ -99,7 +98,7 @@ async function main() {
 						],
 					},
 					{
-						category: "Backend",
+						category: i18n("Backend", "Backend"),
 						items: [
 							{ id: new ObjectId().toString(), label: "Node.js" },
 							{ id: new ObjectId().toString(), label: "PostgreSQL" },
@@ -108,7 +107,7 @@ async function main() {
 						],
 					},
 					{
-						category: "Tools",
+						category: i18n("Outils", "Tools"),
 						items: [
 							{ id: new ObjectId().toString(), label: "Docker" },
 							{ id: new ObjectId().toString(), label: "AWS" },
@@ -121,37 +120,37 @@ async function main() {
 				create: [
 					{
 						company: "TechCorp",
-						role: "Développeuse Fullstack Senior",
+						role: i18n("Développeuse Fullstack Senior", "Senior Fullstack Developer"),
 						period: "2022 – Présent",
-						type: "CDI",
-						description:
+						type: i18n("CDI", "Permanent"),
+						description: i18n(
 							"Direction du développement d'une plateforme SaaS utilisée par 10k+ utilisateurs. Architecture microservices et frontend React.",
+							"Led development of a SaaS platform with 10k+ users. Microservices architecture and React frontend.",
+						),
 						details: [
 							{
 								id: new ObjectId().toString(),
-								body: "Conception et implémentation de l'architecture frontend (monorepo, bibliothèque de composants partagés)",
+								body: i18n("Conception et implémentation frontend", "Designed and implemented frontend architecture"),
 							},
 							{
 								id: new ObjectId().toString(),
-								body: "Création d'un système de notifications temps réel via WebSockets et Redis pub/sub",
+								body: i18n(
+									"Système de notifications temps réel via WebSockets",
+									"Real-time notification system via WebSockets",
+								),
 							},
 							{
 								id: new ObjectId().toString(),
-								body: "Migration du code legacy de JavaScript vers TypeScript (200+ fichiers)",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Implémentation d'un contrôle d'accès basé sur les rôles (RBAC) sur toute la plateforme",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Mise en place de tests automatisés avec 85% de couverture (unitaires, intégration, E2E)",
+								body: i18n(
+									"Migration JavaScript → TypeScript (200+ fichiers)",
+									"Migrated JS to TypeScript (200+ files)",
+								),
 							},
 						],
 						formations: [
 							{
 								id: new ObjectId().toString(),
-								label: "Certifications AWS Solutions Architect & Docker Certified Associate",
+								label: i18n("Certifications AWS & Docker", "AWS Solutions Architect & Docker Certified Associate"),
 							},
 						],
 						technologies: [
@@ -159,28 +158,28 @@ async function main() {
 							{ id: new ObjectId().toString(), label: "TypeScript" },
 							{ id: new ObjectId().toString(), label: "Node.js" },
 							{ id: new ObjectId().toString(), label: "PostgreSQL" },
-							{ id: new ObjectId().toString(), label: "GraphQL" },
-							{ id: new ObjectId().toString(), label: "Redis" },
-							{ id: new ObjectId().toString(), label: "Docker" },
-							{ id: new ObjectId().toString(), label: "AWS" },
 						],
 					},
 					{
 						company: "Global Web Agency",
-						role: "Fullstack Engineer",
-						period: "2018 – 2021",
-						type: "CDI",
-						description:
-							"Équipe de 8 développeurs au sein d'une société produit de 50 personnes. Méthodologie Agile/Scrum.",
+						role: i18n("Développeur Fullstack", "Fullstack Developer"),
+						period: "2019 – 2022",
+						type: i18n("CDI", "Permanent"),
+						description: i18n(
+							"Travail sur des projets web pour des clients internationaux. Méthodologie Agile/Scrum.",
+							"Worked on web projects for international clients. Agile/Scrum methodology.",
+						),
 						details: [
 							{
 								id: new ObjectId().toString(),
-								body: "Développement de fonctionnalités critiques pour des clients internationaux",
+								body: i18n("Développement de fonctionnalités critiques", "Developed critical features"),
 							},
-							{ id: new ObjectId().toString(), body: "Optimisation des performances de rendu côté client" },
-							{ id: new ObjectId().toString(), body: "Mise en place de pipelines CI/CD" },
+							{
+								id: new ObjectId().toString(),
+								body: i18n("Optimisation des performances côté client", "Optimized client-side performance"),
+							},
 						],
-						formations: [],
+						formations: [], // expérience avec formation vide
 						technologies: [
 							{ id: new ObjectId().toString(), label: "React" },
 							{ id: new ObjectId().toString(), label: "Node.js" },
@@ -188,19 +187,53 @@ async function main() {
 							{ id: new ObjectId().toString(), label: "Docker" },
 						],
 					},
+					{
+						company: "TechStartup X",
+						role: i18n("Ingénieur Backend", "Backend Engineer"),
+						period: "2017 – 2019",
+						type: i18n("CDI", "Permanent"),
+						description: i18n(
+							"Développement et maintenance d'APIs pour une plateforme SaaS en pleine croissance.",
+							"Developed and maintained APIs for a fast-growing SaaS platform.",
+						),
+						details: [
+							{
+								id: new ObjectId().toString(),
+								body: i18n("Conception d'APIs REST performantes", "Designed high-performance REST APIs"),
+							},
+							{
+								id: new ObjectId().toString(),
+								body: i18n("Mise en place de tests automatisés", "Implemented automated tests"),
+							},
+						],
+						formations: [
+							{
+								id: new ObjectId().toString(),
+								label: i18n("Formation interne Node.js avancée", "Internal Advanced Node.js Training"),
+							},
+						],
+						technologies: [
+							{ id: new ObjectId().toString(), label: "Node.js" },
+							{ id: new ObjectId().toString(), label: "MongoDB" },
+							{ id: new ObjectId().toString(), label: "GraphQL" },
+							{ id: new ObjectId().toString(), label: "Docker" },
+						],
+					},
 				],
 			},
+
 			projects: {
 				create: [
 					{
-						title: "OmniTask AI",
-						description:
-							"Outil de gestion de projet avec IA pour la priorisation des tâches et génération automatique de documentation.",
+						title: i18n("OmniTask AI", "OmniTask AI"),
+						description: i18n(
+							"Outil de gestion de projet avec IA pour prioriser les tâches.",
+							"AI-powered project management tool for task prioritization.",
+						),
 						image: "https://picsum.photos/seed/omnitask/600/400",
 						tags: [
 							{ id: new ObjectId().toString(), label: "Next.js" },
 							{ id: new ObjectId().toString(), label: "PostgreSQL" },
-							{ id: new ObjectId().toString(), label: "Tailwind CSS" },
 						],
 						links: [
 							{ id: new ObjectId().toString(), label: "website", url: "https://omnitask.ai" },
@@ -208,18 +241,35 @@ async function main() {
 						],
 					},
 					{
-						title: "PulseCommerce",
-						description:
-							"Moteur e-commerce headless haute performance conçu pour une scalabilité extrême et des temps de réponse de 100ms.",
+						title: i18n("PulseCommerce", "PulseCommerce"),
+						description: i18n(
+							"Moteur e-commerce headless haute performance avec temps de réponse ultra-rapide.",
+							"High-performance headless e-commerce engine with ultra-fast response times.",
+						),
 						image: "https://picsum.photos/seed/pulse/600/400",
 						tags: [
 							{ id: new ObjectId().toString(), label: "React" },
 							{ id: new ObjectId().toString(), label: "Node.js" },
-							{ id: new ObjectId().toString(), label: "GraphQL" },
 						],
 						links: [
 							{ id: new ObjectId().toString(), label: "website", url: "https://pulsecommerce.com" },
 							{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/pulsecommerce" },
+						],
+					},
+					{
+						title: i18n("OmniBlog", "OmniBlog"),
+						description: i18n(
+							"Plateforme de blogging avec éditeur WYSIWYG et analytics intégrés.",
+							"Blogging platform with WYSIWYG editor and integrated analytics.",
+						),
+						image: "https://picsum.photos/seed/omniblog/600/400",
+						tags: [
+							{ id: new ObjectId().toString(), label: "React" },
+							{ id: new ObjectId().toString(), label: "GraphQL" },
+						],
+						links: [
+							{ id: new ObjectId().toString(), label: "website", url: "https://omniblog.io" },
+							{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/omniblog" },
 						],
 					},
 				],
@@ -228,44 +278,24 @@ async function main() {
 		include: { skills: true, languages: true, hobbies: true, experiences: true, projects: true, education: true },
 	});
 
-	// ========== RESUME 2: Frontend Specialist ==========
-	console.log("📝 Creating Resume 2: Frontend Specialist...");
-	const resume2 = await prisma.resume.create({
+	// ========== RESUME 2 ==========
+	console.log("📝 Creating Resume 2...");
+	await prisma.resume.create({
 		data: {
-			title: "Frontend Specialist & UI/UX Developer",
-			summary:
-				"Spécialiste Frontend avec une forte sensibilité design et 5 ans d'expérience dans la création d'interfaces utilisateur modernes et accessibles. Expert en React, animations web et design systems. Passionné par l'expérience utilisateur et les performances frontend.",
-			profile: { connect: { id: profile.id } },
-			...commonDatas(profile.id),
+			title: i18n("Spécialiste Frontend & UI/UX", "Frontend Specialist & UI/UX Developer"),
+			summary: i18n(
+				"Frontend specialist avec forte sensibilité design et 5 ans d'expérience.",
+				"Frontend specialist with strong design sense and 5 years of experience.",
+			),
+			profileId: profile.id,
+			...commonDatas(),
 			skills: {
 				create: [
 					{
-						category: "Frontend",
+						category: i18n("Frontend", "Frontend"),
 						items: [
 							{ id: new ObjectId().toString(), label: "React" },
 							{ id: new ObjectId().toString(), label: "Vue.js" },
-							{ id: new ObjectId().toString(), label: "Typescript" },
-							{ id: new ObjectId().toString(), label: "Next.js" },
-							{ id: new ObjectId().toString(), label: "Tailwind CSS" },
-							{ id: new ObjectId().toString(), label: "SASS/SCSS" },
-						],
-					},
-					{
-						category: "Design & Animation",
-						items: [
-							{ id: new ObjectId().toString(), label: "Figma" },
-							{ id: new ObjectId().toString(), label: "Framer Motion" },
-							{ id: new ObjectId().toString(), label: "GSAP" },
-							{ id: new ObjectId().toString(), label: "Three.js" },
-						],
-					},
-					{
-						category: "Testing & Tools",
-						items: [
-							{ id: new ObjectId().toString(), label: "Jest" },
-							{ id: new ObjectId().toString(), label: "Cypress" },
-							{ id: new ObjectId().toString(), label: "Storybook" },
-							{ id: new ObjectId().toString(), label: "Webpack" },
 						],
 					},
 				],
@@ -274,68 +304,28 @@ async function main() {
 				create: [
 					{
 						company: "DesignTech Studio",
-						role: "Lead Frontend Developer",
+						role: i18n("Lead Frontend Developer", "Lead Frontend Developer"),
 						period: "2021 – Présent",
-						type: "CDI",
-						description:
-							"Responsable de l'architecture frontend et du design system pour une suite de produits B2B utilisée par 50k+ utilisateurs.",
+						type: i18n("CDI", "Permanent"),
+						description: i18n(
+							"Responsable architecture frontend et design system.",
+							"In charge of frontend architecture and design system.",
+						),
 						details: [
 							{
 								id: new ObjectId().toString(),
-								body: "Création d'un design system complet avec 80+ composants réutilisables et documentation interactive",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Amélioration des performances web : réduction du temps de chargement de 60% (3.2s → 1.3s)",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Mise en place de l'accessibilité WCAG 2.1 AA sur l'ensemble de la plateforme",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Développement d'animations micro-interactions augmentant l'engagement utilisateur de 35%",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Mentorat de 5 développeurs juniors sur les best practices React et architecture frontend",
+								body: i18n("Création d'un design system complet", "Created full design system"),
 							},
 						],
 						formations: [
 							{
 								id: new ObjectId().toString(),
-								label: "Certification Advanced React Patterns & Performance Optimization",
+								label: i18n("Certif React avancé", "Advanced React Patterns Certification"),
 							},
 						],
 						technologies: [
 							{ id: new ObjectId().toString(), label: "React" },
 							{ id: new ObjectId().toString(), label: "TypeScript" },
-							{ id: new ObjectId().toString(), label: "Next.js" },
-							{ id: new ObjectId().toString(), label: "Tailwind CSS" },
-							{ id: new ObjectId().toString(), label: "Framer Motion" },
-							{ id: new ObjectId().toString(), label: "Storybook" },
-						],
-					},
-					{
-						company: "Creative Digital Agency",
-						role: "Frontend Developer",
-						period: "2019 – 2021",
-						type: "CDI",
-						description: "Développement de sites web sur mesure pour des clients prestigieux dans le luxe et la mode.",
-						details: [
-							{
-								id: new ObjectId().toString(),
-								body: "Création de landing pages haute conversion avec animations sophistiquées",
-							},
-							{ id: new ObjectId().toString(), body: "Intégration pixel-perfect de maquettes Figma complexes" },
-							{ id: new ObjectId().toString(), body: "Optimisation SEO et performances (score Lighthouse > 95)" },
-						],
-						formations: [],
-						technologies: [
-							{ id: new ObjectId().toString(), label: "React" },
-							{ id: new ObjectId().toString(), label: "Vue.js" },
-							{ id: new ObjectId().toString(), label: "SASS" },
-							{ id: new ObjectId().toString(), label: "GSAP" },
 						],
 					},
 				],
@@ -343,35 +333,14 @@ async function main() {
 			projects: {
 				create: [
 					{
-						title: "Aurora Design System",
-						description:
-							"Design system open-source avec 100+ composants React accessibles, thème personnalisable et documentation interactive.",
+						title: i18n("Aurora Design System", "Aurora Design System"),
+						description: i18n(
+							"Design system open-source 100+ composants.",
+							"Open-source design system with 100+ components.",
+						),
 						image: "https://picsum.photos/seed/aurora/600/400",
-						tags: [
-							{ id: new ObjectId().toString(), label: "React" },
-							{ id: new ObjectId().toString(), label: "TypeScript" },
-							{ id: new ObjectId().toString(), label: "Storybook" },
-							{ id: new ObjectId().toString(), label: "Tailwind CSS" },
-						],
-						links: [
-							{ id: new ObjectId().toString(), label: "website", url: "https://aurora-ds.dev" },
-							{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/aurora-ds" },
-						],
-					},
-					{
-						title: "PixelPerfect Portfolio",
-						description:
-							"Portfolio interactif avec animations 3D et transitions fluides, présentant des projets de design et développement.",
-						image: "https://picsum.photos/seed/pixel/600/400",
-						tags: [
-							{ id: new ObjectId().toString(), label: "Next.js" },
-							{ id: new ObjectId().toString(), label: "Three.js" },
-							{ id: new ObjectId().toString(), label: "Framer Motion" },
-						],
-						links: [
-							{ id: new ObjectId().toString(), label: "website", url: "https://pixelperfect.art" },
-							{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/portfolio-3d" },
-						],
+						tags: [{ id: new ObjectId().toString(), label: "React" }],
+						links: [{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/aurora-ds" }],
 					},
 				],
 			},
@@ -379,46 +348,33 @@ async function main() {
 		include: { skills: true, languages: true, hobbies: true, experiences: true, projects: true, education: true },
 	});
 
-	// ========== RESUME 3: Backend & DevOps Engineer ==========
-	console.log("📝 Creating Resume 3: Backend & DevOps Engineer...");
-	const resume3 = await prisma.resume.create({
+	// ========== RESUME 3 ==========
+	console.log("📝 Creating Resume 3...");
+	await prisma.resume.create({
 		data: {
-			title: "Backend & DevOps Engineer",
-			summary:
-				"Ingénieur Backend et DevOps avec 7 ans d'expérience dans la conception d'architectures distribuées scalables et la mise en place d'infrastructures cloud. Expert en microservices, conteneurisation et automatisation. Spécialisé dans l'optimisation des performances et la fiabilité des systèmes.",
-			profile: { connect: { id: profile.id } },
-			...commonDatas(profile.id),
+			title: i18n("Ingénieur Backend & DevOps", "Backend & DevOps Engineer"),
+			summary: i18n(
+				"Ingénieur Backend et DevOps avec 7 ans d'expérience dans les architectures distribuées.",
+				"Backend & DevOps engineer with 7 years of experience in distributed architectures.",
+			),
+			profileId: profile.id,
+			...commonDatas(),
 			skills: {
 				create: [
 					{
-						category: "Backend",
+						category: i18n("Backend", "Backend"),
 						items: [
 							{ id: new ObjectId().toString(), label: "Node.js" },
 							{ id: new ObjectId().toString(), label: "Python" },
-							{ id: new ObjectId().toString(), label: "Go" },
 							{ id: new ObjectId().toString(), label: "PostgreSQL" },
-							{ id: new ObjectId().toString(), label: "MongoDB" },
-							{ id: new ObjectId().toString(), label: "Redis" },
 						],
 					},
 					{
-						category: "DevOps & Cloud",
+						category: i18n("DevOps & Cloud", "DevOps & Cloud"),
 						items: [
 							{ id: new ObjectId().toString(), label: "Docker" },
 							{ id: new ObjectId().toString(), label: "Kubernetes" },
 							{ id: new ObjectId().toString(), label: "AWS" },
-							{ id: new ObjectId().toString(), label: "Terraform" },
-							{ id: new ObjectId().toString(), label: "Jenkins" },
-							{ id: new ObjectId().toString(), label: "GitHub Actions" },
-						],
-					},
-					{
-						category: "Architecture & API",
-						items: [
-							{ id: new ObjectId().toString(), label: "Microservices" },
-							{ id: new ObjectId().toString(), label: "REST API" },
-							{ id: new ObjectId().toString(), label: "GraphQL" },
-							{ id: new ObjectId().toString(), label: "gRPC" },
 						],
 					},
 				],
@@ -427,78 +383,28 @@ async function main() {
 				create: [
 					{
 						company: "CloudScale Systems",
-						role: "Senior Backend & DevOps Engineer",
+						role: i18n("Senior Backend & DevOps Engineer", "Senior Backend & DevOps Engineer"),
 						period: "2020 – Présent",
-						type: "CDI",
-						description:
-							"Conception et maintenance d'une infrastructure cloud multi-régionale supportant 1M+ requêtes/jour avec 99.99% de disponibilité.",
+						type: i18n("CDI", "Permanent"),
+						description: i18n(
+							"Conception et maintenance d'une infrastructure cloud multi-régionale.",
+							"Designed and maintained multi-region cloud infrastructure.",
+						),
 						details: [
 							{
 								id: new ObjectId().toString(),
-								body: "Migration complète vers une architecture microservices (15 services) réduisant les coûts de 40%",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Mise en place d'une infrastructure Kubernetes avec auto-scaling et self-healing",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Création d'une pipeline CI/CD automatisée permettant 50+ déploiements/jour sans downtime",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Implémentation d'un système de monitoring et alerting avec Prometheus, Grafana et PagerDuty",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Optimisation des requêtes database réduisant les temps de réponse de 75%",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Infrastructure as Code avec Terraform pour environnements multi-cloud (AWS, GCP)",
+								body: i18n("Migration vers microservices", "Migrated to microservices"),
 							},
 						],
 						formations: [
 							{
 								id: new ObjectId().toString(),
-								label: "Kubernetes Certified Administrator (CKA) & AWS DevOps Professional",
+								label: i18n("Kubernetes CKA & AWS DevOps", "Kubernetes Certified Administrator & AWS DevOps"),
 							},
 						],
 						technologies: [
 							{ id: new ObjectId().toString(), label: "Node.js" },
-							{ id: new ObjectId().toString(), label: "Python" },
-							{ id: new ObjectId().toString(), label: "PostgreSQL" },
-							{ id: new ObjectId().toString(), label: "Redis" },
 							{ id: new ObjectId().toString(), label: "Docker" },
-							{ id: new ObjectId().toString(), label: "Kubernetes" },
-							{ id: new ObjectId().toString(), label: "AWS" },
-							{ id: new ObjectId().toString(), label: "Terraform" },
-						],
-					},
-					{
-						company: "DataFlow Technologies",
-						role: "Backend Developer",
-						period: "2017 – 2020",
-						type: "CDI",
-						description: "Développement d'APIs REST et GraphQL pour une plateforme de data analytics en temps réel.",
-						details: [
-							{
-								id: new ObjectId().toString(),
-								body: "Conception d'APIs REST performantes traitant 100k+ requêtes/jour",
-							},
-							{ id: new ObjectId().toString(), body: "Optimisation des performances database avec indexes et caching" },
-							{
-								id: new ObjectId().toString(),
-								body: "Mise en place de tests automatisés (unitaires, intégration, load testing)",
-							},
-						],
-						formations: [],
-						technologies: [
-							{ id: new ObjectId().toString(), label: "Node.js" },
-							{ id: new ObjectId().toString(), label: "PostgreSQL" },
-							{ id: new ObjectId().toString(), label: "MongoDB" },
-							{ id: new ObjectId().toString(), label: "Docker" },
-							{ id: new ObjectId().toString(), label: "GraphQL" },
 						],
 					},
 				],
@@ -506,34 +412,12 @@ async function main() {
 			projects: {
 				create: [
 					{
-						title: "MicroK8s Starter",
-						description:
-							"Template open-source pour démarrer rapidement avec Kubernetes : configuration optimisée, monitoring intégré et CI/CD.",
+						title: i18n("MicroK8s Starter", "MicroK8s Starter"),
+						description: i18n("Template Kubernetes open-source.", "Open-source Kubernetes starter template."),
 						image: "https://picsum.photos/seed/k8s/600/400",
-						tags: [
-							{ id: new ObjectId().toString(), label: "Kubernetes" },
-							{ id: new ObjectId().toString(), label: "Docker" },
-							{ id: new ObjectId().toString(), label: "Terraform" },
-							{ id: new ObjectId().toString(), label: "Prometheus" },
-						],
+						tags: [{ id: new ObjectId().toString(), label: "Kubernetes" }],
 						links: [
-							{ id: new ObjectId().toString(), label: "website", url: "https://microk8s-starter.dev" },
 							{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/microk8s-starter" },
-						],
-					},
-					{
-						title: "APIGuard",
-						description:
-							"Service de rate limiting et protection DDoS pour APIs, gérant 10M+ requêtes/jour avec latence < 5ms.",
-						image: "https://picsum.photos/seed/apiguard/600/400",
-						tags: [
-							{ id: new ObjectId().toString(), label: "Go" },
-							{ id: new ObjectId().toString(), label: "Redis" },
-							{ id: new ObjectId().toString(), label: "Docker" },
-						],
-						links: [
-							{ id: new ObjectId().toString(), label: "website", url: "https://apiguard.io" },
-							{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/apiguard" },
 						],
 					},
 				],
@@ -542,45 +426,24 @@ async function main() {
 		include: { skills: true, languages: true, hobbies: true, experiences: true, projects: true, education: true },
 	});
 
-	// ========== RESUME 4: Mobile & Cross-Platform Developer ==========
-	console.log("📝 Creating Resume 4: Mobile & Cross-Platform Developer...");
-	const resume4 = await prisma.resume.create({
+	// ========== RESUME 4 ==========
+	console.log("📝 Creating Resume 4...");
+	await prisma.resume.create({
 		data: {
-			title: "Mobile & Cross-Platform Developer",
-			summary:
-				"Développeur mobile passionné avec 5 ans d'expérience dans la création d'applications iOS et Android natives et cross-platform. Expert en React Native, Flutter et optimisation des performances mobile. Spécialisé dans la création d'expériences utilisateur fluides et l'intégration de fonctionnalités natives.",
-			profile: { connect: { id: profile.id } },
-			...commonDatas(profile.id),
+			title: i18n("Développeur Mobile & Cross-Platform", "Mobile & Cross-Platform Developer"),
+			summary: i18n(
+				"Développeur mobile avec 5 ans d'expérience sur iOS, Android et cross-platform.",
+				"Mobile developer with 5 years of experience on iOS, Android and cross-platform.",
+			),
+			profileId: profile.id,
+			...commonDatas(),
 			skills: {
 				create: [
 					{
-						category: "Mobile Development",
+						category: i18n("Mobile Development", "Mobile Development"),
 						items: [
 							{ id: new ObjectId().toString(), label: "React Native" },
 							{ id: new ObjectId().toString(), label: "Flutter" },
-							{ id: new ObjectId().toString(), label: "Swift" },
-							{ id: new ObjectId().toString(), label: "Kotlin" },
-							{ id: new ObjectId().toString(), label: "Expo" },
-						],
-					},
-					{
-						category: "Backend & Services",
-						items: [
-							{ id: new ObjectId().toString(), label: "Node.js" },
-							{ id: new ObjectId().toString(), label: "Firebase" },
-							{ id: new ObjectId().toString(), label: "REST API" },
-							{ id: new ObjectId().toString(), label: "GraphQL" },
-							{ id: new ObjectId().toString(), label: "SQLite" },
-						],
-					},
-					{
-						category: "Tools & CI/CD",
-						items: [
-							{ id: new ObjectId().toString(), label: "Fastlane" },
-							{ id: new ObjectId().toString(), label: "TestFlight" },
-							{ id: new ObjectId().toString(), label: "App Center" },
-							{ id: new ObjectId().toString(), label: "Jest" },
-							{ id: new ObjectId().toString(), label: "Detox" },
 						],
 					},
 				],
@@ -589,72 +452,28 @@ async function main() {
 				create: [
 					{
 						company: "MobileFirst Solutions",
-						role: "Senior Mobile Developer",
+						role: i18n("Senior Mobile Developer", "Senior Mobile Developer"),
 						period: "2021 – Présent",
-						type: "CDI",
-						description:
-							"Lead du développement mobile pour une application de fitness utilisée par 500k+ utilisateurs actifs sur iOS et Android.",
+						type: i18n("CDI", "Permanent"),
+						description: i18n(
+							"Lead développement mobile pour une app fitness 500k+ utilisateurs.",
+							"Lead mobile developer for fitness app with 500k+ users.",
+						),
 						details: [
 							{
 								id: new ObjectId().toString(),
-								body: "Développement d'une application React Native avec synchronisation offline-first et performance optimale",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Intégration de fonctionnalités natives : HealthKit, Google Fit, notifications push, géolocalisation",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Amélioration des performances : réduction du temps de démarrage de 60% et de la taille de l'app de 35%",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Mise en place d'une architecture modulaire facilitant le partage de code entre iOS et Android (90%)",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Automatisation des releases avec Fastlane : déploiements automatiques sur App Store et Play Store",
+								body: i18n("Développement React Native offline-first", "Developed offline-first React Native app"),
 							},
 						],
 						formations: [
-							{ id: new ObjectId().toString(), label: "React Native Advanced Patterns & iOS/Android Native Modules" },
+							{
+								id: new ObjectId().toString(),
+								label: i18n("React Native Advanced Patterns", "React Native Advanced Patterns"),
+							},
 						],
 						technologies: [
 							{ id: new ObjectId().toString(), label: "React Native" },
 							{ id: new ObjectId().toString(), label: "TypeScript" },
-							{ id: new ObjectId().toString(), label: "Swift" },
-							{ id: new ObjectId().toString(), label: "Kotlin" },
-							{ id: new ObjectId().toString(), label: "Firebase" },
-							{ id: new ObjectId().toString(), label: "GraphQL" },
-						],
-					},
-					{
-						company: "AppInnovate Studio",
-						role: "Mobile Developer",
-						period: "2019 – 2021",
-						type: "CDI",
-						description:
-							"Développement d'applications mobiles sur mesure pour divers clients (e-commerce, services, médias).",
-						details: [
-							{
-								id: new ObjectId().toString(),
-								body: "Création de 8 applications React Native publiées sur les stores avec 4.5+ étoiles de moyenne",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Développement d'un système de paiement in-app intégrant Stripe et Apple/Google Pay",
-							},
-							{
-								id: new ObjectId().toString(),
-								body: "Implémentation d'analytics et A/B testing pour optimiser l'engagement utilisateur",
-							},
-						],
-						formations: [],
-						technologies: [
-							{ id: new ObjectId().toString(), label: "React Native" },
-							{ id: new ObjectId().toString(), label: "Expo" },
-							{ id: new ObjectId().toString(), label: "Firebase" },
-							{ id: new ObjectId().toString(), label: "REST API" },
 						],
 					},
 				],
@@ -662,35 +481,14 @@ async function main() {
 			projects: {
 				create: [
 					{
-						title: "FitTracker Pro",
-						description:
-							"Application de suivi fitness avec plans d'entraînement personnalisés, tracking nutrition et intégration wearables.",
+						title: i18n("FitTracker Pro", "FitTracker Pro"),
+						description: i18n(
+							"App fitness avec tracking nutrition et wearable.",
+							"Fitness app with nutrition tracking and wearable integration.",
+						),
 						image: "https://picsum.photos/seed/fittrack/600/400",
-						tags: [
-							{ id: new ObjectId().toString(), label: "React Native" },
-							{ id: new ObjectId().toString(), label: "TypeScript" },
-							{ id: new ObjectId().toString(), label: "Firebase" },
-							{ id: new ObjectId().toString(), label: "HealthKit" },
-						],
-						links: [
-							{ id: new ObjectId().toString(), label: "website", url: "https://fittracker.app" },
-							{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/fittracker" },
-						],
-					},
-					{
-						title: "ChatWave",
-						description:
-							"Messagerie instantanée chiffrée de bout en bout avec appels audio/vidéo, compatible iOS, Android et Web.",
-						image: "https://picsum.photos/seed/chatwave/600/400",
-						tags: [
-							{ id: new ObjectId().toString(), label: "Flutter" },
-							{ id: new ObjectId().toString(), label: "WebRTC" },
-							{ id: new ObjectId().toString(), label: "Node.js" },
-						],
-						links: [
-							{ id: new ObjectId().toString(), label: "website", url: "https://chatwave.io" },
-							{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/chatwave" },
-						],
+						tags: [{ id: new ObjectId().toString(), label: "React Native" }],
+						links: [{ id: new ObjectId().toString(), label: "gitHub", url: "https://github.com/jeyofdev/fittracker" }],
 					},
 				],
 			},

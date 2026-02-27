@@ -20,7 +20,7 @@ import { Chip } from "@/components/ui/chip/chip";
 import { getChipSkillColor } from "@/lib/utils";
 import { ResumeData } from "@/types/resume-type";
 import { Button } from "@/components/ui/button/button";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export type ProjectView = "grid" | "list";
 
@@ -29,6 +29,8 @@ type ResumeProps = {
 };
 
 export const Resume: FC<ResumeProps> = ({ data }) => {
+	const locale = useLocale();
+
 	const translateProfile = useTranslations("resume.profile");
 	const translateMain = useTranslations("resume.main");
 	const [projectView, setProjectView] = useState<ProjectView>("grid");
@@ -84,12 +86,12 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 					<Typography variant="h1">{data.profile.name}</Typography>
 
 					<Typography variant="h6" className="mt-1">
-						{data.title}
+						{data.title[locale as keyof typeof data.title]}
 					</Typography>
 
 					{/* description summary */}
 					<Typography variant="lead" textAlign="left" className="mt-4 px-2">
-						{data.summary}
+						{data.summary[locale as keyof typeof data.summary]}
 					</Typography>
 
 					<div className="mt-8 w-full space-y-4">
@@ -121,7 +123,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 							keyExtractor={(item) => item.id}
 							renderItem={(skillGroup) => (
 								<ProfileBlock
-									category={skillGroup.category}
+									category={skillGroup.category[locale as keyof typeof skillGroup.category]}
 									list={skillGroup.items}
 									keyExtractor={(item) => item.id}
 									renderItem={(skill) => (
@@ -140,7 +142,7 @@ export const Resume: FC<ResumeProps> = ({ data }) => {
 							keyExtractor={(item) => item.id}
 							renderItem={(lang) => (
 								<Chip variant="outline" color="default" size="small">
-									{lang.label} ({lang.level})
+									{lang.label[locale as keyof typeof lang.label]} ({lang.level[locale as keyof typeof lang.level]})
 								</Chip>
 							)}
 							variantTitle="default"
