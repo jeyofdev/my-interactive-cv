@@ -1,3 +1,5 @@
+"use client";
+
 import { ListRenderer } from "@/components/list/list-renderer";
 import { Chip } from "../chip/chip";
 import { Typography } from "../typography/typography";
@@ -6,13 +8,14 @@ import { getChipSkillColor } from "@/lib/utils";
 import { FC } from "react";
 import { CardContent, CardFooter } from "@/components/ui/card/card-base";
 import { Experience } from "@/prisma/generated/prisma/client";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 type AccordionExperienceContentProps = {
 	data: Omit<Experience, "resumeId">;
 };
 
 const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data }) => {
+	const locale = useLocale();
 	const translateMain = useTranslations("resume.main");
 
 	return (
@@ -48,7 +51,7 @@ const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data 
 							renderItem={(detail) => (
 								<Typography variant="list" className="flex gap-2">
 									<span className="text-primary">•</span>
-									<span>{detail.body}</span>
+									<span>{detail.body[locale as keyof typeof detail.body]}</span>
 								</Typography>
 							)}
 						/>
@@ -74,7 +77,7 @@ const AccordionExperienceContent: FC<AccordionExperienceContentProps> = ({ data 
 								renderItem={(formation) => (
 									<Typography variant="list" className="flex gap-2">
 										<span className="text-primary">•</span>
-										<span>{formation.label}</span>
+										<span>{formation.label[locale as keyof typeof formation.label]}</span>
 									</Typography>
 								)}
 							/>

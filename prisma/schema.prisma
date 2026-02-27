@@ -14,6 +14,11 @@ datasource db {
   url = env("DATABASE_URL")
 }
 
+type LocalizedString {
+  fr String
+  en String
+}
+
 
 model Profile {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -34,8 +39,8 @@ model Profile {
 
 model Resume {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  summary   String
+  title     LocalizedString
+  summary   LocalizedString
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -54,8 +59,8 @@ model Resume {
 
 model Skill {
   id       String      @id @default(auto()) @map("_id") @db.ObjectId
-  category String
-  items    SkillItem[]
+	category LocalizedString  
+	items    SkillItem[]
   resume   Resume      @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   resumeId String      @db.ObjectId
 }
@@ -67,17 +72,17 @@ type SkillItem {
 
 model Language {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
-  label    String
-  level    String
+  label    LocalizedString
+  level    LocalizedString
   resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   resumeId String @db.ObjectId
 }
 
 model Hobby {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  label    String
-  detail   String?
-  duration String?
+  label    LocalizedString
+  detail   LocalizedString?
+  duration LocalizedString?
   resume   Resume  @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   resumeId String  @db.ObjectId
 }
@@ -85,10 +90,10 @@ model Hobby {
 model Experience {
   id           String                 @id @default(auto()) @map("_id") @db.ObjectId
   company      String
-  role         String
+  role         LocalizedString
   period       String
-  type         String
-  description  String
+  type         LocalizedString
+  description  LocalizedString
   details      ExperienceDetail[]
   formations   ExperienceFormation[]
   technologies ExperienceTechnology[]
@@ -98,12 +103,12 @@ model Experience {
 
 type ExperienceDetail {
   id   String @db.ObjectId  // ObjectId
-  body String
+  body LocalizedString
 }
 
 type ExperienceFormation {
   id    String @db.ObjectId  // ObjectId
-  label String
+  label LocalizedString
 }
 
 type ExperienceTechnology {
@@ -113,8 +118,8 @@ type ExperienceTechnology {
 
 model Project {
   id          String        @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
+  title       LocalizedString
+  description LocalizedString
   image       String
   tags        ProjectTag[]
   links       ProjectLink[]
@@ -135,10 +140,10 @@ type ProjectLink {
 
 model Education {
   id             String @id @default(auto()) @map("_id") @db.ObjectId
-  school         String
-  degree         String
+  school         LocalizedString
+  degree         LocalizedString
   year           String
-  specialization String
+  specialization LocalizedString
   resume         Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   resumeId       String @db.ObjectId
 }

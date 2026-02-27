@@ -12,7 +12,7 @@ import { FC } from "react";
 import { Link } from "@/components/ui/button/link";
 import { ResumePreviewData } from "@/types/resume-type";
 import { ProfileData } from "@/types/profile-type";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 type HomeProps = {
 	data: ResumePreviewData[];
@@ -20,6 +20,8 @@ type HomeProps = {
 };
 
 export const Home: FC<HomeProps> = ({ data, profile }) => {
+	const locale = useLocale();
+
 	const translateHero = useTranslations("home.hero");
 	const translateCard = useTranslations("home.card");
 	const translateContact = useTranslations("home.contact");
@@ -88,7 +90,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 								<CardHeader className="flex p-6">
 									<CardTitle>
 										<Typography variant="h3" fontSize="xl" lineHeight="none" letterSpacing="normal">
-											{resume.title}
+											{resume.title[locale as keyof typeof resume.title]}
 										</Typography>
 									</CardTitle>
 								</CardHeader>
@@ -103,7 +105,7 @@ export const Home: FC<HomeProps> = ({ data, profile }) => {
 										textAlign="left"
 										className="line-clamp-2"
 									>
-										{resume.summary}
+										{resume.summary[locale as keyof typeof resume.summary]}
 									</Typography>
 								</CardContent>
 

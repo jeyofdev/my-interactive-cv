@@ -1,18 +1,23 @@
+"use client";
+
 import { Chip } from "@/components/ui/chip/chip";
 import { Typography } from "@/components/ui/typography/typography";
 import { Divider } from "../divider/divider";
 import { FC } from "react";
 import { Experience } from "@/prisma/generated/prisma/client";
+import { useLocale } from "next-intl";
 
 type AccordionExperienceTriggerProps = {
 	data: Omit<Experience, "resumeId">;
 };
 
 export const AccordionExperienceTrigger: FC<AccordionExperienceTriggerProps> = ({ data }) => {
+	const locale = useLocale();
+
 	return (
 		<>
 			<div className="flex items-center gap-2.5 flex-wrap">
-				<Typography variant="h3">{data.role}</Typography>
+				<Typography variant="h3">{data.role[locale as keyof typeof data.role]}</Typography>
 
 				{data.id === "1" && <Chip variant="info">Latest</Chip>}
 			</div>
@@ -27,7 +32,7 @@ export const AccordionExperienceTrigger: FC<AccordionExperienceTriggerProps> = (
 				>
 					{data.company}
 					<Chip variant="info" backgroundColor="secondary" color="surface-muted-foreground-info">
-						{data.type}
+						{data.type[locale as keyof typeof data.type]}
 					</Chip>
 				</Typography>
 
@@ -54,7 +59,7 @@ export const AccordionExperienceTrigger: FC<AccordionExperienceTriggerProps> = (
 				letterSpacing="normal"
 				textAlign="left"
 			>
-				{data.description}
+				{data.description[locale as keyof typeof data.description]}
 			</Typography>
 		</>
 	);
